@@ -9,7 +9,7 @@ let(:base_title) { 'Shokku Takku' }
     it "returns http success" do
       get "/"
       expect(response).to have_http_status(:success)
-      assert_select "title", "Home | #{base_title}"
+      assert_select "title", "#{base_title}"
     end
   end
 
