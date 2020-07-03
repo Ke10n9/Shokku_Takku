@@ -1,0 +1,15 @@
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+/Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200703-1000-fx1xcw.rb extconf.rb
+creating Makefile
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20200703-1000-hh2ull/skiptrace/internal
