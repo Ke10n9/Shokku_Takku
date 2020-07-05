@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.feature "SiteLayouts", type: :feature do
+RSpec.feature "HeaderLinks", type: :feature do
   # pending "add some scenarios (or delete) #{__FILE__}"
   let(:base_title) { 'Shokku Takku' }
 
-  scenario "click links" do
+  scenario "are clicked" do
     visit root_path
     click_link "Shokku Takku"
     expect(page).to have_title base_title
-    click_link "Home"
+    click_link "ホーム"
     expect(page).to have_title base_title
   end
 end
