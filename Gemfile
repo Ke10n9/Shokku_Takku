@@ -28,6 +28,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'bootstrap-sass', '3.3.7'
 gem 'rails-i18n'
+gem 'jquery-rails'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -56,7 +57,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.20.0'
+  gem 'pg', '1.1.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
