@@ -11,7 +11,7 @@ RSpec.describe "Users", type: :request do
 
   describe "POST /create" do
     # 無効なリクエスト
-    context "invalid request" do
+    context "with invalid request" do
       # 無効なデータを作成
       let(:user_params) {
         { name: "",
@@ -27,12 +27,17 @@ RSpec.describe "Users", type: :request do
       end
     end
     # 有効なリクエスト
-    context "valid request" do
-      # ユーザーが追加される
+    context "with valid request" do
+
       it "adds a user" do
         expect do
           post signup_path, params: { user: FactoryBot.attributes_for(:user) }
         end.to change(User, :count).by(1)
+      end
+
+      it "let users log in automatically after signing up" do
+        post signup_path, params: { user: FactoryBot.attributes_for(:user) }
+        expect(response).to redirect_to User.last
       end
     end
   end
