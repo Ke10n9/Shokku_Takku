@@ -10,11 +10,13 @@ RSpec.describe "Sessions", type: :request do
   end
 
   describe "POST /create" do
+    before { @user = FactoryBot.create(:user) }
 
     # メールアドレスとパスワードが無効なログイン
     context "with invalid information login" do
-      before { post login_path,
-                    params: { session: { email: "", password: "" } } }
+      before {
+        post login_path, params: { session: { email: "", password: "" } }
+      }
 
       it "not let user log in" do
         # expect(response).to have_http_status(:success)
@@ -33,11 +35,10 @@ RSpec.describe "Sessions", type: :request do
 
     # メールアドレスが正しく、パスワードが誤っているログイン
     context "with login that invalid password for email" do
-      before do
-        @user = FactoryBot.create(:user)
+      before {
         post login_path, params: { session: { email: @user.email,
                                               password: "invalid" } }
-      end
+      }
 
       it "not let user log in" do
         # expect(response).to have_http_status(:success)
@@ -55,15 +56,42 @@ RSpec.describe "Sessions", type: :request do
     end
 
     # 有効なログイン
-    context "with invalid information login" do
-      before do
-        @user = FactoryBot.create(:user)
+    context "with valid information login" do
+      before {
         post login_path, params: { session: { email: @user.email,
                                               password: @user.password } }
-      end
+      }
 
       it "let user log in" do
         expect(session[:user_id]).not_to be_nil
+      end
+    end
+
+    context "with remembering login" do
+      before {
+        post login_path, params: { session: { email: @user.email,
+                                              password: @user.password,
+                                              remember_me: "1" } }
+      }
+
+      it "remember the user" do
+        expect(cookies[:remember_token]).to eq(assigns(:user).remember_token)
+      end
+    end
+
+    context "without remembering login" do
+      before {
+        post login_path, params: { session: { email: @user.email,
+                                              password: @user.password,
+                                              remember_me: "1" } }
+        delete logout_path
+        post login_path, params: { session: { email: @user.email,
+                                              password: @user.password,
+                                              remember_me: "0" } }
+      }
+
+      it "forget the user" do
+        expect(cookies[:remember_token]).to be_empty
       end
     end
   end
@@ -74,12 +102,23 @@ RSpec.describe "Sessions", type: :request do
       post login_path, params: { session: { email: @user.email,
                                             password: @user.password } }
     end
-    
-    context "requested delete logout_path" do
+
+    context "with logout_path" do
       before { delete logout_path }
 
       it "let user log out" do
         expect(session[:user_id]).to be_nil
+      end
+    end
+
+    context "with the second logout_path" do
+      before do
+        delete logout_path
+        delete logout_path
+      end
+
+      it "don't get errors" do
+        expect(response).to have_http_status "302"
       end
     end
   end
