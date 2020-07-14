@@ -10,7 +10,7 @@ RSpec.describe "Sessions", type: :request do
   end
 
   describe "POST /create" do
-    before { @user = FactoryBot.create(:user) }
+    before { @user = create(:michael) }
 
     # メールアドレスとパスワードが無効なログイン
     context "with invalid information login" do
@@ -98,7 +98,7 @@ RSpec.describe "Sessions", type: :request do
 
   describe "DELETE /destroy" do
     before do
-      @user = FactoryBot.create(:user)
+      @user = create(:michael)
       post login_path, params: { session: { email: @user.email,
                                             password: @user.password } }
     end
