@@ -14,7 +14,7 @@ RSpec.describe SessionsHelper, type: :helper do
 
   describe "current_user" do
     before {
-      @user = FactoryBot.create(:user)
+      @user = create(:michael)
       remember(@user)
     }
 

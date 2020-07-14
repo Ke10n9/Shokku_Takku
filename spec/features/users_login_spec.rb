@@ -4,7 +4,7 @@ RSpec.feature "UsersLogins", type: :feature do
   # pending "add some scenarios (or delete) #{__FILE__}"
   context "with valid information" do
     background do
-      @user = FactoryBot.create(:user)
+      @user = create(:michael)
       visit login_path
       fill_in "メールアドレス", with: @user.email
       fill_in "パスワード", with: @user.password

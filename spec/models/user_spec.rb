@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
-  before do
-    @user = FactoryBot.build(:user)
-  end
+  before {
+    @user = build(:michael)
+  }
 
   it "is valid" do
     expect(@user).to be_valid
@@ -44,7 +44,7 @@ RSpec.describe User, type: :model do
       valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]
       valid_addresses.each do |valid_address|
-        expect(FactoryBot.build(:user, email: valid_address)).to be_valid
+        expect(build(:michael, email: valid_address)).to be_valid
       end
     end
   end
@@ -54,7 +54,7 @@ RSpec.describe User, type: :model do
       invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
                            foo@bar_baz.com foo@bar+baz.com]
       invalid_addresses.each do |invalid_address|
-        expect(FactoryBot.build(:user, email: invalid_address)).to be_invalid
+        expect(build(:michael, email: invalid_address)).to be_invalid
       end
     end
   end
