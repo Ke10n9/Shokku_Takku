@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "UserSignups", type: :feature do
-  # 無効な値が入力されたとき
+
   context "entered invalid values" do
     background {
       visit signup_path
@@ -37,13 +37,13 @@ RSpec.feature "UserSignups", type: :feature do
       click_button "登録"
     end
 
-    scenario "get a flash message 'Shokku Takkuへようこそ！'" do
-      expect(page).to have_selector(".alert-success",
-                                    text: "Shokku Takkuへようこそ！")
-    end
+    # scenario "get a flash message 'Shokku Takkuへようこそ！'" do
+    #   expect(page).to have_selector(".alert-success",
+    #                                 text: "Shokku Takkuへようこそ！")
+    # end
 
-    scenario "render to '/users/1'" do
-      expect(page).to have_current_path "/users/1"
-    end
+    # scenario "render to '/users/1'" do
+    #   expect(page).to have_current_path "/users/1"
+    # end
   end
 end
