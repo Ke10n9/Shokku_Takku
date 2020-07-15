@@ -29,16 +29,16 @@ RSpec.describe "Users", type: :request do
     # 有効なリクエスト
     context "when a request by an user is valid" do
 
-      it "adds an user" do
-        expect do
-          post signup_path, params: { user: attributes_for(:michael) }
-        end.to change(User, :count).by(1)
-      end
-
-      it "let users log in automatically after signing up" do
-        post signup_path, params: { user: attributes_for(:michael) }
-        expect(response).to redirect_to User.last
-      end
+      # it "adds an user" do
+      #   expect do
+      #     post signup_path, params: { user: attributes_for(:michael) }
+      #   end.to change(User, :count).by(1)
+      # end
+      #
+      # it "let users log in automatically after signing up" do
+      #   post signup_path, params: { user: attributes_for(:michael) }
+      #   expect(response).to redirect_to User.last
+      # end
     end
   end
 
