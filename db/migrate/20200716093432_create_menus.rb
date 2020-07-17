@@ -3,7 +3,6 @@ class CreateMenus < ActiveRecord::Migration[6.0]
     create_table :menus do |t|
       t.date :date
       t.string :time
-      t.string :name
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

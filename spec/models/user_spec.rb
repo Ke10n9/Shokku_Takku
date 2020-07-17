@@ -94,4 +94,15 @@ RSpec.describe User, type: :model do
       expect(@user.authenticated?(:remember, '')).to be_falsey
     end
   end
+
+  context "when user is destroyed" do
+
+    it "destroy menus" do
+      @user.save
+      @user.menus.create!(date: Date.today, time: "夕")
+      expect do
+        @user.destroy
+      end.to change(Menu, :count).by(-1)
+    end
+  end
 end

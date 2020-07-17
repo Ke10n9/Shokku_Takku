@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_093432) do
+ActiveRecord::Schema.define(version: 2020_07_17_005741) do
+
+  create_table "dishes", force: :cascade do |t|
+    t.string "name"
+    t.integer "menu_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_dishes_on_menu_id"
+  end
 
   create_table "menus", force: :cascade do |t|
     t.date "date"
     t.string "time"
-    t.string "name"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,5 +47,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_093432) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "dishes", "menus"
   add_foreign_key "menus", "users"
 end
