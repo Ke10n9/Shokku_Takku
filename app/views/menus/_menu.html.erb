@@ -4,5 +4,6 @@
       <li class="dish"><%= dish.name %></li>
     <% end %>
   </ul>
-  <div class="timestamp"><%= time_ago_in_words(menu.created_at) %></div>
+  <span class="user"><%= menu.user.name %>さんの投稿</span>
+  <span class="timestamp"><%= time_ago_in_words(menu.created_at) %>前</span>
 </li>
