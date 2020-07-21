@@ -1,8 +1,8 @@
 <li id="menu-<%= menu.id %>">
-  <span class="dishes">
-    <%= menu.dishes.all.each do |dish| %>
-      <div class="dish"><%= dish.name %></div>
+  <ul class="dishes">
+    <% menu.dishes.all.each do |dish| %>
+      <li class="dish"><%= dish.name %></li>
     <% end %>
-  </span>
-  <span class="timestamp"><%= time_ago_in_words(menu.created_at) %></span>
+  </ul>
+  <div class="timestamp"><%= time_ago_in_words(menu.created_at) %></div>
 </li>
