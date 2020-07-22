@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_005741) do
 
   create_table "dishes", force: :cascade do |t|
     t.string "name"
+    t.string "category"
     t.integer "menu_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
