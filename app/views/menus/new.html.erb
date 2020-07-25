@@ -21,7 +21,9 @@
             <%= i.text_field :name, placeholder: "品名" %>
           </div>
 
-          <%= render 'shared/error_messages', object: i.object %>
+          <% unless dish.name.empty? %>
+            <%= render 'shared/error_messages', object: i.object %>
+          <% end %>
         <% end %>
 
       <% end %>

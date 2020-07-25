@@ -16,25 +16,34 @@ class MenusController < ApplicationController
 
   def create
     @menu = current_user.menus.build(menu_params)
-    unless @menu.save
-      render 'new' and return
+
+    if @menu.valid?
+      @menu.save
+    else
+      save_failed = 1
     end
-    err = 0
+
     @dishes = []
     dishes_params.each do |dish_params|
       dish = @menu.dishes.build(dish_params)
       @dishes << dish
     end
-    @dishes.each do |dish|
-      if !dish.name.empty?
-        if dish.valid?
-          dish.save
-        else
-          @menu.destroy
-          render 'new' and return
+
+    unless save_failed == 1
+      @dishes.each do |dish|
+        unless dish.name == ""
+          if dish.valid?
+            dish.save
+          else
+            @menu.destroy
+            render 'new' and return
+          end
         end
       end
+    else
+      render 'new' and return
     end
+
     flash[:success] = "メニューが登録されました。"
     redirect_to root_path
   end
