@@ -1,5 +1,5 @@
 <li id="menu-<%= menu.id %>">
-  <span class="datetime"><%= menu.date %>　<%= menu.time %>食</span>
+  <span class="datetime"><%= menu.date %>　<%= menu.time %></span>
   <ul class="dishes">
     <% menu.dishes.all.each do |dish| %>
       <li class="dish"><%= dish.name %></li>
