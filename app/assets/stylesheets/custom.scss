@@ -14,7 +14,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+  background-color: snow;
 }
 
 section {
@@ -27,6 +27,8 @@ textarea {
 
 .center {
   text-align: center;
+  background-color: white;
+  border-radius: 20px;
   h1 {
     margin-bottom: 10px;
   }
@@ -39,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
@@ -62,15 +64,18 @@ p {
 
 /* header */
 
+.navbar {
+  background-color: linen;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
+  color: black;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
-  font-weight: bold;
   &:hover {
     color: white;
     text-decoration: none;
@@ -166,8 +171,6 @@ input {
   margin-left: 0;
 }
 
-/* Users index */
-
 .users {
   list-style: none;
   margin: 0;
@@ -175,5 +178,34 @@ input {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+/* menus */
+
+.menus {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+    span {
+      color: $gray-light;
+    }
+    .user {
+      display: block;
+      text-align: right;
+    }
+  }
+  .dishes {
+    display: block;
+    margin-left: 5%;
+    .dish {
+      padding: 0 5px;
+      background-color: white;
+      border-radius: 20px;
+      margin: 7px 0 7px 0;
+      width: 90%;
+    }
   }
 }
