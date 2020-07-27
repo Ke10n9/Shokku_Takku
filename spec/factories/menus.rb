@@ -9,6 +9,6 @@ FactoryBot.define do
     date { Date.today }
     time { "MyString" }
     user { nil }
-    created_at { Time.zone.now }
+    updated_at { Time.zone.now }
   end
 end
