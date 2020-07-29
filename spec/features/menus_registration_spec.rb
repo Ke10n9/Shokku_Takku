@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "MenusInterfaces", type: :feature do
-  pending "add some scenarios (or delete) #{__FILE__}"
+  background {
+    @user = create(:michael)
+    log_in_as @user
+  }
+
+  
+
+
 end

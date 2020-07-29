@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Menus", type: :request do
   before {
     @user = create(:michael)
-    @menu = create(:menu)
+    @menu = create(:menu, user: @user)
   }
 
   let(:menu_params) {
@@ -27,7 +27,7 @@ RSpec.describe "Menus", type: :request do
   end
 
   describe "DELETE /destroy" do
-    cotext "when not logged in" do
+    context "when not logged in" do
       it "not destroy menu" do
         expect do
           delete menu_path(@menu)
