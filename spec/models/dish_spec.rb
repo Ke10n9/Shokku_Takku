@@ -35,4 +35,12 @@ RSpec.describe Dish, type: :model do
       expect(@dish).to be_invalid
     end
   end
+
+  context "without category" do
+    before { @dish.category = "" }
+
+    it "is invalid" do
+      expect(@dish).to be_invalid
+    end
+  end
 end
