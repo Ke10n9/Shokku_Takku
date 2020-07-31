@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Menus", type: :request do
   before {
     @user = create(:michael)
+    @other_user = create(:archer)
     @menu = create(:menu, user: @user)
   }
 
@@ -41,7 +42,7 @@ RSpec.describe "Menus", type: :request do
     end
 
     context "when the user is wrong" do
-      before { log_in_path @user }
+      before { log_in_path @other_user }
 
       it "not destroy menu" do
         expect do
