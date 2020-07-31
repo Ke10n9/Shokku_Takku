@@ -55,7 +55,7 @@ RSpec.describe Menu, type: :model do
 
     it "destroy dishes" do
       @menu.save
-      @menu.dishes.create!(name: "豚肉")
+      @menu.dishes.create!(name: "豚肉", category: "主菜")
       expect do
         @menu.destroy
       end.to change(Dish, :count).by(-1)

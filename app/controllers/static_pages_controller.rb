@@ -1,5 +1,4 @@
 class StaticPagesController < ApplicationController
-  before_action :logged_in_user, only: [:home]
   before_action :set_menu_times, only: [:home]
   before_action :set_dish_categories, only: [:home]
 
