@@ -6,7 +6,7 @@
 
     <%= f.date_field :date, value: @menu_date %>
 
-    <%= f.select :time, @menu_times, prompt: "（朝昼夕）" %>
+    <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
 
     <div class="col-xs-4">
       <%= i.select :category, @dish_categories, prompt: "（分類）",
@@ -14,7 +14,7 @@
     </div>
 
     <div class="col-xs-8">
-      <%= i.text_field :name, placeholder: "品名" %>
+      <%= i.text_field :name, placeholder: "品名", value: @dish_name %>
     </div>
 
   <% end %>
