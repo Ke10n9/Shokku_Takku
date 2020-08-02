@@ -50,9 +50,9 @@ RSpec.describe "Menus", type: :request do
         end.to change(Menu, :count).by(0)
       end
 
-      it "redirect to login_url" do
+      it "redirect to root_url" do
         delete menu_path(@menu)
-        expect(response).to redirect_to login_url
+        expect(response).to redirect_to root_url
       end
     end
   end

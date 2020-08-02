@@ -47,7 +47,7 @@ RSpec.describe Menu, type: :model do
     end
   end
 
-  it "arranges records in descending order of created_at" do
+  it "arranges records in descending order of updated_at" do
     expect(Menu.first).to eq(@most_recent)
   end
 

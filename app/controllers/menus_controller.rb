@@ -43,26 +43,6 @@ class MenusController < ApplicationController
       render 'static_pages/home'
     end
 
-    # #
-    # if @menu.valid? && @dish.valid?
-    # # if @menu.valid?
-    #   # @dish = @menu.dishes.build(dish_params)
-    #   # if @dish.valid?
-    #     @menu.save if menu.nil?
-    #     @dish.save
-    #     flash[:success] = "メニューを登録しました。"
-    #     @dish_category = ""
-    #     @dish_name = ""
-    #     render 'static_pages/home'
-    #   # else
-    #   #   render 'static_pages/home'
-    #   # end
-    # else
-    #   # @menu = current_user.menus.build
-    #   # @dish = @menu.dishes.build
-    #   render 'static_pages/home'
-    # end
-
     # /menus/new
     # if @menu.valid?
     #   @menu.save
