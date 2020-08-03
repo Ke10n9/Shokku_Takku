@@ -10,23 +10,6 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "POST /create" do
-    # 無効なリクエスト
-    context "when a request by an user is invalid" do
-      # 無効なデータを作成
-      let(:user_params) {
-        { name: "",
-          email: "user@invalid",
-          password: "foo",
-          password_confirmation: "bar" }
-      }
-      # ユーザーが追加されない
-      it "does not add an user" do
-        expect do
-          post signup_path, params: { user: user_params }
-        end.to change(User, :count).by(0)
-      end
-    end
-    # 有効なリクエスト
     context "when a request by an user is valid" do
 
       # it "adds an user" do
