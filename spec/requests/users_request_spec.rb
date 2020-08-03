@@ -110,12 +110,18 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET /index" do
-    before { get users_path }
+    before {
+      @non_admin = create(:archer)
+    }
 
-    context "not logged in" do
+    context "requested by non-admin user" do
+      before {
+        log_in_path @non_admin
+        get users_path
+      }
 
-      it "redirect to login_url" do
-        expect(response).to redirect_to login_url
+      it "redirect to root_url" do
+        expect(response).to redirect_to root_url
       end
     end
   end
