@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "UserSignups", type: :feature do
 
-  scenario "are tried to sign up with an invalid user" do
+  scenario "can not sign up with an invalid user" do
     visit signup_path
     expect do
       fill_in "ユーザー名", with: ""
