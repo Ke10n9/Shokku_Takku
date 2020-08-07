@@ -11,4 +11,10 @@ FactoryBot.define do
     user { nil }
     updated_at { Time.zone.now }
   end
+
+  factory :first_menu, class: Menu do
+    date { Date.yesterday }
+    time { "夕食" }
+    user { nil }
+  end
 end
