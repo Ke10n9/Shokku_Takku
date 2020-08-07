@@ -1,7 +1,40 @@
 require 'rails_helper'
 
 RSpec.feature "MenusInterfaces", type: :feature do
-  background { @user = create(:michael) }
+  background { @user = create :michael }
+
+  feature "Form" do
+    context "with not logged-in user" do
+
+      scenario "is not displayed in root_url" do
+        visit root_url
+        expect(page).not_to have_selector "form"
+      end
+    end
+
+    context "with logged-in user" do
+      background {
+        log_in_as @user
+        visit root_url
+      }
+
+      scenario "is displayed in root_url" do
+        expect(page).to have_selector "form"
+      end
+
+      scenario "is entered today's date in the date form" do
+        expect(page).to have_field "menu_date", with: Time.now.strftime("%Y-%m-%d")
+      end
+
+      scenario "is not selected in the time form" do
+        expect(page).to have_select "menu_time", selected: []
+      end
+
+      scenario "is not selected in the dish_category form" do
+        expect(page).to have_select "dish_category", selected: []
+      end
+    end
+  end
 
   feature "Registeration" do
     context "with logged-in user" do
@@ -36,18 +69,18 @@ RSpec.feature "MenusInterfaces", type: :feature do
 
         scenario "redirect to root_url" do
           click_button "送信"
-          expect(page).to have_current_path(root_url)
+          expect(page).to have_current_path root_url
         end
 
         scenario "display the menu in the menu registeration list" do
           click_button "送信"
-          expect(page).to have_selector(".datetime",
-                                        text: "#{@menu_date}　#{@menu_time}")
+          expect(page).to have_selector ".datetime",
+                                        text: "#{@menu_date}　#{@menu_time}"
         end
 
         scenario "display the dish in the menu registeration list" do
           click_button "送信"
-          expect(page).to have_selector(".dish", text: @dish_name)
+          expect(page).to have_selector ".dish", text: @dish_name
         end
 
         scenario "enter the same date in the form as last time" do
@@ -57,7 +90,7 @@ RSpec.feature "MenusInterfaces", type: :feature do
 
         scenario "enter the same time in the form as last time" do
           click_button "送信"
-          expect(page).to have_select("menu_time", selected: @menu_time)
+          expect(page).to have_select "menu_time", selected: @menu_time
         end
       end
 
