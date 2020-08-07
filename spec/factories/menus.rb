@@ -17,4 +17,11 @@ FactoryBot.define do
     time { "夕食" }
     user { nil }
   end
+
+  31.times do |n|
+    factory :"menu-#{n}", class: Menu do
+      date { Date.today - n }
+      time { "夕食" }
+    end
+  end
 end

@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature "MenusInterfaces", type: :feature do
-  background { @user = create :michael }
+  background {
+    @user = create(:michael)
+    @other_user = create(:archer)
+  }
 
   feature "Form" do
-    context "with not logged-in user" do
+    context "without logged-in user" do
 
       scenario "is not displayed in root_url" do
         visit root_url
@@ -230,6 +233,61 @@ RSpec.feature "MenusInterfaces", type: :feature do
           click_button "送信"
           expect(page).to have_selector(".dish", text: @dish_name)
         end
+      end
+    end
+  end
+
+  feature "Posted menus list" do
+    background { visit root_url }
+
+    context "without logged-in user" do
+
+      scenario "displayed" do
+        expect(page).to have_selector ".menus"
+      end
+    end
+
+    context "with logged-in user" do
+
+      scenario "displayed" do
+        expect(page).to have_selector ".menus"
+      end
+    end
+
+    context "with more than 31 registers" do
+      background {
+        @first_menu = create(:"menu-#{0}", user: @user)
+        for n in 1..30 do
+          create(:"menu-#{n}", user: @user)
+        end
+      }
+
+      scenario "show the oldest register on page 1" do
+        expect(page).not_to have_selector "#menu-#{@first_menu.id}"
+      end
+    end
+
+    context "with current_user = registered user" do
+      background {
+        log_in_as @user
+        @menu = create(:menu, user: @user)
+      }
+
+      scenario "display button of '削除' in register list" do
+        visit root_url
+        expect(page).to have_link "削除"
+      end
+    end
+
+    context "with current_user != registered user" do
+      background {
+        log_in_as @other_user
+        @menu = create(:menu, user: @user)
+      }
+
+      scenario "not display button of '削除' in register list" do
+        visit root_url
+        expect(page).not_to have_link "削除"
       end
     end
   end

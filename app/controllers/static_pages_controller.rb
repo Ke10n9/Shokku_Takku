@@ -8,8 +8,11 @@ class StaticPagesController < ApplicationController
     if logged_in?
       @menu = current_user.menus.build
       @dish = @menu.dishes.build
-      session[:menu_date].nil? ? @menu_date = Time.now.strftime("%Y-%m-%d")
-                                : @menu_date = session[:menu_date]
+      if session[:menu_date].nil? || session[:menu_date].empty?
+        @menu_date = Time.now.strftime("%Y-%m-%d")
+      else
+        @menu_date = session[:menu_date]
+      end
       @menu_time = session[:menu_time] unless session[:menu_time].nil?
     end
 
