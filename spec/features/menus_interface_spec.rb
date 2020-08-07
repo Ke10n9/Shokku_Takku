@@ -291,4 +291,41 @@ RSpec.feature "MenusInterfaces", type: :feature do
       end
     end
   end
+
+  feature "Delete" do
+    background {
+      log_in_as @user
+      @menu = create(:menu, user: @user)
+      @dish = create(:dish, menu: @menu)
+      @menu_id = @menu.id
+      visit root_url
+    }
+
+    scenario "destory a menu in menus tabel" do
+      expect do
+        click_link "削除"
+      end.to change(Menu, :count).by(-1)
+    end
+
+    scenario "destory a dish in dishes tabel" do
+      expect do
+        click_link "削除"
+      end.to change(Dish, :count).by(-1)
+    end
+
+    scenario "redirect to root_url" do
+      click_link "削除"
+      expect(page).to have_current_path root_url
+    end
+
+    scenario "display success message" do
+      click_link "削除"
+      expect(page).to have_selector(".alert-success")
+    end
+
+    scenario "destroy a menu in register list" do
+      click_link "削除"
+      expect(page).not_to have_selector "#menu-#{@menu_id}"
+    end
+  end
 end
