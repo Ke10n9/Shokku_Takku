@@ -9,7 +9,7 @@
     <%= menu.user.name %>さんの投稿
     （<%= time_ago_in_words(menu.created_at) %>前）
     <% if current_user?(menu.user) %>
-      <%= link_to "編集", menu, method: :patch %>
+      <%= link_to "編集", edit_menu_path(menu) %>
       /
       <%= link_to "削除", menu, method: :delete,
                               data: { confirm: "本当に削除してよろしいですか？" } %>

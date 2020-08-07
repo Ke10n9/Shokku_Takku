@@ -1,8 +1,8 @@
 class MenusController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :destroy]
-  before_action :set_menu_times, only: [:new, :create]
-  before_action :set_dish_categories, only: [:new, :create]
-  before_action :correct_user, only: :destroy
+  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_menu_times, only: [:new, :create, :edit, :update]
+  before_action :set_dish_categories, only: [:new, :create, :edit, :update]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @menu = current_user.menus.build if logged_in?
