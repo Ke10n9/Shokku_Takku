@@ -81,6 +81,13 @@ class MenusController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def edit
+    @menu = Menu.find(params[:id])
+  end
+
+  def update
+  end
+
   private
 
     def menu_params
