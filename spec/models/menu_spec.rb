@@ -36,7 +36,18 @@ RSpec.describe Menu, type: :model do
     end
   end
 
-  it "arranges records in descending order of created_at" do
+  context "with duplicate column" do
+    before {
+      @menu.save
+      @duplicate_menu = build(:menu, user: @user)
+    }
+
+    it "is invalid" do
+      expect(@duplicate_menu).to be_invalid
+    end
+  end
+
+  it "arranges records in descending order of updated_at" do
     expect(Menu.first).to eq(@most_recent)
   end
 
@@ -44,7 +55,7 @@ RSpec.describe Menu, type: :model do
 
     it "destroy dishes" do
       @menu.save
-      @menu.dishes.create!(name: "豚肉")
+      @menu.dishes.create!(name: "豚肉", category: "主菜")
       expect do
         @menu.destroy
       end.to change(Dish, :count).by(-1)

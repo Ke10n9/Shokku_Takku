@@ -10,23 +10,6 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "POST /create" do
-    # 無効なリクエスト
-    context "when a request by an user is invalid" do
-      # 無効なデータを作成
-      let(:user_params) {
-        { name: "",
-          email: "user@invalid",
-          password: "foo",
-          password_confirmation: "bar" }
-      }
-      # ユーザーが追加されない
-      it "does not add an user" do
-        expect do
-          post signup_path, params: { user: user_params }
-        end.to change(User, :count).by(0)
-      end
-    end
-    # 有効なリクエスト
     context "when a request by an user is valid" do
 
       # it "adds an user" do
@@ -48,17 +31,6 @@ RSpec.describe "Users", type: :request do
       @other_user = create(:archer)
     }
 
-    context "when logged in" do
-      before {
-        log_in_path @user
-        get edit_user_path(@user)
-      }
-
-      it "returns http success" do
-        expect(response).to have_http_status(:success)
-      end
-    end
-
     context "when not logged in" do
       before { get edit_user_path(@user) }
 
@@ -68,20 +40,6 @@ RSpec.describe "Users", type: :request do
 
       it "redirect to login page" do
         expect(response).to redirect_to login_path
-      end
-
-      it "session[:forwarding_url] = edit_user_url(@user) before user log in" do
-        expect(session[:forwarding_url]).to eq(edit_user_url(@user))
-      end
-
-      it "redirect to edit_user_path after user log in" do
-        log_in_path @user
-        expect(response).to redirect_to edit_user_url(@user)
-      end
-
-      it "session[:forwarding_url] is nil after user log in" do
-        log_in_path @user
-        expect(session[:forwarding_url]).to be_nil
       end
     end
 
@@ -106,53 +64,6 @@ RSpec.describe "Users", type: :request do
       @user = create(:michael)
       @other_user = create(:archer)
     }
-
-    context "when logged in" do
-      before {
-        log_in_path @user
-      }
-
-      context "with invalid request" do
-        before {
-          patch user_path(@user), params: { user: { name: "",
-                                                    email: "foo@invalid",
-                                                    password: "foo",
-                                                    password_confirmation: "bar" } }
-        }
-
-        it "render to users/edit" do
-          expect(response).to render_template 'users/edit'
-        end
-      end
-
-      context "with valid request" do
-        before {
-          @name = "Foo Bar"
-          @email = "foo@bar.com"
-          patch user_path(@user), params: { user: { name: @name,
-                                                    email: @email,
-                                                    password: "",
-                                                    password_confirmation: "" } }
-          @user.reload
-        }
-
-        it "display flash message" do
-          expect(flash[:success]).to be_truthy
-        end
-
-        it "redirect to @user" do
-          expect(response).to redirect_to @user
-        end
-
-        it "change @user.name" do
-          expect(@user.name).to eq(@name)
-        end
-
-        it "change @user.email" do
-          expect(@user.email).to eq(@email)
-        end
-      end
-    end
 
     context "when not logged in" do
       before {
@@ -199,12 +110,18 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET /index" do
-    before { get users_path }
+    before {
+      @non_admin = create(:archer)
+    }
 
-    context "not logged in" do
+    context "requested by non-admin user" do
+      before {
+        log_in_path @non_admin
+        get users_path
+      }
 
-      it "redirect to login_url" do
-        expect(response).to redirect_to login_url
+      it "redirect to root_url" do
+        expect(response).to redirect_to root_url
       end
     end
   end

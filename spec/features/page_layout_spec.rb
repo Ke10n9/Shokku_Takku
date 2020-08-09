@@ -1,17 +1,24 @@
 require 'rails_helper'
 
-RSpec.feature "PageLinks", type: :feature do
+RSpec.feature "PageLayouts", type: :feature do
 
-  feature "of root_path" do
-    background { visit root_path }
+  feature "root_path" do
+    background {
+      visit root_path
+      @user = create(:michael)
+    }
 
-    scenario "click_link 'ユーザー登録' and redirect_to signup_path" do
-      click_link "ユーザー登録"
-      expect(page).to have_current_path signup_path
+    context "when not logged in" do
+
+      scenario "click_link 'ユーザー登録' and redirect_to signup_path" do
+        click_link "ユーザー登録"
+        expect(page).to have_current_path signup_path
+      end
     end
+
   end
 
-  feature "of header" do
+  feature "header" do
     background { visit root_path }
 
     scenario "click_link 'Shokku Takku' and redirect_to root_path" do
