@@ -83,9 +83,31 @@ class MenusController < ApplicationController
 
   def edit
     @menu = Menu.find(params[:id])
+    @dishes = @menu.dishes.all
   end
 
   def update
+    @menu = Menu.find(params[:id])
+    err = 0
+    @dishes = []
+
+    dishes_params.keys.each do |dish_id|
+      dish = Dish.find(dish_id)
+      dish.assign_attributes({ name: dishes_params[dish_id][:name],
+                              category: dishes_params[dish_id][:category] })
+      @dishes << dish
+      err = 1 unless dish.valid?
+    end
+
+    if @menu.update(menu_params) && err == 0
+      @dishes.each do |dish|
+        dish.save
+      end
+      flash[:success] = "メニューを編集しました。"
+      redirect_to root_url
+    else
+      render 'edit'
+    end
   end
 
   private
