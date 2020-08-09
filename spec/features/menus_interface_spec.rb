@@ -290,6 +290,30 @@ RSpec.feature "MenusInterfaces", type: :feature do
         expect(page).not_to have_link "削除"
       end
     end
+
+    context "with current_user = registered user" do
+      background {
+        log_in_as @user
+        @menu = create(:menu, user: @user)
+      }
+
+      scenario "display button of '編集' in register list" do
+        visit root_url
+        expect(page).to have_link "編集", href: "/menus/#{@menu.id}/edit"
+      end
+    end
+
+    context "with current_user != registered user" do
+      background {
+        log_in_as @other_user
+        @menu = create(:menu, user: @user)
+      }
+
+      scenario "not display button of '編集' in register list" do
+        visit root_url
+        expect(page).not_to have_link "編集", href: "/menus/#{@menu.id}/edit"
+      end
+    end
   end
 
   feature "Delete" do
@@ -326,6 +350,159 @@ RSpec.feature "MenusInterfaces", type: :feature do
     scenario "destroy a menu in register list" do
       click_link "削除"
       expect(page).not_to have_selector "#menu-#{@menu_id}"
+    end
+  end
+
+  feature "Edit" do
+    background {
+      log_in_as @user
+      @menu = create(:menu, user: @user)
+      @dish_one = create(:dish, menu: @menu)
+      @dish_two = create(:first_dish, menu: @menu)
+      visit edit_menu_path(@menu)
+    }
+
+    scenario "display current date in the edit form" do
+      expect(page).to have_field "menu_date", with: @menu.date
+    end
+
+    scenario "display current time in the edit form" do
+      expect(page).to have_select "menu_time", selected: @menu.time
+    end
+
+    scenario "display the same category in the edit form" do
+      expect(page).to have_select "dish_#{@dish_one.id}_category",
+                                        selected: @dish_one.category
+      expect(page).to have_select "dish_#{@dish_two.id}_category",
+                                        selected: @dish_two.category
+    end
+
+    scenario "display the same name in the edit form" do
+      expect(page).to have_field "dish_#{@dish_one.id}_name",
+                                          with: @dish_one.name
+      expect(page).to have_field "dish_#{@dish_two.id}_name",
+                                          with: @dish_two.name
+    end
+
+    context "with invalid menu" do
+      background {
+        @previous_name = @dish_one.name
+        fill_in "menu_date", with: ""
+        fill_in "dish_#{@dish_one.id}_name", with: "edited name"
+        click_button "確定"
+      }
+
+      scenario "not update data" do
+        expect(@dish_one.name).to eq @previous_name
+      end
+
+      scenario "render edit page" do
+        expect(page).to have_current_path "/menus/#{@menu.id}"
+      end
+
+      scenario "display danger message" do
+        expect(page).to have_selector(".alert-danger")
+      end
+
+      scenario "is accepted normally if content is fixed after invalid edit" do
+        @menu_date = Date.today
+        fill_in "menu_date", with: @menu_date
+        click_button "確定"
+        expect(page).to have_selector(".alert-success")
+      end
+    end
+
+    context "with duplicate menu" do
+      background {
+        @other_menu = create(:today_lunch, user: @user)
+        @other_menu_dish = create(:second_dish, menu: @other_menu)
+        fill_in "menu_date", with: @other_menu.date
+        select @other_menu.time, from: "menu_time"
+        click_button "確定"
+        # @dish_oneのmenuが@other_menuに編集されているかの確認
+        @dish_update = Dish.find_by(name: @dish_one.name,
+                                    category: @dish_one.category,
+                                    menu: @other_menu)
+      }
+
+      scenario "not update dish's menu" do
+        expect(@dish_update).to be_falsy
+      end
+
+      scenario "render edit page" do
+        expect(page).to have_current_path "/menus/#{@menu.id}"
+      end
+
+      scenario "display danger message" do
+        expect(page).to have_selector(".alert-danger")
+      end
+    end
+
+    context "with invalid dish" do
+      background {
+        @previous_date = @menu.date
+        fill_in "menu_date", with: "2020-8-7"
+        fill_in "dish_#{@dish_one.id}_name", with: ""
+        click_button "確定"
+      }
+
+      scenario "not update data" do
+        expect(@menu.date).to eq @previous_date
+      end
+
+      scenario "render edit page" do
+        expect(page).to have_current_path "/menus/#{@menu.id}"
+      end
+
+      scenario "display danger message" do
+        expect(page).to have_selector(".alert-danger")
+      end
+
+      scenario "is accepted normally if content is fixed after invalid edit" do
+        @dish_one_name = "豚肉"
+        fill_in "dish_#{@dish_one.id}_name", with: @dish_one_name
+        click_button "確定"
+        expect(page).to have_selector(".alert-success")
+      end
+    end
+
+    context "with valid menu and dish" do
+      background {
+        @new_date = Date.today
+        @new_time = "夕食"
+        @new_dish_one = { name: "ハヤシライス", category: "主菜" }
+        fill_in "menu_date", with: @new_date
+        select @new_time, from: "menu_time"
+        select @new_dish_one[:category], from: "dish_#{@dish_one.id}_category"
+        fill_in "dish_#{@dish_one.id}_name", with: @new_dish_one[:name]
+        click_button "確定"
+        @menu.reload
+        @dish_one.reload
+      }
+
+      scenario "update date of menu" do
+        expect(@menu.date).to eq @new_date
+      end
+
+      scenario "update time of menu" do
+        expect(@menu.time).to eq @new_time
+      end
+
+      scenario "update category of dish" do
+        expect(@dish_one.category).to eq @new_dish_one[:category]
+      end
+
+      scenario "update name of dish" do
+        expect(@dish_one.name).to eq @new_dish_one[:name]
+      end
+
+      scenario "redirect to root_url" do
+        expect(page).to have_current_path root_url
+      end
+
+      scenario "display success message" do
+        expect(page).to have_selector(".alert-success")
+      end
     end
   end
 end

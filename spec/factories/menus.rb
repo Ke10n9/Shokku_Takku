@@ -1,20 +1,26 @@
 FactoryBot.define do
   factory :menu do
     date { "2020-7-16" }
-    time { "MyString" }
+    time { "夕食" }
     user { nil }
   end
 
   factory :most_recent, class: Menu do
     date { Date.today }
-    time { "MyString" }
+    time { "朝食" }
     user { nil }
     updated_at { Time.zone.now }
   end
 
   factory :first_menu, class: Menu do
-    date { Date.yesterday }
+    date { "2020-8-7" }
     time { "夕食" }
+    user { nil }
+  end
+
+  factory :today_lunch, class: Menu do
+    date { Date.today }
+    time { "昼食" }
     user { nil }
   end
 
