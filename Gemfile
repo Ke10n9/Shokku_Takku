@@ -31,6 +31,8 @@ gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -62,6 +64,7 @@ end
 
 group :production do
   gem 'pg', '1.1.4'
+  gem 'fog'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

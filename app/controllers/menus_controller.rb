@@ -19,7 +19,8 @@ class MenusController < ApplicationController
     @menus = Menu.paginate(page: params[:page])
     logged_in? ? @user = @current_user : @user = User.new
 
-    menu = Menu.find_by(menu_params, user: current_user)
+    menu = Menu.find_by(date: menu_params[:date], time: menu_params[:time],
+                        user: current_user)
     menu.nil? ? @menu = current_user.menus.build(menu_params) : @menu = menu
     @dish = @menu.dishes.build(dish_params)
     @menu_date = menu_params[:date]
@@ -113,7 +114,7 @@ class MenusController < ApplicationController
   private
 
     def menu_params
-      params.require(:menu).permit(:date, :time)
+      params.require(:menu).permit(:date, :time, :picture)
     end
 
     def dish_params

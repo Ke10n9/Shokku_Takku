@@ -1,4 +1,7 @@
 <li id="menu-<%= menu.id %>">
+  <div class="picture">
+    <%= image_tag menu.picture.url if menu.picture? %>
+  </div>
   <span class="datetime"><%= menu.date %>　<%= menu.time %></span>
   <ul class="dishes">
     <% menu.dishes.all.each do |dish| %>
