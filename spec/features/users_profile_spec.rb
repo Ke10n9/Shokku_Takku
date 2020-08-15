@@ -5,6 +5,7 @@ RSpec.feature "UsersProfiles", type: :feature do
 
   background {
     @user = create(:michael)
+    log_in_as @user
     visit user_path(@user)
   }
 

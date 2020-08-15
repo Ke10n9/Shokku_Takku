@@ -14,7 +14,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  background-color: snow;
+  background-color: white;
 }
 
 section {
@@ -65,7 +65,19 @@ p {
 /* header */
 
 .navbar {
-  background-color: linen;
+  background-color: white;
+  border-top: 1px solid #FF6600;
+  .navbar-header {
+    display: flex;
+    align-items: flex-end;
+    button {
+      margin: 0 0 0 auto;
+    }
+    .sub-title {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+  }
 }
 
 #logo {
@@ -73,11 +85,11 @@ p {
   margin-right: 10px;
   font-size: 1.7em;
   color: black;
-  text-transform: uppercase;
-  letter-spacing: -1px;
   padding-top: 9px;
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN",
+                "Yu Mincho", "MS PMincho", serif;
   &:hover {
-    color: white;
+    color: orange;
     text-decoration: none;
   }
 }
@@ -171,6 +183,24 @@ input {
   margin-left: 0;
 }
 
+.btn-square-so-pop {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd9535;/*色*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 2px #d27d00;/*線色*/
+}
+
+.btn-square-so-pop:active {
+  /*押したとき*/
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+
 .users {
   list-style: none;
   margin: 0;
@@ -206,6 +236,27 @@ input {
       border-radius: 20px;
       margin: 7px 0 7px 0;
       width: 90%;
+    }
+  }
+}
+
+/* menu calendar */
+
+.calendar {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(20px, 1fr));
+  grid-auto-rows: 120px;
+  overflow: auto;
+  .menu {
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    margin: 2px;
+    background-color: white;
+    padding: 2px;
+    overflow: scroll;
+    .dish {
+      background-color: white;
     }
   }
 }

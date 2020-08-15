@@ -21,8 +21,8 @@ RSpec.feature "PageLayouts", type: :feature do
   feature "header" do
     background { visit root_path }
 
-    scenario "click_link 'Shokku Takku' and redirect_to root_path" do
-      click_link "Shokku Takku"
+    scenario "click_link 'ダテさん' and redirect_to root_path" do
+      click_link "ダテさん"
       expect(page).to have_current_path root_path
     end
 

@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:index, :destroy]
+  before_action :set_menu_times, only: :show
+  before_action :set_dish_categories, only: :show
+  before_action :prepare_menu_form, only: :show
 
   def index
     @users = User.where(activated: true).paginate(page: params[:page])
@@ -10,6 +13,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     redirect_to root_url and return unless @user.activated?
+
+    # menus/menu_calendar
+    @date = Date.today
+    # @menus = []
+    # for num in 0..30 do
+    #   @menu_times.each do |time|
+    #     @menus
   end
 
   def new

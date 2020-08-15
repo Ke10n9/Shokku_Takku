@@ -5,15 +5,15 @@
       <%= render 'shared/menu_form' %>
     <% else %>
       <div class="center jumbotron">
-        <h1>Shokku Takku</h1>
+        <h1>ダテさん -献立記録サービス-</h1>
         <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
       </div>
     <% end %>
   </aside>
-  <aside class="col-md-8">
+  <div class="col-md-8">
     <ul class="menus">
       <%= render @menus %>
     </ul>
     <%= will_paginate @menus %>
-  </aside>
+  </div>
 </div>
