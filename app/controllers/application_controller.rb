@@ -24,4 +24,18 @@ class ApplicationController < ActionController::Base
     def set_dish_categories
       @dish_categories = [["主菜", "主菜"], ["副菜", "副菜"], ["汁物", "汁物"], ["その他", "その他"]]
     end
+
+    # views/share/_menu_form.html.erbに使用する変数を準備
+    def prepare_menu_form
+      if logged_in?
+        @menu = current_user.menus.build
+        @dish = @menu.dishes.build
+        if session[:menu_date].nil? || session[:menu_date].empty?
+          @menu_date = Time.now.strftime("%Y-%m-%d")
+        else
+          @menu_date = session[:menu_date]
+        end
+        @menu_time = session[:menu_time] unless session[:menu_time].nil?
+      end
+    end
 end

@@ -1,23 +1,25 @@
-<%= form_with(model: @menu, local: true) do |f| %>
-  <%= fields_for @dish do |i| %>
+<section class="menu_form">
+  <%= form_with(model: @menu, local: true) do |f| %>
+    <%= fields_for @dish do |i| %>
 
-    <%= render 'shared/error_messages', object: f.object %>
-    <%= render 'shared/error_messages', object: i.object %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render 'shared/error_messages', object: i.object %>
 
-    <%= f.date_field :date, value: @menu_date %>
+      <%= f.date_field :date, value: @menu_date %>
 
-    <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
+      <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
 
-    <div class="col-xs-4">
-      <%= i.select :category, @dish_categories, prompt: "（分類）",
-                                                    selected: @dish_category %>
-    </div>
+      <div class="col-xs-4">
+        <%= i.select :category, @dish_categories, prompt: "（分類）",
+                                                      selected: @dish_category %>
+      </div>
 
-    <div class="col-xs-8">
-      <%= i.text_field :name, placeholder: "品名", value: @dish_name %>
-    </div>
+      <div class="col-xs-8">
+        <%= i.text_field :name, placeholder: "品名", value: @dish_name %>
+      </div>
 
+    <% end %>
+
+    <%= f.submit "送信", class: "btn btn-square-so-pop" %>
   <% end %>
-
-  <%= f.submit "送信", class: "btn btn-primary" %>
-<% end %>
+</section>
