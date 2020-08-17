@@ -15,6 +15,14 @@ $gray-medium-light: #eaeaea;
 
 body {
   background-color: white;
+  margin: 0 auto;
+  max-width: 800px;
+  .container {
+    width: 100%;
+  }
+  .row{
+    // width: 800px;
+  }
 }
 
 section {
@@ -29,21 +37,23 @@ textarea {
   background-color: #FBE9E7;
   display: flex;
   text-align: center;
+  width: 100%;
   .center {
     background-color: #FBE9E7;
     color: black;
-    width: 270px;
     margin: 0 auto;
     h1 {
+      width: 250px;
       margin-bottom: 10px;
       font-weight: bold;
       letter-spacing: 0.05em;
       line-height: 150%;
     }
-    .btn {
-      background-color: #006064;
-    }
   }
+}
+
+.btn {
+  background-color: #006064;
 }
 
 /* typography */
@@ -81,13 +91,13 @@ p {
   font-weight: bold;
   color: black;
   text-shadow: 1px 1px white;
-  // -webkit-box-shadow: 0px 0px 10px gray;
   box-shadow: 0px 0px 4px gray inset;
   margin: 0;
   border: 0;
   font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN",
                 "Yu Mincho", "MS PMincho", serif;
   .container {
+    width: 100%;
     .navbar-header {
       display: flex;
       align-items: flex-end;
@@ -239,6 +249,7 @@ input {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    background-repeat: no-repeat;
     span {
       color: $gray-light;
     }
@@ -260,6 +271,49 @@ input {
   }
 }
 
+/* recent menu */
+
+// .grid-menus {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr 1fr;
+//   grid-template-rows: 200px;
+//   width: 100%;
+//   .recent-menu {
+//     background-repeat: no-repeat;
+//   }
+// }
+
+.horizontal-list {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 10px 0 0 0;
+  .item {
+    /* 横スクロール用 */
+    display: inline-block;
+    width: 40%;
+
+    /* 見た目調整 */
+    height: 300px;
+    // border: 1px solid #bbb;
+    overflow: hidden;
+    background-color: white;
+    margin: auto auto;
+    .picture {
+      width: 100%;
+      height: 50%;
+      overflow: hidden;
+    }
+    .info {
+      height: 100px;
+      width: 100%;
+      margin-bottom: 0px;
+    }
+  }
+}
 /* menu calendar */
 
 .calendar {
