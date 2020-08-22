@@ -1,5 +1,5 @@
 <header class="navbar navbar-default">
-  <div class="container">
+  <div class="navbar-container">
     <div class="navbar-header">
       <%= link_to "ダテさん", root_path, id: "logo" %>
       <div class="sub-title">-献立記録サービス-</div>
@@ -13,7 +13,6 @@
     </div>
     <nav>
       <ul id="navbar" class="nav navbar-nav navbar-right navbar-collapse collapse">
-        <li><%= link_to "ホーム", root_path %></li>
         <% if logged_in? %>
           <% if current_user.admin == true %>
             <li><%= link_to "ユーザー一覧", users_path %></li>
