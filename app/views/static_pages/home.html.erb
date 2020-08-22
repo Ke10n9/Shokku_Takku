@@ -1,5 +1,5 @@
 <div class="row">
-  <aside class="col-md-8 top">
+  <aside class="top">
     <% if logged_in? %>
       <%= render 'users/user_info' %>
       <%= render 'shared/menu_form' %>
@@ -11,7 +11,10 @@
       </div>
     <% end %>
   </aside>
-  <ul class="col-md-8 grid-menus horizontal-list">
-    <%= render @menus %>
-  </ul>
+  <div class="recent-menu">
+    <h2>みんなの献立</h2>
+    <ul class="horizontal-list">
+      <%= render @menus %>
+    </ul>
+  </div>
 </div>

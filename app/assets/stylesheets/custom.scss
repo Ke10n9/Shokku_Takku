@@ -14,14 +14,13 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  background-color: white;
+  background-color: #EEEEEE;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 700px;
+  height: 100%;
   .container {
     width: 100%;
-  }
-  .row{
-    // width: 800px;
+    background-color: white;
   }
 }
 
@@ -35,19 +34,22 @@ textarea {
 
 .top {
   background-color: #FBE9E7;
-  display: flex;
   text-align: center;
   width: 100%;
+  // padding-bottom: 50px;
+  // margin-bottom: 50px;
   .center {
     background-color: #FBE9E7;
     color: black;
     margin: 0 auto;
     h1 {
-      width: 250px;
-      margin-bottom: 10px;
+      font-size: 2em;
+      max-width: 250px;
+      margin: 10px auto;
       font-weight: bold;
       letter-spacing: 0.05em;
       line-height: 150%;
+      text-align: center;
     }
   }
 }
@@ -91,12 +93,14 @@ p {
   font-weight: bold;
   color: black;
   text-shadow: 1px 1px white;
-  box-shadow: 0px 0px 4px gray inset;
+  box-shadow: 0 0 4px gray;
   margin: 0;
+  padding-left: 5px;
   border: 0;
+  border-radius: 0;
   font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN",
                 "Yu Mincho", "MS PMincho", serif;
-  .container {
+  .navbar-container {
     width: 100%;
     .navbar-header {
       display: flex;
@@ -273,47 +277,66 @@ input {
 
 /* recent menu */
 
-// .grid-menus {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr;
-//   grid-template-rows: 200px;
-//   width: 100%;
-//   .recent-menu {
-//     background-repeat: no-repeat;
-//   }
-// }
-
-.horizontal-list {
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-  height: 100%;
+.recent-menu {
+  width: 95%;
+  margin: 10px auto 0 auto;
   padding: 0;
-  margin: 10px 0 0 0;
-  .item {
-    /* 横スクロール用 */
-    display: inline-block;
-    width: 40%;
+  border-radius: 5px;
+  border: 2px solid #FFCC80;
+  background-color: white;
+  h2 {
+    color: black;
+    line-height: 1.5;
+    text-shadow: 1px 1px white;
+    font-size: 1.7em;
+    margin: 0 auto;
+    background-color: #FFCC80;
+  }
+  .horizontal-list {
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    margin-bottom: 0;
+    padding: 0;
+    margin: 2px;
+    font-size: 0.9em;
+    .item {
+      /* 横スクロール用 */
+      display: inline-block;
+      width: 45%;
+      max-width: 250px;
 
-    /* 見た目調整 */
-    height: 300px;
-    // border: 1px solid #bbb;
-    overflow: hidden;
-    background-color: white;
-    margin: auto auto;
-    .picture {
-      width: 100%;
-      height: 50%;
+      /* 見た目調整 */
+      margin: 0 2px;
+      height: 300px;
       overflow: hidden;
-    }
-    .info {
-      height: 100px;
-      width: 100%;
-      margin-bottom: 0px;
+      position: relative;
+      // background-color: white;
+      box-shadow: 0px 0px 2px gray;
+      .picture {
+        width: 100%;
+        height: 50%;
+        overflow: hidden;
+        display: block;
+        img {
+          width: 100%;
+        }
+        // margin-top: auto;
+        // margin-bottom: auto;
+      }
+      .info {
+        margin: 3px;
+        .user {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
     }
   }
 }
+
 /* menu calendar */
 
 .calendar {
