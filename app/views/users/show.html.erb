@@ -1,10 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
-    <%= render 'user_info' %>
-    <%= render 'shared/menu_form' %>
-  </aside>
-  <div class="col-md-8 calendar-container">
+  <div class="col-md-12 calendar-container">
     <%= render 'menus/menu_calendar' %>
   </div>
 </div>

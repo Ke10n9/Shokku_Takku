@@ -1,17 +1,19 @@
 <li class="item">
-  <div class="picture">
-    <%= image_tag menu.picture.url if menu.picture? %>
+  <div class="picture" style="background-image: url(<%= menu.picture.url %>)">
+    <%#= image_tag menu.picture.url if menu.picture? %>
+    <span class="datetime">
+      <div><%= menu.date %></div>
+      <div><%= menu.time %></div>
+    </span>
+    <span class="user">
+      <div><%= menu.user.name %></div>
+    </span>
   </div>
-  <span class="info">
-    <span class="datetime"><%= menu.date %>　<%= menu.time %></span>
+  <div class="info">
     <ul class="dishes">
       <% menu.dishes.all.each do |dish| %>
         <li class="dish"><%= dish.name %></li>
       <% end %>
     </ul>
-    <div class="user">
-      <span><%= menu.user.name %></span>
-      <span>さんの投稿</span>
-    </div>
-  </span>
+  </div>
 </li>

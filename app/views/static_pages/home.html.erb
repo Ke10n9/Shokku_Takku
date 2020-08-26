@@ -1,10 +1,25 @@
 <div class="row">
   <aside class="top">
     <% if logged_in? %>
-      <%= render 'users/user_info' %>
       <%= render 'shared/menu_form' %>
+      <div class="home-grid">
+        <a href=<%= user_path(@user) %>>
+          <div class="home-link">
+            <%= image_tag("my_menu.png") %>
+            <div>私の献立</div>
+          </div>
+        </a>
+        <div class="home-link">
+          <%= image_tag("everyone's_menu.png") %>
+          <div>みんなの献立</div>
+        </div>
+        <div class="home-link">
+          <%= image_tag("recommended_menu.png") %>
+          <div>ご無沙汰献立</div>
+        </div>
+      </div>
     <% else %>
-      <div class="center jumbotron">
+      <div class="home-title center jumbotron">
         <h1>日々の献立を管理しよう！</h1>
         <h2>-献立記録サービス-</h2>
         <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
