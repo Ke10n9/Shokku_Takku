@@ -6,12 +6,13 @@
     </div>
     <% @menu_times.each do |time| %>
       <div class="menu" id="menu-<%= @date-num %>-<%= time[0] %>">
-        <div class="backStr"><%= time[0][0,1] %></div>
-        <% if @menu = Menu.find_by(date: @date-num, time: time[0]) %>
-          <% @menu.dishes.all.each do |dish| %>
-            <li class="dish"><%= dish.name %></li>
+        <div class="dishes">
+          <% if @menu = Menu.find_by(date: @date-num, time: time[0]) %>
+            <% @menu.dishes.all.each do |dish| %>
+              <li class="dish"><%= dish.name %></li>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     <% end %>
   <% end %>

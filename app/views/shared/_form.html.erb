@@ -1,0 +1,57 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+<div class="modal-body">
+<section class="menu_form">
+  <%= form_with model: @menu, remote: true do |f| %>
+    <%#= f.fields_for :dishes do |i| %>
+
+      <%#= render 'shared/error_messages', object: f.object %>
+      <%#= render 'shared/error_messages', object: i.object %>
+
+      <%= f.date_field :date, value: @menu_date %>
+
+      <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
+
+      <%#= f.fields_for :dish do |i| %>
+
+      <div class="box" data-formno="0" style="border:dashed 1px #ccc">
+  		<p class="no">1</p>
+      <div class="col-xs-4 namae" name="select[0]">
+        <%= f.select :category, @dish_categories, prompt: "（分類）",
+                                                      selected: @dish_category %>
+      </div>
+
+      <div class="col-xs-8 toiawase" name="input[0]">
+        <%= f.text_field :name, placeholder: "品名", value: @dish_name %>
+      </div>
+
+      <a class="deletformbox">削除</a>
+	   </div>
+     <p><a class="addformbox">追加</a></p>
+    <%# end %>
+
+    <%= f.submit "送信", class: "btn btn-square-so-pop" %>
+
+    <span class="picture">
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+    </span>
+  <% end %>
+</section>
+</div>
+</div>
+</div>
+
+  <script type="text/javascript">
+    $('#menu_picture').bind('change', function() {
+      var size_in_megabytes = this.files[0].size/1024/1024;
+      if (size_in_megabytes > 5) {
+        alert('最大ファイルサイズは5MBです。');
+      }
+    });
+  </script>
