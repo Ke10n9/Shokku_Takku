@@ -1,7 +1,7 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+      <h5 class="modal-title" id="exampleModalLabel">新しい献立を登録しましょう。</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -10,31 +10,34 @@
 <section class="menu_form">
   <%= form_with model: @menu, remote: true do |f| %>
     <%#= f.fields_for :dishes do |i| %>
-
-      <%#= render 'shared/error_messages', object: f.object %>
+      <div class="error-message"></div>
+      <%#= render 'shared/error_messages', object: @menuform %>
       <%#= render 'shared/error_messages', object: i.object %>
 
       <%= f.date_field :date, value: @menu_date %>
 
       <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
 
-      <%#= f.fields_for :dish do |i| %>
+      <% @dishes.each do |dish| %>
+        <%= f.fields_for "dishes[]", dish do |i| %>
 
-      <div class="box" data-formno="0" style="border:dashed 1px #ccc">
-  		<p class="no">1</p>
-      <div class="col-xs-4 namae" name="select[0]">
-        <%= f.select :category, @dish_categories, prompt: "（分類）",
-                                                      selected: @dish_category %>
-      </div>
+          <%= render 'shared/error_messages', object: i.object %>
+          <!-- <div class="box" data-formno="0" style="border:dashed 1px #ccc">
+      		<p class="no">1</p> -->
+          <div class="col-xs-4 namae" name="select[0]">
+            <%= i.select :category, @dish_categories, prompt: "（分類）",
+                                                          selected: dish.category %>
+          </div>
 
-      <div class="col-xs-8 toiawase" name="input[0]">
-        <%= f.text_field :name, placeholder: "品名", value: @dish_name %>
-      </div>
+          <div class="col-xs-8 toiawase" name="input[0]">
+            <%= i.text_field :name, placeholder: "品名", value: dish.name %>
+          </div>
 
-      <a class="deletformbox">削除</a>
-	   </div>
-     <p><a class="addformbox">追加</a></p>
-    <%# end %>
+          <!-- <a class="deletformbox">削除</a>
+      	   </div>
+           <p><a class="addformbox">追加</a></p> -->
+        <% end %>
+      <% end %>
 
     <%= f.submit "送信", class: "btn btn-square-so-pop" %>
 

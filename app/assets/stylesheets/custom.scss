@@ -362,6 +362,7 @@ input {
   grid-auto-flow: column;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
+  font-size: 0.9em;
   .calendar-header {
     color: white;
     background-color: gray;
@@ -440,7 +441,7 @@ input {
     padding: 10px;
     // border-radius: 100%;
     img {
-      height: 50px;
+      height: 45px;
       width: auto;
       border-radius: 100%;
       background-color: orange;

@@ -1,10 +1,10 @@
-<% if object.errors.any? %>
+<% if @menuform.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      入力した内容に<%= object.errors.count %>つのエラーがあります。
+      入力した内容に<%= @menuform.errors.count %>つのエラーがあります。
     </div>
     <ul>
-    <% object.errors.full_messages.each do |msg| %>
+    <% @menuform.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
