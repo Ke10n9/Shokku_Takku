@@ -1,7 +1,11 @@
 <div class="row">
   <aside class="top">
+    <div class="home-title center jumbotron">
+      <h1>日々の献立を管理しよう！</h1>
+      <h2>-献立記録サービス-</h2>
+      <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
+    </div>
     <% if logged_in? %>
-      <%= render 'shared/menu_form' %>
       <div class="home-grid">
         <a href=<%= user_path(@user) %>>
           <div class="home-link">
@@ -29,12 +33,6 @@
           <%= image_tag("my_page.png") %>
           <div>マイページ</div>
         </div>
-      </div>
-    <% else %>
-      <div class="home-title center jumbotron">
-        <h1>日々の献立を管理しよう！</h1>
-        <h2>-献立記録サービス-</h2>
-        <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
       </div>
     <% end %>
   </aside>
