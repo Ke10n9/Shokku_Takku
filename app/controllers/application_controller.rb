@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
     # dishesモデルのcategoryカラムのバリエーションを指定
     def set_dish_categories
-      @dish_categories = [["主菜", "主菜"], ["副菜", "副菜"], ["汁物", "汁物"], ["その他", "その他"]]
+      @dish_categories = [["主菜", "主菜"], ["副菜", "副菜"], ["汁物", "汁物"], ["他", "他"]]
     end
 
     # views/share/_menu_form.html.erbに使用する変数を準備

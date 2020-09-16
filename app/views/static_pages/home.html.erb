@@ -1,15 +1,41 @@
 <div class="row">
   <aside class="top">
-    <% if logged_in? %>
-      <%= render 'users/user_info' %>
-      <%= render 'shared/menu_form' %>
-    <% else %>
-      <div class="center jumbotron">
-        <h1>日々の献立を管理しよう！</h1>
-        <h2>-献立記録サービス-</h2>
+    <div class="home-title center jumbotron">
+      <h1>日々の献立を管理しよう！</h1>
+      <h2>-献立記録サービス-</h2>
+      <% if logged_in? %>
+        <div class="home-grid">
+          <a href=<%= user_path(@user) %>>
+            <div class="home-link">
+              <%= image_tag("my_menu.png") %>
+              <div>私の献立</div>
+            </div>
+          </a>
+          <div class="home-link">
+            <%= image_tag("everyone's_menu.png") %>
+            <div>みんなの献立</div>
+          </div>
+          <div class="home-link">
+            <%= image_tag("recommended_menu.png") %>
+            <div>ご無沙汰献立</div>
+          </div>
+          <div class="home-link">
+            <%= image_tag("register_menu.png") %>
+            <div>献立の登録</div>
+          </div>
+          <div class="home-link">
+            <%= image_tag("friend_search.png") %>
+            <div>友達検索</div>
+          </div>
+          <div class="home-link">
+            <%= image_tag("my_page.png") %>
+            <div>マイページ</div>
+          </div>
+        </div>
+      <% else %>
         <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </aside>
   <div class="recent-menu">
     <h2>みんなの献立</h2>

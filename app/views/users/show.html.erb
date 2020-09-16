@@ -1,10 +1,36 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
-    <%= render 'user_info' %>
-    <%= render 'shared/menu_form' %>
-  </aside>
-  <div class="col-md-8 calendar-container">
+  <%#= render 'shared/menu_form' %>
+  <div class="col-md-12 calendar-container">
     <%= render 'menus/menu_calendar' %>
   </div>
+  <div class="plus-button" id="js-show-popup">
+    <%= link_to image_tag("register_menu.png"), new_menu_path, remote: true %>
+    <%#= image_tag("register_menu.png") %>
+  </div>
+  <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 </div>
+
+<script>
+  function popupImage() {
+    var popup = document.getElementById('js-popup');
+    if(!popup) return;
+
+    var blackBg = document.getElementById('js-black-bg');
+
+    var blackBg = document.getElementById('js-black-bg');
+    var closeBtn = document.getElementById('js-close-btn');
+    var showBtn = document.getElementById('js-show-popup');
+
+    closePopUp(blackBg);
+    closePopUp(closeBtn);
+    closePopUp(showBtn);
+    function closePopUp(elem) {
+      if(!elem) return;
+      elem.addEventListener('click', function() {
+        popup.classList.toggle('is-show');
+      });
+    }
+  }
+  popupImage();
+</script>

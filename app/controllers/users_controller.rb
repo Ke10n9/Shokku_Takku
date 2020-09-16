@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index, :destroy]
   before_action :set_menu_times, only: :show
   before_action :set_dish_categories, only: :show
-  before_action :prepare_menu_form, only: :show
+  # before_action :prepare_menu_form, only: :show
 
   def index
     @users = User.where(activated: true).paginate(page: params[:page])
@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     # for num in 0..30 do
     #   @menu_times.each do |time|
     #     @menus
+
+    @menuform = MenuForm.new
   end
 
   def new
