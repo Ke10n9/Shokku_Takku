@@ -1,1 +1,591 @@
-@import '~bootstrap/scss/bootstrap';
+// bootstrap-sass 内部で 相対パスを解決できないため、パス変数を差し替え
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+$dark-green: #006064;
+$little-light-orange: #FFCC80;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* universal */
+
+body {
+  background-color: #EEEEEE;
+  margin: 0 auto;
+  max-width: 600px;
+  height: 100%;
+  .container {
+    width: 100%;
+    background-color: white;
+  }
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.home-title {
+  background-color: #FBE9E7;
+  text-align: center;
+  width: 100%;
+  color: black;
+  margin: 0 auto;
+  h1 {
+    font-size: 2em;
+    max-width: 250px;
+    margin: 10px auto;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 150%;
+    text-align: center;
+  }
+}
+
+.btn {
+  background-color: $dark-green;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 2em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $gray-light;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+/* header */
+
+.navbar {
+  background-color: $little-light-orange;
+  font-weight: bold;
+  color: black;
+  text-shadow: 1px 1px white;
+  box-shadow: 0 0 4px gray;
+  margin: 0;
+  padding-left: 5px;
+  border: 0;
+  border-radius: 0;
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN",
+                "Yu Mincho", "MS PMincho", serif;
+  .navbar-container {
+    width: 100%;
+    .navbar-header {
+      display: flex;
+      align-items: flex-end;
+      margin: 1px;
+      button {
+        margin: 0 0 0 auto;
+      }
+      .sub-title {
+        display: inline-block;
+        margin-bottom: 3px;
+      }
+      #logo {
+        float: left;
+        margin-right: 10px;
+        font-size: 1.7em;
+        padding-top: 9px;
+        color: black;
+        &:hover {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/* sidebar */
+
+aside {
+  section.user_info {
+    margin-top: 20px;
+  }
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+.btn-square-so-pop {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd9535;/*色*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 2px #d27d00;/*線色*/
+}
+
+.btn-square-so-pop:active {
+  /*押したとき*/
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+/* menus */
+
+.menus {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+    background-repeat: no-repeat;
+    span {
+      color: $gray-light;
+    }
+    .user {
+      display: block;
+      text-align: right;
+    }
+  }
+  .dishes {
+    display: block;
+    margin-left: 5%;
+    .dish {
+      padding: 0 5px;
+      background-color: white;
+      border-radius: 20px;
+      margin: 7px 0 7px 0;
+      width: 90%;
+    }
+  }
+}
+
+/* recent menu */
+
+.recent-menu {
+  width: 95%;
+  margin: 10px auto 0 auto;
+  padding: 0;
+  border-radius: 5px;
+  border: 2px solid $little-light-orange;
+  background-color: white;
+  h2 {
+    color: black;
+    line-height: 1.5;
+    text-shadow: 1px 1px white;
+    font-size: 1.7em;
+    margin: 0 auto;
+    background-color: $little-light-orange;
+  }
+  .horizontal-list {
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    // margin-bottom: 0;
+    padding: 0;
+    margin: 2px;
+    font-size: 0.9em;
+    .item {
+      /* 横スクロール用 */
+      display: inline-block;
+      width: 45%;
+      max-width: 250px;
+
+      /* 見た目調整 */
+      margin: 0 2px;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0px 0px 2px gray;
+      .picture {
+        width: 100%;
+        height: 50%;
+        overflow: hidden;
+        display: block;
+        position: relative;
+        img {
+          width: 100%;
+        }
+        .datetime, .user {
+          position: absolute;
+          background-color: white;
+          margin: 2px;
+          padding: 0 3px;
+          // border-radius: 10px;
+        }
+        .datetime {
+          right: 0;
+          bottom: 0;
+        }
+        .datetime div, .user div {
+          display: inline-block;
+        }
+        // .user div {
+        //   background-color: white;
+        //   display: inline-block;
+        // }
+      }
+      .info {
+        margin: 3px;
+        overflow-y: scroll;
+        word-wrap: break-word;
+        white-space: normal;
+        height: 50%;
+        padding: 0 0 5px 0;
+        .dishes {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+/* menu calendar */
+
+.calendar {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: 25px 150px 150px 150px;
+  grid-auto-columns: 33%;
+  grid-auto-flow: column;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  font-size: 0.9em;
+  .calendar-header {
+    color: white;
+    background-color: gray;
+    border-radius: 5px;
+    margin: 2px;
+    text-align: center;
+    box-shadow: 0px 0px 2px gray;
+  }
+  #num-0 {
+    background-color: $dark-green;
+  }
+  .menu {
+    border-radius: 5px;
+    margin: 2px;
+    padding: 2px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-break: break-all;
+    position: relative;
+    box-shadow: 0px 0px 2px gray;
+    font-size: 0.8em;
+    .dishes {
+      position: absolute;
+      // display: inline-block;
+    }
+  }
+  div[id*="朝"] {
+    background-color: #fff8f8;
+  }
+  div[id*="昼"] {
+    background-color: #f8fff8;
+  }
+  div[id*="夕"] {
+    background-color: #f0f8ff;
+  }
+}
+
+.home-grid {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  .home-link {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    box-shadow: 0px 0px 2px gray;
+    font-size: 0.8em;
+    background-color: $dark-green;
+    position: relative;
+    color: white;
+    img {
+      position: absolute;
+      width: 60%;
+      height: auto;
+      // margin-top: 5%;
+      left: 0;
+      right: 0;
+      margin: 10% auto;
+    }
+    div {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+}
+
+.row {
+  position: relative;
+  .plus-button {
+    position: sticky;
+    text-align: right;
+    bottom: 0;
+    right: 0;
+    margin: auto 10px 10px auto;
+    padding: 10px;
+    // border-radius: 100%;
+    img {
+      height: 45px;
+      width: auto;
+      border-radius: 100%;
+      background-color: orange;
+    }
+  }
+}
+
+/* modal */
+
+.popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: .6s;
+}
+.popup.is-show {
+  opacity: 1;
+  visibility: visible;
+}
+.popup-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  max-width: 600px;
+  padding: 50px;
+  background-color: #fff;
+  z-index: 2;
+}
+.close-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+.close-btn i {
+  font-size: 20px;
+  color: #333;
+}
+.black-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.8);
+  z-index: 1;
+  cursor: pointer;
+}
+
+#input_plural {
+    margin: 10px 0;
+}
+
+#input_plural input.form-control {
+    display: inline-block;
+    width: 75%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+#input_plural input.pluralBtn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-dialog{
+  border-radius: 5px;
+  .modal-header {
+    background-color: $little-light-orange;
+    border-radius: 5px 5px 0 0;
+    color: black;
+    // height: 30px;
+    padding: 10px;
+    .modal-title {
+      font-weight: bold;
+      font-size: 1em;
+    }
+  }
+  .modal-body {
+    font-size: 0.9em;
+    .dishes-form {
+      width: 100%;
+      .form {
+        width: 100%;
+        .dish-form {
+          display: inline-block;
+        }
+        .category {
+          width: 25%;
+        }
+        .name {
+          width: 70%;
+        }
+      }
+    }
+    input, select {
+      border: 0;
+      border-bottom: 1px solid #ccc;
+    }
+    #menu_picture {
+      display: none;
+    }
+    .category {
+      padding: 0 15px 0 0;
+    }
+    .name {
+      padding: 0;
+    }
+  }
+}
+
+.image_input_btn{
+  display: block;
+  background-color: $dark-green;
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  padding-top: 2px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 15px;
+}

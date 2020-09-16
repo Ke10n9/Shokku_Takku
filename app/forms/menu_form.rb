@@ -9,21 +9,24 @@ class MenuForm
 
     unless @menu = Menu.find_by(date: date, time: time, user_id: user_id)
       @menu = Menu.new(date: date, time: time, picture: picture, user_id: user_id)
-      if @menu.save
-        return false
-      end
+      return false if @menu.invalid?
     end
 
+    dishes_array = []
     dishes.each do |dish_params|
       unless dish_params[:name] == ""
         dish = @menu.dishes.build(dish_params)
-        unless dish.save
-          @menu.destroy
+        if dish.valid?
+          dishes_array << dish
+        else
           return false
         end
       end
     end
-
+    dishes_array.each do |d|
+      d.save
+    end
+    
     true
   end
 end
