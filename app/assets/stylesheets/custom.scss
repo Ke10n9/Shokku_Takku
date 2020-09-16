@@ -4,6 +4,8 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$dark-green: #006064;
+$little-light-orange: #FFCC80;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -50,7 +52,7 @@ textarea {
 }
 
 .btn {
-  background-color: #006064;
+  background-color: $dark-green;
 }
 
 /* typography */
@@ -84,7 +86,7 @@ p {
 /* header */
 
 .navbar {
-  background-color: #FFCC80;
+  background-color: $little-light-orange;
   font-weight: bold;
   color: black;
   text-shadow: 1px 1px white;
@@ -277,7 +279,7 @@ input {
   margin: 10px auto 0 auto;
   padding: 0;
   border-radius: 5px;
-  border: 2px solid #FFCC80;
+  border: 2px solid $little-light-orange;
   background-color: white;
   h2 {
     color: black;
@@ -285,7 +287,7 @@ input {
     text-shadow: 1px 1px white;
     font-size: 1.7em;
     margin: 0 auto;
-    background-color: #FFCC80;
+    background-color: $little-light-orange;
   }
   .horizontal-list {
     overflow-x: scroll;
@@ -408,7 +410,7 @@ input {
     height: 70px;
     box-shadow: 0px 0px 2px gray;
     font-size: 0.8em;
-    background-color: #006064;
+    background-color: $dark-green;
     position: relative;
     color: white;
     img {
@@ -523,4 +525,63 @@ input {
     border-radius: 5px;
     padding: 0;
     margin: 0;
+}
+
+.modal-dialog{
+  border-radius: 5px;
+  .modal-header {
+    background-color: $little-light-orange;
+    border-radius: 5px 5px 0 0;
+    color: black;
+    // height: 30px;
+    padding: 10px;
+    .modal-title {
+      font-weight: bold;
+      font-size: 1em;
+    }
+  }
+  .modal-body {
+    font-size: 0.9em;
+    .dishes-form {
+      width: 100%;
+      .form {
+        width: 100%;
+        .dish-form {
+          display: inline-block;
+        }
+        .category {
+          width: 25%;
+        }
+        .name {
+          width: 70%;
+        }
+      }
+    }
+    input, select {
+      border: 0;
+      border-bottom: 1px solid #ccc;
+    }
+    #menu_picture {
+      display: none;
+    }
+    .category {
+      padding: 0 15px 0 0;
+    }
+    .name {
+      padding: 0;
+    }
+  }
+}
+
+.image_input_btn{
+  display: block;
+  background-color: $dark-green;
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  padding-top: 2px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 15px;
 }

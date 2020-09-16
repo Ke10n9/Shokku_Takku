@@ -1,13 +1,13 @@
 <div class="calendar">
-  <% for num in 0..30 do %>
-    <div class="calendar-header">
-      <%= @date-num %>
-      <%= %w(日 月 火 水 木 金 土)[(@date-num).wday] %>
+  <% for num in -7..7 do %>
+    <div class="calendar-header" id="<%= num %>">
+      <%= @date+num %>
+      <%= %w(日 月 火 水 木 金 土)[(@date+num).wday] %>
     </div>
     <% @menu_times.each do |time| %>
-      <div class="menu" id="menu-<%= @date-num %>-<%= time[0] %>">
+      <div class="menu" id="menu-<%= @date+num %>-<%= time[0] %>">
         <div class="dishes">
-          <% if @menu = Menu.find_by(date: @date-num, time: time[0]) %>
+          <% if @menu = Menu.find_by(date: @date+num, time: time[0]) %>
             <% @menu.dishes.all.each do |dish| %>
               <li class="dish"><%= dish.name %></li>
             <% end %>
@@ -17,3 +17,13 @@
     <% end %>
   <% end %>
 </div>
+
+<script>
+  $(document).ready ( function scrollToElement() {
+    var ELEMENT = $('.calendar').get(0);
+    var scrollWidth = ELEMENT.scrollWidth;
+    var elementWidth = ELEMENT.clientWidth;
+    // 取得した要素の位置を引数に指定
+    $('.calendar').scrollLeft(scrollWidth/2-elementWidth/2);
+  });
+</script>

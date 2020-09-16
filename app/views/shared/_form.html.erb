@@ -1,10 +1,10 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">新しい献立を登録しましょう。</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
+      <h5 class="modal-title" id="exampleModalLabel">新しい献立を登録しましょう。</h5>
     </div>
     <div class="modal-body">
       <section class="menu_form">
@@ -12,22 +12,25 @@
           <div class="error-message"></div>
           <%= f.date_field :date, value: @menu_date %>
           <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
+          <span class="picture col-xs-12">
+            <%= f.label :picture, "画像をアップロード", class: "btn image_input_btn" %>
+            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+          </span>
+          <div class="dishes-form">
           <% @dishes.each do |dish| %>
             <%= f.fields_for "dishes[]", dish do |i| %>
               <%= render 'shared/error_messages', object: i.object %>
-              <div class="col-xs-4 namae" name="select[0]">
-                <%= i.select :category, @dish_categories, prompt: "（分類）",
-                                                              selected: dish.category %>
-              </div>
-              <div class="col-xs-8 toiawase" name="input[0]">
-                <%= i.text_field :name, placeholder: "品名", value: dish.name %>
-              </div>
+              <span class="form">
+                <%= i.select :category, @dish_categories,
+                                { prompt: "（分類）", selected: dish.category },
+                                                  class: "category dish-form" %>
+                <%= i.text_field :name, placeholder: "品名", value: dish.name,
+                                                      class: "name dish-form" %>
+              </span>
             <% end %>
           <% end %>
+          </div>
           <%= f.submit "送信", class: "btn btn-square-so-pop" %>
-          <span class="picture">
-            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-          </span>
         <% end %>
       </section>
     </div>
