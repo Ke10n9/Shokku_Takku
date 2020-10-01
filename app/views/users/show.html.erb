@@ -4,33 +4,31 @@
   <div class="col-md-12 calendar-container">
     <%= render 'menus/menu_calendar' %>
   </div>
-  <div class="plus-button" id="js-show-popup">
-    <%= link_to image_tag("register_menu.png"), new_menu_path, remote: true %>
-    <%#= image_tag("register_menu.png") %>
+  <div class="button-area">
+    <div class="round-button" data-toggle="modal" data-target="#calendarModal">
+      <%= image_tag("calendar.png") %>
+    </div>
+    <div class="round-button">
+      <%= link_to image_tag("register_menu.png"), new_menu_path, remote: true %>
+    </div>
   </div>
   <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
+    <!-- ボタン・リンククリック後に表示される画面の内容 -->
+  <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <%= render 'shared/modal_calendar' %>
+  </div>
 </div>
 
 <script>
-  function popupImage() {
-    var popup = document.getElementById('js-popup');
-    if(!popup) return;
-
-    var blackBg = document.getElementById('js-black-bg');
-
-    var blackBg = document.getElementById('js-black-bg');
-    var closeBtn = document.getElementById('js-close-btn');
-    var showBtn = document.getElementById('js-show-popup');
-
-    closePopUp(blackBg);
-    closePopUp(closeBtn);
-    closePopUp(showBtn);
-    function closePopUp(elem) {
-      if(!elem) return;
-      elem.addEventListener('click', function() {
-        popup.classList.toggle('is-show');
-      });
-    }
-  }
-  popupImage();
+  $(function(){
+    $('.js-modal-open').on('click',function(){
+        $('.js-modal').fadeIn();
+        return false;
+    });
+    $('.js-modal-close').on('click',function(){
+        $('.js-modal').fadeOut();
+        return false;
+    });
+  });
 </script>

@@ -33,6 +33,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'simple_calendar', "~> 2.0"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

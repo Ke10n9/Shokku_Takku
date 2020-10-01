@@ -15,11 +15,7 @@ class UsersController < ApplicationController
     redirect_to root_url and return unless @user.activated?
 
     # menus/menu_calendar
-    @date = Date.today
-    # @menus = []
-    # for num in 0..30 do
-    #   @menu_times.each do |time|
-    #     @menus
+    params[:start_date] ? @date = params[:start_date].to_date : @date = Date.today
 
     @menuform = MenuForm.new
   end
