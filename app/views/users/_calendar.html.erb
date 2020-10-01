@@ -1,0 +1,7 @@
+<%= month_calendar previous_link: events_ajax_previous_link, next_link: events_ajax_next_link do |date| %>
+  <div class="week-color"><%= link_to "#{date.day}", user_path(@user, start_date: date) %></div>
+
+  <% Menu.where(date: date, user: @user).sort{|a, b| a["time"]<=>b["time"]}.reverse.each do |menu| %>
+    <div class="day-content" id="<%= menu.time %>"><%= menu.time[0, 1] %></div>
+  <% end %>
+<% end %>

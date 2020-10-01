@@ -10,5 +10,6 @@ environment.plugins.append(
     Popper: 'popper.js'
   })
 )
+// JQueryとBootstrapのJSここまで
 
 module.exports = environment

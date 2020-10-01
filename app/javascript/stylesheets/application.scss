@@ -373,6 +373,7 @@ input {
     margin: 2px;
     text-align: center;
     box-shadow: 0px 0px 2px gray;
+    cursor: pointer;
   }
   #num-0 {
     background-color: $dark-green;
@@ -436,21 +437,37 @@ input {
   }
 }
 
+/* button for modal */
+
 .row {
   position: relative;
-  .plus-button {
+  .button-area {
     position: sticky;
-    text-align: right;
     bottom: 0;
     right: 0;
-    margin: auto 10px 10px auto;
     padding: 10px;
-    // border-radius: 100%;
+    display: flex;
+    justify-content: space-between;
     img {
-      height: 45px;
-      width: auto;
       border-radius: 100%;
       background-color: orange;
+    }
+    .round-button {
+      height: 46px;
+      width: 46px;
+      height: 46px;
+      width: 46px;
+      background-color: orange;
+      border-radius: 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      img {
+        height: 40px;
+        width: auto;
+      }
     }
   }
 }
@@ -588,4 +605,59 @@ input {
   text-decoration: none;
   text-align: center;
   margin-bottom: 15px;
+}
+
+/* simple calendar */
+
+#calendarModal {
+  .modal-body {
+    padding: 0 10px;
+    .simple-calendar {
+      .day {
+        height: 70px;
+        width: 14%;
+        padding: 2px;
+        // cursor: pointer;
+        .day-content {
+          font-size: 0.7em;
+          padding: 0 2px;
+          height: 20%;
+          max-width: 60px;
+        }
+        #朝食 {
+          background-color: mistyrose;
+        }
+        #昼食 {
+          background-color: honeydew;
+        }
+        #夕食 {
+          background-color: lightblue;
+        }
+      }
+      #header-0 {
+        color: red;
+      }
+      #header-6 {
+        color: blue;
+      }
+      .wday-0 {
+        .week-color {color: red;}
+      }
+      .wday-6 {
+        .week-color {color: blue;}
+      }
+      .today {
+        border: 1px solid orange;
+      }
+      .prev-month, .next-month{
+        background-color: lightgray;
+        .week-color { color: gray; }
+        .day-content { display: none; }
+      }
+      .calendar-heading {
+        font-size: 1.5em;
+        text-align: center;
+      }
+    }
+  }
 }
