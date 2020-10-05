@@ -56,6 +56,18 @@ textarea {
   background-color: $dark-green;
 }
 
+.home-section {
+  border: 2px solid $little-light-orange;
+}
+
+.round-area {
+  width: 95%;
+  margin: 10px auto 0 auto;
+  padding: 0;
+  border-radius: 5px;
+  background-color: white;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -275,13 +287,7 @@ input {
 
 /* recent menu */
 
-.recent-menu {
-  width: 95%;
-  margin: 10px auto 0 auto;
-  padding: 0;
-  border-radius: 5px;
-  border: 2px solid $little-light-orange;
-  background-color: white;
+.round-area {
   h2 {
     color: black;
     line-height: 1.5;
@@ -659,5 +665,76 @@ input {
         text-align: center;
       }
     }
+  }
+}
+
+/* recommend_menus */
+
+.round-area {
+  box-shadow: 0px 0px 2px gray;
+  font-size: 0.8em;
+  // margin: 1px;
+  // padding: 1px;
+  h4 {
+    text-align: center;
+    padding: 3px;
+    border-radius: 5px 5px 0 0;
+  }
+  h4[id*="朝"] {
+    background-color: #fff8f8;
+    border-bottom: 2px solid mistyrose;
+  }
+  h4[id*="昼"] {
+    background-color: #f8fff8;
+    border-bottom: 2px solid yellowgreen;
+  }
+  h4[id*="夕"] {
+    background-color: #f0f8ff;
+    border-bottom: 2px solid lightblue;
+  }
+  .ranking-table {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 25px 93px 93px 93px;
+    grid-auto-columns: 33%;
+    grid-auto-flow: column;
+    margin: 5px;
+    overflow: scroll;
+  }
+  .sharp {
+    color: darkorange;
+  }
+  .rank {
+    img {
+      height: 20px;
+      width: 20px;
+      // margin-bottom: 10px;
+    }
+  }
+  .rank-area {
+    margin: 4px;
+    overflow-y: scroll;
+  }
+  .dish_category {
+    font-size: 1.2em;
+  }
+  #rank1 {
+    border-right: 1px solid gold;
+    border-bottom: 1px solid gold;
+  }
+  #rank2 {
+    border-right: 1px solid silver;
+    border-bottom: 1px solid silver;
+  }
+  #rank3 {
+    border-right: 1px solid #C47022;
+    border-bottom: 1px solid #C47022;
+  }
+  .rank {
+    // display: inline-block;
+  }
+  .rank-area {
+    // width: 30%;
   }
 }

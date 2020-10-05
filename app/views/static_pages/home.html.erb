@@ -15,10 +15,12 @@
             <%= image_tag("everyone's_menu.png") %>
             <div>みんなの献立</div>
           </div>
-          <div class="home-link">
-            <%= image_tag("recommended_menu.png") %>
-            <div>ご無沙汰献立</div>
-          </div>
+          <a href=<%= recommend_path %>>
+            <div class="home-link">
+              <%= image_tag("recommended_menu.png") %>
+              <div>ご無沙汰献立</div>
+            </div>
+          </a>
           <div class="home-link">
             <%= image_tag("register_menu.png") %>
             <div>献立の登録</div>
@@ -37,7 +39,7 @@
       <% end %>
     </div>
   </aside>
-  <div class="recent-menu">
+  <div class="round-area home-section">
     <h2>みんなの献立</h2>
     <ul class="horizontal-list">
       <%= render @menus %>
