@@ -12,14 +12,16 @@
           <div class="ranking-table">
             <% per_time.each_with_index do |per_category, j| %>
               <div class="dish_category"><span class="sharp">#</span><%= @dish_categories[j][0] %></div>
-              <!-- <div> -->
-              <% per_category.each_with_index do |less_dish, rank| %>
-                <div class="rank-area" id="rank<%= rank+1 %>">
-                  <div class="rank"><%= image_tag("rank#{rank+1}.png") %></div>
-                  <div class="rank rank-dish"><%= less_dish %></div>
-                </div>
+              <% unless per_category.empty? %>
+                <% per_category.each_with_index do |less_dish, rank| %>
+                  <div class="rank-area" id="rank<%= rank+1 %>">
+                    <div class="rank"><%= image_tag("rank#{rank+1}.png") %></div>
+                    <div class="rank rank-dish"><%= less_dish %></div>
+                  </div>
+                <% end %>
+              <% else %>
+                <div></div><div></div><div></div>
               <% end %>
-              <!-- </div> -->
             <% end %>
           </div>
         </div>
