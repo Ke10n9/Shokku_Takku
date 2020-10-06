@@ -680,18 +680,6 @@ input {
     padding: 3px;
     border-radius: 5px 5px 0 0;
   }
-  h4[id*="朝"] {
-    background-color: #fff8f8;
-    border-bottom: 2px solid mistyrose;
-  }
-  h4[id*="昼"] {
-    background-color: #f8fff8;
-    border-bottom: 2px solid yellowgreen;
-  }
-  h4[id*="夕"] {
-    background-color: #f0f8ff;
-    border-bottom: 2px solid lightblue;
-  }
   .ranking-table {
     display: grid;
     width: 100%;
@@ -718,6 +706,8 @@ input {
   }
   .dish_category {
     font-size: 1.2em;
+    text-align: center;
+    margin: 0 5px 5px 0;
   }
   #rank1 {
     border-right: 1px solid gold;
@@ -731,10 +721,38 @@ input {
     border-right: 1px solid #C47022;
     border-bottom: 1px solid #C47022;
   }
-  .rank {
-    // display: inline-block;
+  .rank-dish {
+    text-align: center;
   }
-  .rank-area {
-    // width: 30%;
+}
+
+#朝食 {
+  h4 {
+    background-color: #fff8f8;
+    border-bottom: 2px solid mistyrose;
+  }
+  .dish_category {
+    background-color: #fff8f8;
+    border-bottom: 2px solid mistyrose;
+  }
+}
+#昼食 {
+  h4 {
+    background-color: #f8fff8;
+    border-bottom: 2px solid yellowgreen;
+  }
+  .dish_category {
+    background-color: #f8fff8;
+    border-bottom: 2px solid yellowgreen;
+  }
+}
+#夕食 {
+  h4 {
+    background-color: #f0f8ff;
+    border-bottom: 2px solid lightblue;
+  }
+  .dish_category {
+    background-color: #f0f8ff;
+    border-bottom: 2px solid lightblue;
   }
 }

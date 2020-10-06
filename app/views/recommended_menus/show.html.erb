@@ -7,8 +7,8 @@
     </section>
     <div>
       <% @less_dishes.each_with_index do |per_time, i| %>
-        <div class="round-area">
-          <h4 id="<%= @menu_times[i][0] %>"><%= @menu_times[i][0] %></h4>
+        <div class="round-area" id="<%= @menu_times[i][0] %>">
+          <h4><%= @menu_times[i][0] %></h4>
           <div class="ranking-table">
             <% per_time.each_with_index do |per_category, j| %>
               <div class="dish_category"><span class="sharp">#</span><%= @dish_categories[j][0] %></div>
