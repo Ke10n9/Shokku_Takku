@@ -21,7 +21,9 @@
                   </div>
                 <% end %>
               <% else %>
-                <div></div><div></div><div></div>
+                <% (3-per_category.size).times do %>
+                  <div></div>
+                <% end %>
               <% end %>
             <% end %>
           </div>
