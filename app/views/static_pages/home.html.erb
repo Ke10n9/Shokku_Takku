@@ -36,6 +36,11 @@
         </div>
       <% else %>
         <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
+        <%= form_for(:session, url: login_path) do |f| %>
+          <%= f.hidden_field :email, value: 'test@railstutorial.org' %>
+          <%= f.hidden_field :password, value: 'foobar' %>
+          <%= f.submit 'ログイン', class: 'btn btn-lg btn-primary' %>
+        <% end %>
       <% end %>
     </div>
   </aside>
