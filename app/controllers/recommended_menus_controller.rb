@@ -8,7 +8,7 @@ class RecommendedMenusController < ApplicationController
     recent_menus = Array.new(@menu_times.size){Array.new()}
 
     for i in 0..@menu_times.size-1 do
-      for num in 0..90 do
+      for num in 0..89 do
         menu = Menu.where(user: current_user,
                           date: today-num,
                           time: @menu_times[i][0])
