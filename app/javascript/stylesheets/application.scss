@@ -56,7 +56,21 @@ textarea {
 }
 
 .btn {
+}
+
+.btn-primary {
   background-color: $dark-green;
+  width: 139px;
+  margin: 10px;
+}
+
+.btn-secondary {
+  font-size: 1.0em;
+  background-color: white;
+  width: 139px;
+  margin: 10px;
+  border: 2px solid black;
+  padding: 5px 16px;
 }
 
 .home-section {
