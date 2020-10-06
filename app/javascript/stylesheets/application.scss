@@ -49,6 +49,9 @@ textarea {
     letter-spacing: 0.05em;
     line-height: 150%;
     text-align: center;
+    padding: 0;
+    background: 0;
+    border-left: 0;
   }
 }
 
@@ -75,10 +78,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
+  font-size: 1.8em;
+  // letter-spacing: -2px;
+  // margin-bottom: 30px;
+  // text-align: center;
+  padding: 0.5em;/*文字周りの余白*/
+  color: #494949;/*文字色*/
+  background: #fffaf4;/*背景色*/
+  border-left: solid 5px #ffaf58;/*左線（実線 太さ 色）*/
+  div {
+    margin-top: 10px;
+    font-size: 0.5em;
+    color: gray;
+  }
 }
 
 h2 {
@@ -292,7 +304,7 @@ input {
     color: black;
     line-height: 1.5;
     text-shadow: 1px 1px white;
-    font-size: 1.7em;
+    font-size: 2.0em;
     margin: 0 auto;
     background-color: $little-light-orange;
   }
@@ -301,10 +313,9 @@ input {
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     height: 100%;
-    // margin-bottom: 0;
     padding: 0;
     margin: 2px;
-    font-size: 0.9em;
+    font-size: 1.1em;
     .item {
       /* 横スクロール用 */
       display: inline-block;
@@ -723,6 +734,7 @@ input {
   }
   .rank-dish {
     text-align: center;
+    // margin: 2px;
   }
 }
 

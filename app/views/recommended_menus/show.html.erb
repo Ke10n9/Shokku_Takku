@@ -2,9 +2,10 @@
 
 <div class="row">
   <aside class="col-md-12">
-    <section>
-      <h1>ご無沙汰献立</h1>
-    </section>
+    <h1>
+      ご無沙汰献立
+      <div>最近食べてない献立を紹介します。</div>
+    </h1>
     <div>
       <% @less_dishes.each_with_index do |per_time, i| %>
         <div class="round-area" id="<%= @menu_times[i][0] %>">
