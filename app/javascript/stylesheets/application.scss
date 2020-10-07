@@ -56,7 +56,21 @@ textarea {
 }
 
 .btn {
+}
+
+.btn-primary {
   background-color: $dark-green;
+  width: 139px;
+  margin: 10px;
+}
+
+.btn-secondary {
+  font-size: 1.0em;
+  background-color: white;
+  width: 139px;
+  margin: 10px;
+  border: 2px solid black;
+  padding: 5px 16px;
 }
 
 .home-section {
@@ -79,9 +93,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 1.8em;
-  // letter-spacing: -2px;
-  // margin-bottom: 30px;
-  // text-align: center;
   padding: 0.5em;/*文字周りの余白*/
   color: #494949;/*文字色*/
   background: #fffaf4;/*背景色*/
