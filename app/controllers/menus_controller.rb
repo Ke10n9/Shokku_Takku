@@ -66,6 +66,10 @@ class MenusController < ApplicationController
     end
   end
 
+  def index
+    @menus = Menu.paginate(page: params[:page])
+  end
+
   private
     def menu_params
       # params.require(:menu).permit(:date, :time, :picture)

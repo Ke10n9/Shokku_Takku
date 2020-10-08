@@ -1,18 +1,10 @@
-<li id="menu-<%= menu.id %>" style="background-image: url(<%= menu.picture.url %>);">
-  <span class="datetime"><%= menu.date %>　<%= menu.time %></span>
-  <ul class="dishes">
-    <% menu.dishes.all.each do |dish| %>
-      <li class="dish"><%= dish.name %></li>
-    <% end %>
-  </ul>
-  <span class="user">
-    <%= menu.user.name %>さんの投稿
-    （<%= time_ago_in_words(menu.created_at) %>前）
-    <% if current_user?(menu.user) %>
-      <%= link_to "編集", edit_menu_path(menu) %>
-      /
-      <%= link_to "削除", menu, method: :delete,
-                              data: { confirm: "本当に削除してよろしいですか？" } %>
-    <% end %>
-  </span>
-</li>
+<% provide(:title, "みんなの献立") %>
+
+<div class="row">
+  <div class="col-md-12">
+    <h1>みんなの献立</h1>
+    <ol class="vertical-list">
+      <%= render @menus %>
+    </ol>
+  </div>
+</div>
