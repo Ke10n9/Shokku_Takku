@@ -11,10 +11,12 @@
               <div>私の献立</div>
             </div>
           </a>
-          <div class="home-link">
-            <%= image_tag("everyone's_menu.png") %>
-            <div>みんなの献立</div>
-          </div>
+          <a href=<%= menus_path %>>
+            <div class="home-link">
+              <%= image_tag("everyone's_menu.png") %>
+              <div>みんなの献立</div>
+            </div>
+          </a>
           <a href=<%= recommend_path %>>
             <div class="home-link">
               <%= image_tag("recommended_menu.png") %>
@@ -46,8 +48,8 @@
   </aside>
   <div class="round-area home-section">
     <h2>みんなの献立</h2>
-    <ul class="horizontal-list">
+    <ol class="horizontal-list">
       <%= render @menus %>
-    </ul>
+    </ol>
   </div>
 </div>

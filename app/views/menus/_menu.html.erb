@@ -1,19 +1,31 @@
 <li class="item">
-  <div class="picture" style="background-image: url(<%= menu.picture.url %>)">
-    <%#= image_tag menu.picture.url if menu.picture? %>
+  <!-- .vertical-listでは非表示 -->
+  <span class="picture inline-top" style="background-image: url(<%= menu.picture.url %>)">
     <span class="datetime">
       <div><%= menu.date %></div>
       <div><%= menu.time %></div>
     </span>
     <span class="user">
-      <div><%= menu.user.name %></div>
+      <%= menu.user.name %>
     </span>
-  </div>
-  <div class="info">
-    <ul class="dishes">
-      <% menu.dishes.all.each do |dish| %>
-        <li class="dish"><%= dish.name %></li>
-      <% end %>
-    </ul>
+  </span>
+  <!-- .vertical-listでは非表示　ここまで -->
+
+  <!-- .holizontal-listでは非表示 -->
+  <div class="info inline-top">
+    <!-- <span> -->
+      <span class="user"><%= menu.user.name %></span>
+    <!-- </span> -->
+    <!-- .holizontal-listでは非表示　ここまで -->
+
+    <!-- <div class="info"> -->
+      <ul class="dishes">
+        <% menu.dishes.all.each do |dish| %>
+          <li class="dish"><%= dish.name %></li>
+        <% end %>
+      </ul>
+      
+      <span class="datetime"><%= menu.date %> <%= menu.time %></span>
+    <!-- </div> -->
   </div>
 </li>
