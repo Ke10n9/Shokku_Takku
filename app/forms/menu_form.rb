@@ -23,10 +23,11 @@ class MenuForm
         end
       end
     end
+
     dishes_array.each do |d|
       d.save
     end
-    
+
     true
   end
 end

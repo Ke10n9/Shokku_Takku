@@ -24,8 +24,10 @@ class MenusController < ApplicationController
 
   def create
     @menuform = MenuForm.new(menuform_params)
+    dish_count = Dish.count
     if @menuform.save
       render :success
+      flash[:success] = "献立の登録がありませんでした。" if Dish.count == dish_count
     else
       render :error
     end
