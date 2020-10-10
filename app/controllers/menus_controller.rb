@@ -27,7 +27,7 @@ class MenusController < ApplicationController
     dish_count = Dish.count
     if @menuform.save
       render :success
-      flash[:success] = "献立の登録がありませんでした。" if Dish.count == dish_count
+      flash[:success] = "品名が入力されていませんでした。" if Dish.count == dish_count
     else
       render :error
     end
@@ -82,21 +82,6 @@ class MenusController < ApplicationController
       )
     end
 
-    # def menus_params
-    #   # params.require(:menu).permit(:date, :time, :picture)
-    #   params.require(:menu).permit(
-    #     :date,
-    #     :time,
-    #     :picture,
-    #     dishes_attributes: [:category,
-    #                         :name]
-    #   ).merge(user_id: current_user.id)
-    # end
-
-    # def dish_params
-    #   params.permit(dish: [:name, :category])[:dish]
-    # end
-
     def dishes_params
       params.require(:dish).permit(:name, :category)[:dish]
     end
@@ -111,10 +96,7 @@ class MenusController < ApplicationController
         :date,
         :time,
         :picture,
-        dishes: [
-          :category,
-          :name
-        ]
+        dishes_attributes: [ :category, :name ]
       ).merge(user_id: current_user.id)
     end
 end

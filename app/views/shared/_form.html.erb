@@ -9,7 +9,7 @@
     <div class="modal-body">
       <section class="menu_form">
         <%= form_with model: @menu, remote: true do |f| %>
-          <div class="error-message"></div>
+          <div class="error-message alert-danger" id="error_explanation"></div>
           <%= f.date_field :date, value: @menu_date %>
           <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
           <span class="picture col-xs-12">
@@ -18,7 +18,7 @@
           </span>
           <div class="dishes-form">
           <% @dishes.each do |dish| %>
-            <%= f.fields_for "dishes[]", dish do |i| %>
+            <%= f.fields_for "dishes_attributes[]", dish do |i| %>
               <%= render 'shared/error_messages', object: i.object %>
               <span class="form">
                 <%= i.select :category, @dish_categories,
