@@ -10,6 +10,7 @@
       <section class="menu_form">
         <%= form_with model: @menu, remote: true do |f| %>
           <div class="error-message alert-danger" id="error_explanation"></div>
+          <div class="error-messagea alert-danger" id="error_explanation"></div>
           <%= f.date_field :date, value: @menu_date %>
           <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
           <span class="picture col-xs-12">

@@ -20,10 +20,9 @@ class MenuForm
   # end
   #
   # attr_accessor :date, :time, :picture, :user_id
-  attr_accessor :date, :time, :picture, :dishes_attributes, :user_id
+  attr_accessor :date, :time, :picture, :dishes, :user_id
 
   validates :date, :time, :user_id, presence: true
-  # validates :dishes, uniqueness: true
 
   def save
     return false if invalid?
@@ -34,7 +33,7 @@ class MenuForm
     end
 
     dishes_array = []
-    dishes_attributes.each do |dish_params|
+    dishes.each do |dish_params|
       unless dish_params[:name] == ""
         dish = @menu.dishes.build(dish_params)
         if dish.valid?

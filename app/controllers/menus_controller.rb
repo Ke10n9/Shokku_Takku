@@ -23,11 +23,16 @@ class MenusController < ApplicationController
   end
 
   def create
-    @menuform = MenuForm.new(menuform_params)
-    dish_count = Dish.count
-    if @menuform.save
+    @menu = current_user.menus.build(date: menu_params[:date], time: menu_params[:time])
+    if @menu.save
+      menu_params[:dishes_attributes].each do |dish_params|
+        @dish = @menu.dishes.build(dish_params) unless dish_params[:name] == ""
+        unless @dish.save
+          @menu.destroy
+          render :error and return
+        end
+      end
       render :success
-      flash[:success] = "品名が入力されていませんでした。" if Dish.count == dish_count
     else
       render :error
     end
@@ -74,16 +79,15 @@ class MenusController < ApplicationController
 
   private
     def menu_params
-      # params.require(:menu).permit(:date, :time, :picture)
       params.require(:menu).permit(
         :date,
         :time,
-        dishes_attributes: [:name, :category]
+        :picture,
+        dishes_attributes: [
+          :name,
+          :category
+        ]
       )
-    end
-
-    def dishes_params
-      params.require(:dish).permit(:name, :category)[:dish]
     end
 
     def correct_user
@@ -91,12 +95,12 @@ class MenusController < ApplicationController
       redirect_to root_url if @menu.nil?
     end
 
-    def menuform_params
-      params.require(:menu).permit(
-        :date,
-        :time,
-        :picture,
-        dishes_attributes: [ :category, :name ]
-      ).merge(user_id: current_user.id)
-    end
+    # def menuform_params
+    #   params.require(:menu).permit(
+    #     :date,
+    #     :time,
+    #     :picture,
+    #     dishes: [ :category, :name ]
+    #   ).merge(user_id: current_user.id)
+    # end
 end
