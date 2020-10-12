@@ -9,29 +9,31 @@
     <div class="modal-body">
       <section class="menu_form">
         <%= form_with model: @menu, remote: true do |f| %>
-          <div class="error-message alert-danger" id="error_explanation"></div>
-          <div class="error-messagea alert-danger" id="error_explanation"></div>
-          <%= f.date_field :date, value: @menu_date %>
-          <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
+          <div class="menu-error-message alert-danger" id="error_explanation"></div>
+          <div class="dish-error-message alert-danger" id="error_explanation"></div>
+          <%= f.date_field :date, value: @menu.date %>
+          <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu.time %>
           <span class="picture col-xs-12">
             <%= f.label :picture, "画像をアップロード", class: "btn image_input_btn" %>
             <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
           </span>
           <div class="dishes-form">
-          <% @dishes.each do |dish| %>
-            <%= f.fields_for "dishes_attributes[]", dish do |i| %>
-              <%= render 'shared/error_messages', object: i.object %>
-              <span class="form">
-                <%= i.select :category, @dish_categories,
-                                { prompt: "（分類）", selected: dish.category },
-                                                  class: "category dish-form" %>
-                <%= i.text_field :name, placeholder: "品名", value: dish.name,
-                                                      class: "name dish-form" %>
-              </span>
+            <% @dishes.each do |dish| %>
+              <%= f.fields_for "dishes_attributes[]", dish do |i| %>
+                <%= render 'shared/error_messages', object: i.object %>
+                <span class="form">
+                  <%= i.select :category, @dish_categories,
+                                  { prompt: "（分類）", selected: dish.category },
+                                                    class: "category dish-form" %>
+                  <%= i.text_field :name, placeholder: "品名", value: dish.name,
+                                                        class: "name dish-form" %>
+                </span>
+              <% end %>
             <% end %>
-          <% end %>
           </div>
           <%= f.submit "送信", class: "btn btn-square-so-pop" %>
+          <%= link_to "削除", @menu, method: :delete,
+                      data: { confirm: "この献立を削除します。よろしいですか？" }, class: "btn" %>
         <% end %>
       </section>
     </div>

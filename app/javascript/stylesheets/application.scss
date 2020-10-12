@@ -418,19 +418,20 @@ input {
     word-break: break-all;
     position: relative;
     box-shadow: 0px 0px 2px gray;
+    color: black;
     font-size: 0.8em;
     .dishes {
       position: absolute;
       // display: inline-block;
     }
   }
-  div[id*="朝"] {
+  [id*="朝"] {
     background-color: #fff8f8;
   }
-  div[id*="昼"] {
+  [id*="昼"] {
     background-color: #f8fff8;
   }
-  div[id*="夕"] {
+  [id*="夕"] {
     background-color: #f0f8ff;
   }
 }

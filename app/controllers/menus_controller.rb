@@ -6,7 +6,7 @@ class MenusController < ApplicationController
   before_action :prepare_menu_form, only: [:new, :create]
 
   def new
-    @menu = current_user.menus.build if logged_in?
+    @menu = current_user.menus.build(date: Date.today) if logged_in?
     @dishes = []
     if logged_in?
       @dish_categories.each do |dish_category|
@@ -14,12 +14,6 @@ class MenusController < ApplicationController
         @dishes << dish
       end
     end
-    @menuform = MenuForm.new
-
-    # respond_to do |format|
-    #   format.html{ redirect_to new_menu_path, notice: 'User was successfully created.' }
-    #   format.js {}
-    # end
   end
 
   def create
@@ -51,25 +45,19 @@ class MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
-    err = 0
-    @dishes = []
-
-    dishes_params.keys.each do |dish_id|
-      dish = Dish.find(dish_id)
-      dish.assign_attributes({ name: dishes_params[dish_id][:name],
-                              category: dishes_params[dish_id][:category] })
-      @dishes << dish
-      err = 1 unless dish.valid?
-    end
-
-    if @menu.update(menu_params) && err == 0
-      @dishes.each do |dish|
-        dish.save
+    if @menu.update_attributes(date: menu_params[:date], time: menu_params[:time])
+      menu_params[:dishes_attributes].keys.each do |dish_id|
+        @dish = Dish.find(dish_id)
+        @dish.assign_attributes({ name: menu_params[:dishes_attributes][dish_id][:name],
+                                category: menu_params[:dishes_attributes][dish_id][:category] })
+        unless @dish.save
+          render :error and return
+        end
       end
       flash[:success] = "メニューを編集しました。"
-      redirect_to root_url
+      render :success
     else
-      render 'edit'
+      render :error
     end
   end
 
@@ -85,7 +73,8 @@ class MenusController < ApplicationController
         :picture,
         dishes_attributes: [
           :name,
-          :category
+          :category#,
+          # :dish_id
         ]
       )
     end

@@ -1,2 +1,2 @@
-$('.error-message').text("<%= @menu.errors.full_messages.join(",").html_safe %>");
-$('.error-messagea').text("<%= @dish.errors.full_messages.join(",").html_safe %>");
+$('.menu-error-message').text("<%= @menu.errors.full_messages.join(",").html_safe if @menu %>");
+$('.dish-error-message').text("<%= @dish.errors.full_messages.join(",").html_safe if @dish %>");
