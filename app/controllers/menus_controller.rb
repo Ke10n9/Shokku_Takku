@@ -17,18 +17,46 @@ class MenusController < ApplicationController
   end
 
   def create
-    @menu = current_user.menus.build(date: menu_params[:date], time: menu_params[:time])
-    if @menu.save
+    dishes = []
+    if @menu = Menu.find_by(date: menu_params[:date], time: menu_params[:time])
+    #       || current_user.menus.build(date: menu_params[:date], time: menu_params[:time])
+    # if @menu.save
       menu_params[:dishes_attributes].each do |dish_params|
-        @dish = @menu.dishes.build(dish_params) unless dish_params[:name] == ""
-        unless @dish.save
-          @menu.destroy
-          render :error and return
+        unless dish_params[:name] == ""
+          @dish = @menu.dishes.build(dish_params)
+          if @dish.valid?
+            dishes << @dish
+          else
+            render :error and return
+          end
         end
+      end
+      @menu.save
+      dishes.each do |dish|
+        dish.save
       end
       render :success
     else
-      render :error
+      @menu = current_user.menus.build(date: menu_params[:date], time: menu_params[:time])
+      if @menu.valid?
+        menu_params[:dishes_attributes].each do |dish_params|
+          unless dish_params[:name] == ""
+            @dish = @menu.dishes.build(dish_params)
+            if @dish.valid?
+              dishes << @dish
+            else
+              render :error and return
+            end
+          end
+        end
+        @menu.save
+        dishes.each do |dish|
+          dish.save
+        end
+        render :success
+      else
+        render :error
+      end
     end
   end
 

@@ -20,7 +20,6 @@
           <div class="dishes-form">
             <% @dishes.each do |dish| %>
               <%= f.fields_for "dishes_attributes[]", dish do |i| %>
-                <%= render 'shared/error_messages', object: i.object %>
                 <span class="form">
                   <%= i.select :category, @dish_categories,
                                   { prompt: "（分類）", selected: dish.category },
@@ -40,11 +39,11 @@
   </div>
 </div>
 
-  <script type="text/javascript">
-    $('#menu_picture').bind('change', function() {
-      var size_in_megabytes = this.files[0].size/1024/1024;
-      if (size_in_megabytes > 5) {
-        alert('最大ファイルサイズは5MBです。');
-      }
-    });
-  </script>
+<script type="text/javascript">
+  $('#menu_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('最大ファイルサイズは5MBです。');
+    }
+  });
+</script>
