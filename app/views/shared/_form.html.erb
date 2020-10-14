@@ -30,9 +30,10 @@
               <% end %>
             <% end %>
           </div>
-          <%= f.submit "送信", class: "btn btn-square-so-pop" %>
-          <%= link_to "削除", @menu, method: :delete,
-                      data: { confirm: "この献立を削除します。よろしいですか？" }, class: "btn" %>
+          <%= f.submit "送信", class: "btn btn-square-so-pop btn-send" %>
+          <%= link_to "全て削除", @menu, method: :delete,
+                      data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
+                                    class: "btn btn-square-so-pop btn-delete" %>
         <% end %>
       </section>
     </div>
