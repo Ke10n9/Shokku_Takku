@@ -18,9 +18,9 @@ class MenusController < ApplicationController
 
   def create
     dishes = []
-    if @menu = Menu.find_by(date: menu_params[:date], time: menu_params[:time])
-    #       || current_user.menus.build(date: menu_params[:date], time: menu_params[:time])
-    # if @menu.save
+    if @menu = Menu.find_by(date: menu_params[:date],
+                            time: menu_params[:time])
+      @menu.update_attributes(picture: menu_params[:picture])
       menu_params[:dishes_attributes].each do |dish_params|
         unless dish_params[:name] == ""
           @dish = @menu.dishes.build(dish_params)
@@ -37,7 +37,9 @@ class MenusController < ApplicationController
       end
       render :success
     else
-      @menu = current_user.menus.build(date: menu_params[:date], time: menu_params[:time])
+      @menu = current_user.menus.build(date: menu_params[:date],
+                                        time: menu_params[:time],
+                                        picture: menu_params[:picture])
       if @menu.valid?
         menu_params[:dishes_attributes].each do |dish_params|
           unless dish_params[:name] == ""
@@ -73,7 +75,9 @@ class MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
-    if @menu.update_attributes(date: menu_params[:date], time: menu_params[:time])
+    if @menu.update_attributes(date: menu_params[:date],
+                                time: menu_params[:time],
+                                picture: menu_params[:picture])
       menu_params[:dishes_attributes].keys.each do |dish_id|
         @dish = Dish.find(dish_id)
         @dish.assign_attributes({ name: menu_params[:dishes_attributes][dish_id][:name],
@@ -101,8 +105,7 @@ class MenusController < ApplicationController
         :picture,
         dishes_attributes: [
           :name,
-          :category#,
-          # :dish_id
+          :category
         ]
       )
     end
@@ -111,13 +114,4 @@ class MenusController < ApplicationController
       @menu = current_user.menus.find_by(id: params[:id])
       redirect_to root_url if @menu.nil?
     end
-
-    # def menuform_params
-    #   params.require(:menu).permit(
-    #     :date,
-    #     :time,
-    #     :picture,
-    #     dishes: [ :category, :name ]
-    #   ).merge(user_id: current_user.id)
-    # end
 end

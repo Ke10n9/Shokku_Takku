@@ -13,19 +13,13 @@
 
   <!-- .holizontal-listでは非表示 -->
   <div class="info inline-top">
-    <!-- <span> -->
-      <span class="user"><%= menu.user.name %></span>
-    <!-- </span> -->
-    <!-- .holizontal-listでは非表示　ここまで -->
+    <span class="user"><%= menu.user.name %></span>
+    <ul class="dishes">
+      <% menu.dishes.all.each do |dish| %>
+        <li class="dish"><%= dish.name %></li>
+      <% end %>
+    </ul>
 
-    <!-- <div class="info"> -->
-      <ul class="dishes">
-        <% menu.dishes.all.each do |dish| %>
-          <li class="dish"><%= dish.name %></li>
-        <% end %>
-      </ul>
-      
-      <span class="datetime"><%= menu.date %> <%= menu.time %></span>
-    <!-- </div> -->
+    <span class="datetime"><%= menu.date %> <%= menu.time %></span>
   </div>
 </li>
