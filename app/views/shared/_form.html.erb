@@ -4,7 +4,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h5 class="modal-title" id="exampleModalLabel">新しい献立を登録しましょう。</h5>
+      <h5 class="modal-title" id="exampleModalLabel"><%= yield(:modal_header) %></h5>
     </div>
     <div class="modal-body">
       <section class="menu_form">
@@ -18,7 +18,7 @@
           </span>
           <span class="col-xs-4">
             <% unless @menu.picture.url.nil? %>
-              <%= image_tag @menu.picture.url, class: "img-in-form" %>
+              <%= image_tag @menu.picture.url, value: @menu.picture, class: "img-in-form" %>
             <% else %>
               <%= image_tag "no_image.png", class: "img-in-form" %>
             <% end %>
@@ -42,10 +42,13 @@
           </div>
           <span class="col-xs-12">
             <%= f.submit "送信", class: "btn btn-square-so-pop btn-send" %>
-            <%= link_to "全て削除", @menu, method: :delete,
-                        data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
-                                      class: "btn btn-square-so-pop btn-delete" %>
           </span>
+        <% end %>
+        <% if @menu.id %>
+          <%= link_to "全て削除", @menu, method: :delete,
+                      data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
+                                    class: "btn btn-square-so-pop btn-delete" %>
+          <%= link_to "品目の追加", new_menu_path, remote: true, class: "btn btn-square-so-pop btn-new-dish" %>
         <% end %>
       </section>
     </div>

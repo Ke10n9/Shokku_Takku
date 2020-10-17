@@ -1,2 +1,4 @@
+<% provide(:modal_header, "新しい献立を登録しましょう。") %>
+
 $("#user-modal").html("<%= escape_javascript(render 'shared/form') %>");
 $("#user-modal").modal("show");

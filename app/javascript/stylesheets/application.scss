@@ -269,19 +269,6 @@ input {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
-.btn-send {
-  color: #FFF;
-  background: #fd9535;/*色*/
-  border: solid 2px #d27d00;/*線色*/
-}
-
-.btn-delete {
-  color: red;
-  background: white;/*色*/
-  border: solid 2px red;/*線色*/
-  float: right;
-}
-
 .users {
   list-style: none;
   margin: 0;
@@ -664,6 +651,24 @@ input {
   margin-bottom: 5px;
   padding: 2px;
   font-size: 0.9em;
+}
+
+.btn-send {
+  color: #FFF;
+  background-color: #fd9535;/*色*/
+  border: solid 2px #d27d00;/*線色*/
+}
+
+.btn-delete {
+  color: red;
+  background-color: white;/*色*/
+  border: solid 2px red;/*線色*/
+  float: right;
+}
+
+.btn-new-dish {
+  color: white;
+  background-color: $dark-green;
 }
 
 /* simple calendar */

@@ -20,7 +20,7 @@ class MenusController < ApplicationController
     dishes = []
     if @menu = Menu.find_by(date: menu_params[:date],
                             time: menu_params[:time])
-      @menu.update_attributes(picture: menu_params[:picture])
+      @menu.assign_attributes(picture: menu_params[:picture])
       menu_params[:dishes_attributes].each do |dish_params|
         unless dish_params[:name] == ""
           @dish = @menu.dishes.build(dish_params)
@@ -51,9 +51,13 @@ class MenusController < ApplicationController
             end
           end
         end
-        @menu.save
-        dishes.each do |dish|
-          dish.save
+        if dishes.empty?
+          flash[:success] = "品目の入力がありませんでした。"
+        else
+          @menu.save
+          dishes.each do |dish|
+            dish.save
+          end
         end
         render :success
       else
@@ -78,12 +82,14 @@ class MenusController < ApplicationController
     if @menu.update_attributes(date: menu_params[:date],
                                 time: menu_params[:time],
                                 picture: menu_params[:picture])
-      menu_params[:dishes_attributes].keys.each do |dish_id|
-        @dish = Dish.find(dish_id)
-        @dish.assign_attributes({ name: menu_params[:dishes_attributes][dish_id][:name],
-                                category: menu_params[:dishes_attributes][dish_id][:category] })
-        unless @dish.save
-          render :error and return
+      unless menu_params[:dishes_attributes] = ""
+        menu_params[:dishes_attributes].keys.each do |dish_id|
+          @dish = Dish.find(dish_id)
+          @dish.assign_attributes({ name: menu_params[:dishes_attributes][dish_id][:name],
+                                  category: menu_params[:dishes_attributes][dish_id][:category] })
+          unless @dish.save
+            render :error and return
+          end
         end
       end
       flash[:success] = "メニューを編集しました。"
