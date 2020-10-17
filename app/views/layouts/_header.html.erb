@@ -2,7 +2,13 @@
   <div class="navbar-container">
     <div class="navbar-header">
       <%= link_to "ダテさん", root_path, id: "logo" %>
-      <div class="sub-title">-献立記録サービス-</div>
+      <div class="sub-title">
+        <% if logged_in? %>
+          for <%= current_user.name %>
+        <% else %>
+          -献立記録サービス-
+        <% end %>
+      </div>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                   data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
