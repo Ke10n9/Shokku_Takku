@@ -2,7 +2,7 @@
 <h1>ログイン</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-xs-12">
     <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
 
       <%= f.label :email, "メールアドレス" %>
@@ -17,7 +17,7 @@
         <span>次回からログインを省略する</span>
       <% end %>
 
-      <%= f.submit "ログイン", class: "btn btn-primary" %>
+      <%= f.submit "ログイン", class: "btn btn-primary btn-users-form" %>
     <% end %>
 
     <p>ユーザー登録は<%= link_to "こちら", signup_path %></p>
