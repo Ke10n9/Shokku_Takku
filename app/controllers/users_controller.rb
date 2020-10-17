@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     # menus/menu_calendar
     params[:start_date] ? @date = params[:start_date].to_date : @date = Date.today
 
-    @menuform = MenuForm.new
+    # @menuform = MenuForm.new
   end
 
   def new

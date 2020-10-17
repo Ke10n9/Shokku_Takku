@@ -6,7 +6,7 @@ class MenusController < ApplicationController
   before_action :prepare_menu_form, only: [:new, :create]
 
   def new
-    @menu = current_user.menus.build if logged_in?
+    @menu = current_user.menus.build(date: Date.today) if logged_in?
     @dishes = []
     if logged_in?
       @dish_categories.each do |dish_category|
@@ -14,20 +14,55 @@ class MenusController < ApplicationController
         @dishes << dish
       end
     end
-    @menuform = MenuForm.new
-
-    # respond_to do |format|
-    #   format.html{ redirect_to new_menu_path, notice: 'User was successfully created.' }
-    #   format.js {}
-    # end
   end
 
   def create
-    @menuform = MenuForm.new(menuform_params)
-    if @menuform.save
+    dishes = []
+    if @menu = Menu.find_by(date: menu_params[:date],
+                            time: menu_params[:time])
+      @menu.assign_attributes(picture: menu_params[:picture])
+      menu_params[:dishes_attributes].each do |dish_params|
+        unless dish_params[:name] == ""
+          @dish = @menu.dishes.build(dish_params)
+          if @dish.valid?
+            dishes << @dish
+          else
+            render :error and return
+          end
+        end
+      end
+      @menu.save
+      dishes.each do |dish|
+        dish.save
+      end
       render :success
     else
-      render :error
+      @menu = current_user.menus.build(date: menu_params[:date],
+                                        time: menu_params[:time],
+                                        picture: menu_params[:picture])
+      if @menu.valid?
+        menu_params[:dishes_attributes].each do |dish_params|
+          unless dish_params[:name] == ""
+            @dish = @menu.dishes.build(dish_params)
+            if @dish.valid?
+              dishes << @dish
+            else
+              render :error and return
+            end
+          end
+        end
+        if dishes.empty?
+          flash[:success] = "品目の入力がありませんでした。"
+        else
+          @menu.save
+          dishes.each do |dish|
+            dish.save
+          end
+        end
+        render :success
+      else
+        render :error
+      end
     end
   end
 
@@ -44,25 +79,23 @@ class MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
-    err = 0
-    @dishes = []
-
-    dishes_params.keys.each do |dish_id|
-      dish = Dish.find(dish_id)
-      dish.assign_attributes({ name: dishes_params[dish_id][:name],
-                              category: dishes_params[dish_id][:category] })
-      @dishes << dish
-      err = 1 unless dish.valid?
-    end
-
-    if @menu.update(menu_params) && err == 0
-      @dishes.each do |dish|
-        dish.save
+    if @menu.update_attributes(date: menu_params[:date],
+                                time: menu_params[:time],
+                                picture: menu_params[:picture])
+      unless menu_params[:dishes_attributes] = ""
+        menu_params[:dishes_attributes].keys.each do |dish_id|
+          @dish = Dish.find(dish_id)
+          @dish.assign_attributes({ name: menu_params[:dishes_attributes][dish_id][:name],
+                                  category: menu_params[:dishes_attributes][dish_id][:category] })
+          unless @dish.save
+            render :error and return
+          end
+        end
       end
       flash[:success] = "メニューを編集しました。"
-      redirect_to root_url
+      render :success
     else
-      render 'edit'
+      render :error
     end
   end
 
@@ -72,47 +105,19 @@ class MenusController < ApplicationController
 
   private
     def menu_params
-      # params.require(:menu).permit(:date, :time, :picture)
       params.require(:menu).permit(
         :date,
         :time,
-        dishes_attributes: [:name, :category]
+        :picture,
+        dishes_attributes: [
+          :name,
+          :category
+        ]
       )
-    end
-
-    # def menus_params
-    #   # params.require(:menu).permit(:date, :time, :picture)
-    #   params.require(:menu).permit(
-    #     :date,
-    #     :time,
-    #     :picture,
-    #     dishes_attributes: [:category,
-    #                         :name]
-    #   ).merge(user_id: current_user.id)
-    # end
-
-    # def dish_params
-    #   params.permit(dish: [:name, :category])[:dish]
-    # end
-
-    def dishes_params
-      params.require(:dish).permit(:name, :category)[:dish]
     end
 
     def correct_user
       @menu = current_user.menus.find_by(id: params[:id])
       redirect_to root_url if @menu.nil?
-    end
-
-    def menuform_params
-      params.require(:menu).permit(
-        :date,
-        :time,
-        :picture,
-        dishes: [
-          :category,
-          :name
-        ]
-      ).merge(user_id: current_user.id)
     end
 end
