@@ -7,9 +7,7 @@ class StaticPagesController < ApplicationController
   def home
     # # /menus/_menu.html.erb
     @menus = Menu.paginate(page: params[:page])
-    # logged_in? ? @user = @current_user : @user = User.new
-
-    # @menus = Menu.first(3)
+    
     logged_in? ? @user = @current_user : @user = User.new
   end
 

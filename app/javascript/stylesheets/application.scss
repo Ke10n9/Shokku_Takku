@@ -55,9 +55,6 @@ textarea {
   }
 }
 
-.btn {
-}
-
 .btn-primary {
   background-color: $dark-green;
   width: 139px;
@@ -443,10 +440,10 @@ input {
 }
 
 .home-grid {
-  width: 100%;
   margin-top: 10px;
   text-align: center;
   font-weight: bold;
+  display: inline-block;
   .home-link {
     display: inline-block;
     width: 70px;
@@ -652,7 +649,7 @@ input {
 }
 
 .form-heading {
-  background-color: lightgray;
+  background-color: gainsboro;
   margin-bottom: 5px;
   padding: 2px;
   font-size: 0.9em;
@@ -736,8 +733,6 @@ input {
 .round-area {
   box-shadow: 0px 0px 2px gray;
   font-size: 0.8em;
-  // margin: 1px;
-  // padding: 1px;
   h4 {
     text-align: center;
     padding: 3px;

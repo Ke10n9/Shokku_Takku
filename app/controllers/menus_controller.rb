@@ -31,9 +31,14 @@ class MenusController < ApplicationController
           end
         end
       end
-      @menu.save
-      dishes.each do |dish|
-        dish.save
+      if menu_params[:picture].nil? && dishes.empty?
+        flash[:success] = "品目や画像の入力がありませんでした。"
+      else
+        @menu.save
+        dishes.each do |dish|
+          dish.save
+        end
+        flash[:success] = "献立が編集されました。"
       end
       render :success
     else
@@ -58,6 +63,7 @@ class MenusController < ApplicationController
           dishes.each do |dish|
             dish.save
           end
+          flash[:success] = "献立が作成されました。"
         end
         render :success
       else
@@ -68,7 +74,7 @@ class MenusController < ApplicationController
 
   def destroy
     @menu.destroy
-    flash[:success] = "メニューを削除しました。"
+    flash[:success] = "献立を削除しました。"
     redirect_to request.referrer || root_url
   end
 
@@ -92,7 +98,7 @@ class MenusController < ApplicationController
           end
         end
       end
-      flash[:success] = "メニューを編集しました。"
+      flash[:success] = "献立が編集されました。"
       render :success
     else
       render :error

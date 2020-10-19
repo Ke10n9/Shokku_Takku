@@ -1,6 +1,8 @@
+<% menu.picture.url.nil? ? @image_url = "/assets/no_image.png" : @image_url = menu.picture.url%>
+
 <li class="item">
-  <!-- .vertical-listでは非表示 -->
-  <span class="picture inline-top" style="background-image: url(<%= menu.picture.url %>)">
+  <span class="picture inline-top" style="background-image: url(<%= @image_url %>)">
+    <!-- .holizontal-listで表示 -->
     <span class="datetime">
       <div><%= menu.date %></div>
       <div><%= menu.time %></div>
@@ -8,18 +10,20 @@
     <span class="user">
       <%= menu.user.name %>
     </span>
+    <!-- ここまで -->
   </span>
-  <!-- .vertical-listでは非表示　ここまで -->
 
-  <!-- .holizontal-listでは非表示 -->
   <div class="info inline-top">
+    <!-- .vertical-listで表示１ -->
     <span class="user"><%= menu.user.name %></span>
+    <!-- ここまで -->
     <ul class="dishes">
       <% menu.dishes.all.each do |dish| %>
         <li class="dish"><%= dish.name %></li>
       <% end %>
     </ul>
-
+    <!-- .vertical-listで表示２ -->
     <span class="datetime"><%= menu.date %> <%= menu.time %></span>
+    <!-- ここまで -->
   </div>
 </li>
