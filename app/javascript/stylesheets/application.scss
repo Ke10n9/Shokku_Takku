@@ -440,10 +440,10 @@ input {
 }
 
 .home-grid {
-  width: 100%;
   margin-top: 10px;
   text-align: center;
   font-weight: bold;
+  display: inline-block;
   .home-link {
     display: inline-block;
     width: 70px;

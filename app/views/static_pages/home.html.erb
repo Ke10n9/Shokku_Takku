@@ -4,6 +4,7 @@
       <h1>日々の献立を管理しよう！</h1>
       <h2>-献立記録サービス-</h2>
       <% if logged_in? %>
+        <!-- <div class="col-md-12"> -->
         <div class="home-grid">
           <%= link_to user_path(@user) do %>
             <div class="home-link">
@@ -23,21 +24,26 @@
               <div>ご無沙汰献立</div>
             </div>
           <% end %>
+        </div>
+        <div class="home-grid">
           <%= link_to new_menu_path, remote: true do %>
             <div class="home-link">
               <%= image_tag("register_menu.png") %>
               <div>献立の登録</div>
             </div>
           <% end %>
-          <div class="home-link">
-            <%= image_tag("friend_search.png") %>
-            <div>友達検索</div>
-          </div>
-          <div class="home-link">
-            <%= image_tag("my_page.png") %>
-            <div>マイページ</div>
-          </div>
+          <!-- <div class="home-link"> -->
+            <%#= image_tag("friend_search.png") %>
+            <!-- <div>友達検索</div> -->
+          <!-- </div> -->
+          <%= link_to edit_user_path(@user) do %>
+            <div class="home-link">
+              <%= image_tag("my_page.png") %>
+              <div>ユーザー編集</div>
+            </div>
+          <% end %>
         </div>
+        <!-- </div> -->
       <% else %>
         <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
         <%= form_for(:session, url: login_path) do |f| %>
@@ -48,7 +54,7 @@
       <% end %>
     </div>
   </aside>
-  
+
   <div class="round-area home-section">
     <h2>みんなの献立</h2>
     <ol class="horizontal-list">
