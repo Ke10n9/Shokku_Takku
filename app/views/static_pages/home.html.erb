@@ -5,28 +5,30 @@
       <h2>-献立記録サービス-</h2>
       <% if logged_in? %>
         <div class="home-grid">
-          <a href=<%= user_path(@user) %>>
+          <%= link_to user_path(@user) do %>
             <div class="home-link">
               <%= image_tag("my_menu.png") %>
               <div>私の献立</div>
             </div>
-          </a>
-          <a href=<%= menus_path %>>
+          <% end %>
+          <%= link_to menus_path do %>
             <div class="home-link">
               <%= image_tag("everyone's_menu.png") %>
               <div>みんなの献立</div>
             </div>
-          </a>
-          <a href=<%= recommend_path %>>
+          <% end %>
+          <%= link_to recommend_path do %>
             <div class="home-link">
               <%= image_tag("recommended_menu.png") %>
               <div>ご無沙汰献立</div>
             </div>
-          </a>
-          <div class="home-link">
-            <%= image_tag("register_menu.png") %>
-            <div>献立の登録</div>
-          </div>
+          <% end %>
+          <%= link_to new_menu_path, remote: true do %>
+            <div class="home-link">
+              <%= image_tag("register_menu.png") %>
+              <div>献立の登録</div>
+            </div>
+          <% end %>
           <div class="home-link">
             <%= image_tag("friend_search.png") %>
             <div>友達検索</div>
@@ -46,10 +48,13 @@
       <% end %>
     </div>
   </aside>
+  
   <div class="round-area home-section">
     <h2>みんなの献立</h2>
     <ol class="horizontal-list">
       <%= render @menus %>
     </ol>
   </div>
+
+  <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 </div>
