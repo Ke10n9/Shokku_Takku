@@ -7,7 +7,7 @@ RSpec.feature "UserEdits", type: :feature do
 
   scenario "can not edit with an invalid value" do
     log_in_as @user
-    click_link 
+    click_link "ユーザー編集"
     fill_in "ユーザー名", with: ""
     fill_in "メールアドレス", with: "foo@invalid"
     fill_in "パスワード", with: "foo"
