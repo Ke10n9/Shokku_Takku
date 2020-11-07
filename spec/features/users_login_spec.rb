@@ -27,25 +27,24 @@ RSpec.feature "UsersLogins", type: :feature do
     end
 
     scenario "redirect to @user" do
-      expect(page).to have_current_path("/users/#{@user.id}")
+      expect(page).to have_current_path(root_url)
     end
 
-    scenario "change menu bar" do
+    scenario "change navbar" do
       expect(page).to_not have_css("a", text: "ログイン")
       expect(page).to have_css("a", text: "ログアウト")
-      expect(page).to have_css("a", text: "プロフィール")
     end
   end
 
   context "when an user logout" do
     background do
       log_in_as @user
-      find(".dropdown-toggle").click
+      find(".navbar-toggle").click
       click_link "ログアウト"
     end
 
     scenario "redirect to root_url" do
-      expect(page).to have_current_path root_url
+      expect(page).to have_current_path(root_url)
     end
 
     scenario "change menu bar" do

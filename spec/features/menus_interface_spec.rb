@@ -6,39 +6,6 @@ RSpec.feature "MenusInterfaces", type: :feature do
     @other_user = create(:archer)
   }
 
-  feature "Form" do
-    context "without logged-in user" do
-
-      scenario "is not displayed in root_url" do
-        visit root_url
-        expect(page).not_to have_selector "form"
-      end
-    end
-
-    context "with logged-in user" do
-      background {
-        log_in_as @user
-        visit root_url
-      }
-
-      scenario "is displayed in root_url" do
-        expect(page).to have_selector "form"
-      end
-
-      scenario "is entered today's date in the date form" do
-        expect(page).to have_field "menu_date", with: Time.now.strftime("%Y-%m-%d")
-      end
-
-      scenario "is not selected in the time form" do
-        expect(page).to have_select "menu_time", selected: []
-      end
-
-      scenario "is not selected in the dish_category form" do
-        expect(page).to have_select "dish_category", selected: []
-      end
-    end
-  end
-
   feature "Registeration" do
     context "with logged-in user" do
       background {
