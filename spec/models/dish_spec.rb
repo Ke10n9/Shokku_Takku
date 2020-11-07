@@ -36,17 +36,6 @@ RSpec.describe Dish, type: :model do
     end
   end
 
-  context "with duplicate name and menu_id" do
-    before {
-      @dish.save
-      @duplicate_dish = build(:dish, category: "その他", menu: @menu)
-    }
-
-    it "is invalid" do
-      expect(@duplicate_dish).to be_invalid
-    end
-  end
-
   context "without category" do
     before { @dish.category = "" }
 
