@@ -5,7 +5,7 @@
       <%= %w(日 月 火 水 木 金 土)[(@date+num).wday] %>
     </div>
     <% @menu_times.each do |time| %>
-      <% if @menu = Menu.find_by(date: @date+num, time: time[0]) %>
+      <% if @menu = Menu.find_by(date: @date+num, time: time[0], user: current_user) %>
         <%= link_to(edit_menu_path(@menu), remote: true, class: "menu",
                                       id: "menu-#{@date+num}-#{time[0]}") do %>
           <div class="dishes">
