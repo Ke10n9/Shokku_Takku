@@ -26,7 +26,7 @@ RSpec.feature "UsersLogins", type: :feature do
       click_button "ログイン"
     end
 
-    scenario "redirect to @user" do
+    scenario "redirect to root_url" do
       expect(page).to have_current_path(root_url)
     end
 
