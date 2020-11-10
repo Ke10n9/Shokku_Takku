@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature "PageLayouts", type: :feature do
+  background {
+    @user = create(:michael)
+    @other_user = create(:archer)
+    @test = create(:test)
+  }
 
   feature "root_path" do
     background {
       visit root_path
-      @user = create(:michael)
-      @test = create(:test)
     }
 
     context "with no user logged in" do
@@ -97,7 +100,6 @@ RSpec.feature "PageLayouts", type: :feature do
 
     context "when an user is already logged in" do
       background {
-        @user = create(:michael)
         log_in_as @user
       }
 
@@ -125,8 +127,6 @@ RSpec.feature "PageLayouts", type: :feature do
 
   feature "everyone's menu" do
     background {
-      @user = create(:michael)
-      @other_user = create(:archer)
       @menu_31th_newest = create(:"menu-0", user: @other_user)
       @menu_30th_newest = create(:"menu-1", user: @other_user)
       (2..29).each do |n|
@@ -173,34 +173,48 @@ RSpec.feature "PageLayouts", type: :feature do
     end
 
     context "in menus_path" do
-      background { visit menus_path }
 
-      scenario "have_css vertical-list" do
-        expect(page).to have_css(".vertical-list")
+      context "with no user logged in" do
+        background { visit menus_path }
+
+        scenario "redirect_to root_path" do
+          expect(page).to have_current_path( login_path )
+        end
       end
 
-      scenario "have the newest menu" do
-        expect(page).to have_content("#{@newest_menu.date} #{@newest_menu.time}")
-      end
+      context "with the user logged in" do
+        background {
+          log_in_as @user
+          visit menus_path
+        }
 
-      scenario "have 30th newest menu" do
-        expect(page).to have_content("#{@menu_30th_newest.date} #{@menu_30th_newest.time}")
-      end
+        scenario "have_css vertical-list" do
+          expect(page).to have_css(".vertical-list")
+        end
 
-      scenario "don't have 31th newest menu" do
-        expect(page).not_to have_content("#{@menu_31th_newest.date} #{@menu_31th_newest.time}")
-      end
+        scenario "have the newest menu" do
+          expect(page).to have_content("#{@newest_menu.date} #{@newest_menu.time}")
+        end
 
-      scenario "have menu's user" do
-        expect(page).to have_content("#{@newest_menu.user.name}")
-      end
+        scenario "have 30th newest menu" do
+          expect(page).to have_content("#{@menu_30th_newest.date} #{@menu_30th_newest.time}")
+        end
 
-      scenario "have menu's picture" do
-        expect(page).to have_content("#{@newest_menu.picture}")
-      end
+        scenario "don't have 31th newest menu" do
+          expect(page).not_to have_content("#{@menu_31th_newest.date} #{@menu_31th_newest.time}")
+        end
 
-      scenario "have menu's dish name" do
-        expect(page).to have_content("#{@dish.name}")
+        scenario "have menu's user" do
+          expect(page).to have_content("#{@newest_menu.user.name}")
+        end
+
+        scenario "have menu's picture" do
+          expect(page).to have_content("#{@newest_menu.picture}")
+        end
+
+        scenario "have menu's dish name" do
+          expect(page).to have_content("#{@dish.name}")
+        end
       end
     end
   end

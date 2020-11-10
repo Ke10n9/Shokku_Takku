@@ -30,9 +30,16 @@ RSpec.feature "UsersLogins", type: :feature do
       expect(page).to have_current_path(root_url)
     end
 
-    scenario "change navbar" do
-      expect(page).to_not have_css("a", text: "ログイン")
+    scenario "have_css 'ホーム' in navbar" do
+      expect(page).to have_css("a", text: "ホーム")
+    end
+
+    scenario "have_css 'ログアウト' in navbar" do
       expect(page).to have_css("a", text: "ログアウト")
+    end
+
+    scenario "don't have_css 'ログイン' in navbar" do
+      expect(page).to_not have_css("a", text: "ログイン")
     end
   end
 
@@ -47,10 +54,12 @@ RSpec.feature "UsersLogins", type: :feature do
       expect(page).to have_current_path(root_url)
     end
 
-    scenario "change menu bar" do
+    scenario "have_css 'ログイン' in navbar" do
       expect(page).to have_css("a", text: "ログイン")
-      expect(page).to_not have_css("a", text: "ログアウト")
-      expect(page).to_not have_css("a", text: "プロフィール")
+    end
+
+    scenario "don't have_css 'ログアウト' in navbar" do
+      expect(page).not_to have_css("a", text: "ログアウト")
     end
   end
 end

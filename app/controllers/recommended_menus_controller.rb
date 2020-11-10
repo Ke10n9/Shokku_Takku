@@ -1,6 +1,7 @@
 class RecommendedMenusController < ApplicationController
   before_action :set_menu_times
   before_action :set_dish_categories
+  before_action :logged_in_user
 
   def show
     today = Date.today
