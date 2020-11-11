@@ -12,7 +12,7 @@ RSpec.feature "PageLayouts", type: :feature do
       visit root_path
     }
 
-    context "with no user logged in" do
+    context "without login user" do
 
       scenario "have_link signup_path" do
         expect(page).to have_link(href: signup_path)
@@ -37,7 +37,7 @@ RSpec.feature "PageLayouts", type: :feature do
       end
     end
 
-    context "with the user logged in" do
+    context "with login user" do
       background {
         log_in_as @user
       }
@@ -79,7 +79,7 @@ RSpec.feature "PageLayouts", type: :feature do
       expect(page).to have_link("ダテさん", href: root_path)
     end
 
-    context "when an user is not yet logged in" do
+    context "without login user" do
 
       scenario "have_link 'ログイン' href: login_path" do
         expect(page).to have_link("ログイン", href: login_path)
@@ -98,7 +98,7 @@ RSpec.feature "PageLayouts", type: :feature do
       end
     end
 
-    context "when an user is already logged in" do
+    context "with login user" do
       background {
         log_in_as @user
       }
@@ -174,7 +174,7 @@ RSpec.feature "PageLayouts", type: :feature do
 
     context "in menus_path" do
 
-      context "with no user logged in" do
+      context "without login user" do
         background { visit menus_path }
 
         scenario "redirect_to root_path" do
@@ -182,7 +182,7 @@ RSpec.feature "PageLayouts", type: :feature do
         end
       end
 
-      context "with the user logged in" do
+      context "with login user" do
         background {
           log_in_as @user
           visit menus_path

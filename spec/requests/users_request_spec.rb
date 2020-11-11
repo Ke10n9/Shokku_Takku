@@ -1,37 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-
-  describe "GET /new" do
-    it "returns http success" do
-      get signup_path
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "POST /create" do
-    context "when a request by an user is valid" do
-
-      # it "adds an user" do
-      #   expect do
-      #     post signup_path, params: { user: attributes_for(:michael) }
-      #   end.to change(User, :count).by(1)
-      # end
-      #
-      # it "let users log in automatically after signing up" do
-      #   post signup_path, params: { user: attributes_for(:michael) }
-      #   expect(response).to redirect_to User.last
-      # end
-    end
-  end
+  before {
+    @user = create(:michael)
+    @other_user = create(:archer)
+  }
 
   describe "GET /edit" do
-    before {
-      @user = create(:michael)
-      @other_user = create(:archer)
-    }
 
-    context "when not logged in" do
+    context "without login user" do
       before { get edit_user_path(@user) }
 
       it "returns flash[:danger]" do
@@ -43,7 +20,7 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context "when the user is wrong" do
+    context "with other user" do
       before {
         log_in_path @other_user
         get edit_user_path(@user)
@@ -61,15 +38,27 @@ RSpec.describe "Users", type: :request do
 
   describe "PATCH /update" do
     before {
-      @user = create(:michael)
-      @other_user = create(:archer)
+      @default_name = @user.name
+      @default_email = @user.email
     }
 
-    context "when not logged in" do
+    let(:update_params) {
+      { name: "update_name",
+        email: "update_email" }
+    }
+
+    context "without login user" do
       before {
-        patch user_path(@user), params: { user: { name: @user.name,
-                                                  email: @user.email } }
+        patch user_path(@user), params: { user: :update_params }
       }
+
+      it "don't change @user.name" do
+        expect(@user.name).to eq(@default_name)
+      end
+
+      it "don't change @user.email" do
+        expect(@user.email).to eq(@default_email)
+      end
 
       it "returns flash[:danger]" do
         expect(flash[:danger]).not_to be_empty
@@ -80,14 +69,21 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context "as wrong user" do
+    context "with other user" do
       before {
         log_in_path @other_user
-        patch user_path(@user), params: { user: { name: @user.name,
-                                                  email: @user.email } }
+        patch user_path(@user), params: { user: update_params }
       }
 
-      it "not return flash[:danger]" do
+      it "don't change @user.name" do
+        expect(@user.name).to eq(@default_name)
+      end
+
+      it "don't change @user.email" do
+        expect(@user.email).to eq(@default_email)
+      end
+
+      it "don't return flash[:danger]" do
         expect(flash[:danger]).to be_nil
       end
 
@@ -96,25 +92,23 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context "when the user request the admin attribute to be edited via the web" do
-      before { log_in_path @other_user }
-
-      it "not allow it" do
-        expect(@other_user.admin).to be_falsey
-        patch user_path(@other_user), params: { user: { password: "password",
-                                            password_confirmation: "password",
-                                            admin: true } }
-        expect(@other_user.admin).to be_falsey
-      end
+    #WEB経由でadmin属性は変更できない
+    it "don't allow the admin attribute to be edited via the web" do
+      log_in_path @other_user
+      expect(@other_user.admin).to be_falsey
+      patch user_path(@other_user), params: { user: { password: "password",
+                                          password_confirmation: "password",
+                                          admin: true } }
+      expect(@other_user.admin).to be_falsey
     end
   end
 
   describe "GET /index" do
     before {
-      @non_admin = create(:archer)
+      @non_admin = @other_user
     }
 
-    context "requested by non-admin user" do
+    context "with non-admin user" do
       before {
         log_in_path @non_admin
         get users_path
@@ -127,14 +121,10 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "DELETE /destroy" do
-    before {
-      @user = create(:michael)
-      @other_user = create(:archer)
-    }
 
-    context "when not logged in" do
+    context "without login user" do
 
-      it "does not delete an user" do
+      it "don't delete an user" do
         expect do
           delete user_path(@user)
         end.to change(User, :count).by(0)
@@ -146,10 +136,10 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context "as non-admin user" do
+    context "with non-admin user" do
       before { log_in_path @other_user }
 
-      it "does not delete an user" do
+      it "don't delete other user" do
         expect do
           delete user_path(@user)
         end.to change(User, :count).by(0)

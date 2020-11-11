@@ -8,13 +8,14 @@ RSpec.describe "Menus", type: :request do
   }
 
   let(:menu_params) {
-    { name: "豚肉",
-      category: "主菜" }
+    { date: Date.today,
+      time: "夕食",
+      picture: "test_picture"}
   }
 
   describe "POST /create" do
-    context "when not logged in" do
-      it "not create menu" do
+    context "without login user" do
+      it "don't create menu" do
         expect do
           post menus_path, params: { menu: menu_params }
         end.to change(Menu, :count).by(0)
@@ -28,8 +29,8 @@ RSpec.describe "Menus", type: :request do
   end
 
   describe "DELETE /destroy" do
-    context "when not logged in" do
-      it "not destroy menu" do
+    context "without login user" do
+      it "don't destroy menu" do
         expect do
           delete menu_path(@menu)
         end.to change(Menu, :count).by(0)
@@ -41,10 +42,10 @@ RSpec.describe "Menus", type: :request do
       end
     end
 
-    context "when the user is wrong" do
+    context "with wrong login user" do
       before { log_in_path @other_user }
 
-      it "not destroy menu" do
+      it "don't destroy menu" do
         expect do
           delete menu_path(@menu)
         end.to change(Menu, :count).by(0)
