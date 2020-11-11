@@ -3,36 +3,182 @@ require 'rails_helper'
 RSpec.feature "UserEdits", type: :feature do
   background {
     @user = create(:michael)
+    @other_user = create(:archer)
+    @default_name = @user.name
+    @default_email = @user.email
+    @default_password = @user.password
+    @update_name = "update_name"
+    @update_email = "update_email@example.com"
+    @update_password = "update_password"
   }
 
-  scenario "can not edit with an invalid value" do
-    log_in_as @user
-    click_link "ユーザー編集"
-    fill_in "ユーザー名", with: ""
-    fill_in "メールアドレス", with: "foo@invalid"
-    fill_in "パスワード", with: "foo"
-    fill_in "パスワード（再確認）", with: "bar"
-    click_button "保存"
-    expect(page).to have_selector("#error_explanation")
-    expect(page).to have_selector(".alert-danger",
-                                  text: "入力した内容に4つのエラーがあります。")
-  end
+  context "with login user" do
+    background {
+      log_in_as @user
+      visit root_path
+      click_link href: edit_user_path(@user)
+    }
 
-  scenario "can edit with a valid value" do
-    # フレンドリーフォワーディングのテスト
-    visit edit_user_path(@user)
-    log_in_as @user
-    expect(page).to have_current_path edit_user_url(@user)
+    scenario "redirect_to edit_user_path(@user)" do
+      expect(page).to have_current_path(edit_user_path(@user))
+    end
 
-    name = "Foo Bar"
-    email = "foo@bar.com"
-    fill_in "ユーザー名", with: name
-    fill_in "メールアドレス", with: email
-    click_button "保存"
-    expect(page).to have_selector(".alert-success")
-    expect(page).to have_current_path "/users/#{@user.id}"
-    @user.reload
-    expect(@user.name).to eq(name)
-    expect(@user.email).to eq(email)
+    context "filled in invalid name" do
+      background {
+        fill_in "ユーザー名", with: ""
+        fill_in "メールアドレス", with: @update_email
+        fill_in "パスワード", with: @update_password
+        fill_in "パスワード（再確認）", with: @update_password
+        click_button "保存"
+        @user.reload
+      }
+
+      scenario "don't update @user.name" do
+        expect(@user.name).to eq(@default_name)
+      end
+
+      scenario "don't update @user.email" do
+        expect(@user.email).to eq(@default_email)
+      end
+
+      scenario "don't update @user.password" do
+        expect(@user.password).to eq(@default_password)
+      end
+
+      scenario "show selector '#error_explanation'" do
+        expect(page).to have_selector("#error_explanation")
+      end
+    end
+
+    context "filled in invalid email" do
+      background {
+        fill_in "ユーザー名", with: @update_name
+        fill_in "メールアドレス", with: "invalid_email"
+        fill_in "パスワード", with: @update_password
+        fill_in "パスワード（再確認）", with: @update_password
+        click_button "保存"
+        @user.reload
+      }
+
+      scenario "don't update @user.name" do
+        expect(@user.name).to eq(@default_name)
+      end
+
+      scenario "don't update @user.email" do
+        expect(@user.email).to eq(@default_email)
+      end
+
+      scenario "don't update @user.password" do
+        expect(@user.password).to eq(@default_password)
+      end
+
+      scenario "show selector '#error_explanation'" do
+        expect(page).to have_selector("#error_explanation")
+      end
+    end
+
+    context "filled in duplicate email" do
+      background {
+        fill_in "ユーザー名", with: @update_name
+        fill_in "メールアドレス", with: @other_user.email
+        fill_in "パスワード", with: @update_password
+        fill_in "パスワード（再確認）", with: @update_password
+        click_button "保存"
+        @user.reload
+      }
+
+      scenario "don't update @user.name" do
+        expect(@user.name).to eq(@default_name)
+      end
+
+      scenario "don't update @user.email" do
+        expect(@user.email).to eq(@default_email)
+      end
+
+      scenario "don't update @user.password" do
+        expect(@user.password).to eq(@default_password)
+      end
+
+      scenario "show selector '#error_explanation'" do
+        expect(page).to have_selector("#error_explanation")
+      end
+    end
+
+    context "filled in invalid password" do
+      background {
+        fill_in "ユーザー名", with: @update_name
+        fill_in "メールアドレス", with: @update_email
+        fill_in "パスワード", with: "no"
+        fill_in "パスワード（再確認）", with: "no"
+        click_button "保存"
+        @user.reload
+      }
+
+      scenario "don't update @user.name" do
+        expect(@user.name).to eq(@default_name)
+      end
+
+      scenario "don't update @user.email" do
+        expect(@user.email).to eq(@default_email)
+      end
+
+      scenario "don't update @user.password" do
+        expect(@user.password).to eq(@default_password)
+      end
+
+      scenario "show selector '#error_explanation'" do
+        expect(page).to have_selector("#error_explanation")
+      end
+    end
+
+    context "filled in valid name and email" do
+      background {
+        fill_in "ユーザー名", with: @update_name
+        fill_in "メールアドレス", with: @update_email
+        click_button "保存"
+        @user.reload
+      }
+
+      scenario "redirect_to root_path" do
+        expect(page).to have_current_path(root_path)
+      end
+
+      scenario "update @user.name" do
+        expect(@user.name).to eq(@update_name)
+      end
+
+      scenario "update @user.email" do
+        expect(@user.email).to eq(@update_email)
+      end
+
+      scenario "don't update @user.password" do
+        expect(@user.password).to eq(@default_password)
+      end
+
+      scenario "show selector '.alert-success'" do
+        expect(page).to have_selector(".alert-success")
+      end
+    end
+
+    # context "filled in valid password" do
+    #   background {
+    #     fill_in "パスワード", with: @update_password
+    #     fill_in "パスワード（再確認）", with: @update_password
+    #     click_button "保存"
+    #     @user.reload
+    #   }
+    #
+    #   scenario "redirect_to root_path" do
+    #     expect(page).to have_current_path(root_path)
+    #   end
+    #
+    #   scenario "update @user.password" do
+    #     expect(@user.password).to eq(@update_password)
+    #   end
+    #
+    #   scenario "show selector '.alert-success'" do
+    #     expect(page).to have_selector(".alert-success")
+    #   end
+    # end
   end
 end

@@ -3,63 +3,106 @@ require 'rails_helper'
 RSpec.feature "UsersLogins", type: :feature do
   background { @user = create(:michael) }
 
-  context "when an user login with invalid information" do
+  context "without login user" do
     background do
-      visit login_path
-      click_button "ログイン"
+      visit root_path
+      click_link "ログイン"
     end
 
-    scenario "redirect to login_path" do
+    scenario "redirect_to login_path" do
       expect(page).to have_current_path(login_path)
     end
 
-    scenario "display flash message" do
-      expect(page).to have_selector(".alert-danger")
+    context "filled in invalid values" do
+      background {
+        fill_in "メールアドレス", with: ""
+        fill_in "パスワード", with: ""
+        click_button "ログイン"
+      }
+
+      scenario "show css '.sub-title' text: '-献立記録サービス-'" do
+        expect(page).to have_css(".sub-title", text: "-献立記録サービス-")
+      end
+
+      scenario "render login_path" do
+        expect(page).to have_current_path(login_path)
+      end
+
+      scenario "show selector '.alert-danger'" do
+        expect(page).to have_selector(".alert-danger")
+      end
+    end
+
+    context "filled in invalid email" do
+      background {
+        fill_in "メールアドレス", with: ""
+        fill_in "パスワード", with: @user.password
+        click_button "ログイン"
+      }
+
+      scenario "show css '.sub-title' text: '-献立記録サービス-'" do
+        expect(page).to have_css(".sub-title", text: "-献立記録サービス-")
+      end
+
+      scenario "render login_path" do
+        expect(page).to have_current_path(login_path)
+      end
+
+      scenario "show selector '.alert-danger'" do
+        expect(page).to have_selector(".alert-danger")
+      end
+    end
+
+    context "filled in invalid password" do
+      background {
+        fill_in "メールアドレス", with: @user.email
+        fill_in "パスワード", with: ""
+        click_button "ログイン"
+      }
+
+      scenario "show css '.sub-title' text: '-献立記録サービス-'" do
+        expect(page).to have_css(".sub-title", text: "-献立記録サービス-")
+      end
+
+      scenario "render login_path" do
+        expect(page).to have_current_path(login_path)
+      end
+
+      scenario "show selector '.alert-danger'" do
+        expect(page).to have_selector(".alert-danger")
+      end
+    end
+
+    context "filled in valid values" do
+      background {
+        fill_in "メールアドレス", with: @user.email
+        fill_in "パスワード", with: @user.password
+        click_button "ログイン"
+      }
+
+      scenario "show css '.sub-title' text: @user.name" do
+        expect(page).to have_css(".sub-title", text: @user.name)
+      end
+
+      scenario "render root_path" do
+        expect(page).to have_current_path(root_path)
+      end
+
+      scenario "show selector '.alert-danger'" do
+        expect(page).to have_selector(".alert-success")
+      end
     end
   end
 
-  context "when an user login with valid information" do
-    background do
-      visit login_path
-      fill_in "メールアドレス", with: @user.email
-      fill_in "パスワード", with: @user.password
-      click_button "ログイン"
-    end
-
-    scenario "redirect to root_url" do
-      expect(page).to have_current_path(root_url)
-    end
-
-    scenario "have_css 'ホーム' in navbar" do
-      expect(page).to have_css("a", text: "ホーム")
-    end
-
-    scenario "have_css 'ログアウト' in navbar" do
-      expect(page).to have_css("a", text: "ログアウト")
-    end
-
-    scenario "don't have_css 'ログイン' in navbar" do
-      expect(page).to_not have_css("a", text: "ログイン")
-    end
-  end
-
-  context "when an user logout" do
+  context "with login user" do
     background do
       log_in_as @user
-      find(".navbar-toggle").click
+      visit root_path
+    end
+
+    scenario "logout the user when the user click 'ログアウト'" do
       click_link "ログアウト"
-    end
-
-    scenario "redirect to root_url" do
-      expect(page).to have_current_path(root_url)
-    end
-
-    scenario "have_css 'ログイン' in navbar" do
-      expect(page).to have_css("a", text: "ログイン")
-    end
-
-    scenario "don't have_css 'ログアウト' in navbar" do
-      expect(page).not_to have_css("a", text: "ログアウト")
+      expect(page).to have_css(".sub-title", text: "-献立記録サービス-")
     end
   end
 end
