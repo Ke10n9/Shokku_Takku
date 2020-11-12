@@ -45,6 +45,14 @@ FactoryBot.define do
     activated_at { Time.zone.now }
   end
 
+  factory :non_activate, class: User do
+    name { "Non Activate" }
+    email { "non_activate@example.com" }
+    password { "foobar" }
+    password_confirmation { "foobar" }
+    activated { false }
+  end
+
   30.times do |n|
     factory :"user-#{n}", class: User do
       name { "User #{n}" }
