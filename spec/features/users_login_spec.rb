@@ -83,7 +83,7 @@ RSpec.feature "UsersLogins", type: :feature do
         click_button "ログイン"
       }
 
-      scenario "show css '.sub-title' text: @user.name" do
+      scenario "login user" do
         expect(page).to have_css(".sub-title", text: @user.name)
       end
 
@@ -91,7 +91,7 @@ RSpec.feature "UsersLogins", type: :feature do
         expect(page).to have_current_path(root_path)
       end
 
-      scenario "show selector '.alert-danger'" do
+      scenario "show selector '.alert-success'" do
         expect(page).to have_selector(".alert-success")
       end
     end

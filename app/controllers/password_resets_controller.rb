@@ -11,10 +11,10 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
+      flash[:info] = "パスワードをリセットする為のメールを送信しました。"
       redirect_to root_url
     else
-      flash.now[:danger] = "Email address not found"
+      flash.now[:danger] = "メールアドレスが見つかりません。"
       render 'new'
     end
   end
@@ -30,7 +30,7 @@ class PasswordResetsController < ApplicationController
       log_in @user
       @user.update_attribute(:reset_digest, nil)
       flash[:success] = "パスワードをリセットしました。"
-      redirect_to @user
+      redirect_to root_path
     else
       render 'edit'
     end
