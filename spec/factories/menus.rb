@@ -24,9 +24,30 @@ FactoryBot.define do
     user { nil }
   end
 
-  31.times do |n|
+  (-8..30).each do |n|
     factory :"menu-#{n}", class: Menu do
       date { Date.today - n }
+      time { "夕食" }
+    end
+  end
+
+  5.times do |n|
+    factory :"breakfast-#{n}", class: Menu do
+      date { Date.today - 90 + n }
+      time { "朝食" }
+    end
+  end
+
+  5.times do |n|
+    factory :"lunch-#{n}", class: Menu do
+      date { Date.today - 90 + n }
+      time { "昼食" }
+    end
+  end
+
+  5.times do |n|
+    factory :"dinner-#{n}", class: Menu do
+      date { Date.today - 90 + n }
       time { "夕食" }
     end
   end

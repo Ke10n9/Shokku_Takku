@@ -1,33 +1,92 @@
 require 'rails_helper'
 
 RSpec.feature "UserSignups", type: :feature do
+  background {
+    @other_user = create(:archer)
+    visit root_path
+    click_link "ユーザー登録"
+  }
 
-  scenario "can not sign up with an invalid user" do
-    visit signup_path
-    expect do
+  context "with invalid values" do
+    background {
       fill_in "ユーザー名", with: ""
       fill_in "メールアドレス", with: ""
       fill_in "パスワード", with: ""
       fill_in "パスワード（再確認）", with: ""
-      click_button "登録"
-    end.to change(User, :count).by(0)
+    }
 
-    expect(page).to have_selector("#error_explanation")
-    expect(page).to have_selector(".alert-danger",
-                                  text: "入力した内容に4つのエラーがあります。")
-    expect(page).to have_current_path "/users"
+    scenario "don't let an user sign up" do
+      expect do
+        click_button "登録"
+      end.to change(User, :count).by(0)
+    end
+
+    scenario "show error_explanation" do
+      click_button "登録"
+      expect(page).to have_selector("#error_explanation")
+    end
+
+    scenario "show alert_danger" do
+      click_button "登録"
+      expect(page).to have_selector(".alert-danger", text: "入力した内容に4つのエラーがあります。")
+    end
+
+    scenario "show alert_danger" do
+      click_button "登録"
+      expect(page).to have_current_path('/users')
+    end
+  end
+
+  context "with duplicate email" do
+    background {
+      fill_in "ユーザー名", with: "Example User"
+      fill_in "メールアドレス", with: @other_user.email
+      fill_in "パスワード", with: "password"
+      fill_in "パスワード（再確認）", with: "password"
+    }
+
+    scenario "don't let an user sign up" do
+      expect do
+        click_button "登録"
+      end.to change(User, :count).by(0)
+    end
+
+    scenario "show error_explanation" do
+      click_button "登録"
+      expect(page).to have_selector("#error_explanation")
+    end
+
+    scenario "show alert_danger" do
+      click_button "登録"
+      expect(page).to have_selector(".alert-danger", text: "入力した内容に1つのエラーがあります。")
+    end
+
+    scenario "show alert_danger" do
+      click_button "登録"
+      expect(page).to have_current_path('/users')
+    end
   end
 
   # 有効な値が入力されたとき
-  context "entered valid values" do
-    before do
-      visit signup_path
+  context "with valid values" do
+    background {
       fill_in "ユーザー名", with: "Example User"
       fill_in "メールアドレス", with: "user@example.com"
       fill_in "パスワード", with: "password"
       fill_in "パスワード（再確認）", with: "password"
-      click_button "登録"
+    }
+
+    scenario "add an user" do
+      expect do
+        click_button "登録"
+      end.to change(User, :count).by(1)
     end
+
+    scenario "redirect_to root_path" do
+      click_button "登録"
+      expect(page).to have_current_path(root_path)
+    end
+
 
     # scenario "get a flash message 'Shokku Takkuへようこそ！'" do
     #   expect(page).to have_selector(".alert-success",
