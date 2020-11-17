@@ -177,7 +177,7 @@ RSpec.feature "PageLayouts", type: :feature do
       context "without login user" do
         background { visit menus_path }
 
-        scenario "redirect_to root_path" do
+        scenario "redirect_to login_path" do
           expect(page).to have_current_path( login_path )
         end
       end
@@ -214,6 +214,61 @@ RSpec.feature "PageLayouts", type: :feature do
 
         scenario "have menu's dish name" do
           expect(page).to have_content("#{@dish.name}")
+        end
+      end
+    end
+  end
+
+  feature "recommend menu" do
+    background {
+      ["breakfast", "lunch", "dinner"].each do |time|
+        5.times do |n|
+          menu = create(:"#{time}-#{n}", user: @user)
+
+          ["主菜", "副菜", "汁物"].each do |cat|
+            create(:"#{time}-#{n}-#{cat}", menu: menu)
+          end
+        end
+
+        other_menu = create(:"#{time}-1", user: @other_user, date: Date.yesterday)
+        ["主菜", "副菜", "汁物"].each do |cat|
+          create(:"#{time}-1-#{cat}", menu: other_menu)
+        end
+      end
+    }
+
+    context "without login user" do
+      background { visit recommend_path }
+
+      scenario "redirect_to login_path" do
+        expect(page).to have_current_path( login_path )
+      end
+    end
+
+    context "with login user" do
+      background {
+        log_in_as @user
+        visit root_path
+        click_link href: recommend_path
+      }
+
+      scenario "redirect_to recommend_path" do
+        expect(page).to have_current_path(recommend_path)
+      end
+
+      scenario "have_selector each menu_times" do
+        ["朝食","昼食","夕食"].each do |time|
+          expect(page).to have_selector("##{time}")
+        end
+      end
+
+      scenario "show correct dish" do
+        ["breakfast", "lunch", "dinner"].each do |time|
+          (1..3).each do |n|
+            ["主菜", "副菜", "汁物"].each do |cat|
+              expect(page).to have_content("#{time}-#{n}-#{cat}")
+            end
+          end
         end
       end
     end

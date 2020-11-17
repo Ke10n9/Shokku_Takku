@@ -30,4 +30,25 @@ FactoryBot.define do
       time { "夕食" }
     end
   end
+
+  5.times do |n|
+    factory :"breakfast-#{n}", class: Menu do
+      date { Date.today - 90 + n }
+      time { "朝食" }
+    end
+  end
+
+  5.times do |n|
+    factory :"lunch-#{n}", class: Menu do
+      date { Date.today - 90 + n }
+      time { "昼食" }
+    end
+  end
+
+  5.times do |n|
+    factory :"dinner-#{n}", class: Menu do
+      date { Date.today - 90 + n }
+      time { "夕食" }
+    end
+  end
 end

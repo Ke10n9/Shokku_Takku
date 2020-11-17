@@ -16,4 +16,15 @@ FactoryBot.define do
     category { "汁物" }
     menu { nil }
   end
+
+  ["breakfast", "lunch", "dinner"].each do |time|
+    5.times do |n|
+      ["主菜", "副菜", "汁物"].each do |cat|
+        factory :"#{time}-#{n}-#{cat}", class: Dish do
+          name { "#{time}-#{n}-#{cat}" }
+          category { cat }
+        end
+      end
+    end
+  end
 end
