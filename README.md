@@ -1,24 +1,15 @@
-# README
+# ダテさん -献立記録サービス-
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+日々の献立を記録するアプリです。
+過去の献立や他人の献立から、あなたの今日の献立を決めるサポートをします。
 
-Things you may want to cover:
 
-* Ruby version
+## URL
 
-* System dependencies
+ホーム画面の「テストログイン」からテストユーザーとしてログインし、機能を閲覧することができます。
 
-* Configuration
 
-* Database creation
+## 制作背景
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+夫婦生活を円滑に営むにあたって、妻の機嫌が良い状態を保つことは非常に重要な要素だと思います。
+制作者の家において献立の決定・調理はほとんど妻の役割となっていますが、特に「献立の決定」が日々の大きなストレスになっているようです。
