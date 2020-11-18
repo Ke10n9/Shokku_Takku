@@ -12,14 +12,14 @@
 
 ## 使用技術
 
-### フロントエンド
-
 * HTML
 * CSS
-* Javascript, JQuery
+* Javascript
+* JQuery
 * Bootstrap
-
 * Ruby 2.6.5
 * Ruby on Rails 6.0.3.4
+* RSpec
 * PostgreSQL
+* Git
 * Github
