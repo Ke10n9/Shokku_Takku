@@ -23,3 +23,8 @@
 * PostgreSQL
 * Git
 * Github
+* Heroku
+
+## 機能一蘭
+
+* ユーザー登録、ログイン機能
