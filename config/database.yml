@@ -27,4 +27,4 @@ test:
 production:
   <<: *default
   database: Shokku_Takku_production
-  password: <%= ENV['Shokku_Takku_DATABASE_PASSWORD'] %>
+  password: <%= ENV['Shokku_Takku_DATABASE_DEV_PASSWORD'] %>
