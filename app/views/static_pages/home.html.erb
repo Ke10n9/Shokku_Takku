@@ -36,11 +36,13 @@
             <%#= image_tag("friend_search.png") %>
             <!-- <div>友達検索</div> -->
           <!-- </div> -->
-          <%= link_to edit_user_path(@user) do %>
-            <div class="home-link">
-              <%= image_tag("my_page.png") %>
-              <div>ユーザー編集</div>
-            </div>
+          <% unless @user == User.find_by(email: "test@railstutorial.org") %>
+            <%= link_to edit_user_path(@user) do %>
+              <div class="home-link">
+                <%= image_tag("my_page.png") %>
+                <div>ユーザー編集</div>
+              </div>
+            <% end %>
           <% end %>
         </div>
         <!-- </div> -->

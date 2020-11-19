@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def logged_in_testuser
+      if current_user == User.find_by(email: "test@railstutorial.org")
+        flash[:danger] = "テストユーザーでは利用できません。"
+        redirect_to root_url
+      end
+    end
+
     # mealsモデルのeating_timeカラムのバリエーションを指定
     def set_menu_times
       @menu_times = [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"]]

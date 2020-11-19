@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
     if logged_in?
-      flash[:warning] = "既にログイン中です。"
+      flash[:danger] = "既にログイン中です。"
       redirect_to root_url
     end
   end
