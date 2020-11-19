@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index, :destroy]
   before_action :set_menu_times, only: :show
   before_action :set_dish_categories, only: :show
-  # before_action :prepare_menu_form, only: :show
+  before_action :logged_in_testuser, only: [:edit, :update]
 
   def index
     @users = User.where(activated: true).paginate(page: params[:page])
