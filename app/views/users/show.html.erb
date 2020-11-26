@@ -1,11 +1,17 @@
-<%# provide(:title, @user.name) %>
 <div class="row">
+  <div class="search-form">
+    <%= form_with(scope: :search, url: dishes_path, method: :get, remote: true) do |f| %>
+      <%= f.text_field :name %>
+
+      <%= f.submit "献立検索", class: "btn btn-primary" %>
+    <% end %>
+  </div>
   <div class="col-md-12 calendar-container">
     <%= render 'menus/menu_calendar' %>
   </div>
   <div class="button-area">
     <div class="round-button" id="calendar-button" data-toggle="modal" data-target="#calendarModal">
-      <%= image_tag("calendar.png", alt: "aaaa") %>
+      <%= image_tag("calendar.png") %>
     </div>
     <div class="round-button">
       <%= link_to image_tag("register_menu.png"), new_menu_path, remote: true %>
