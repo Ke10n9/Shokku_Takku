@@ -866,3 +866,21 @@ input {
   display: inline-block;
   vertical-align: top;
 }
+
+/* menu search */
+
+.applicable-menu {
+  border-radius: 5px 5px 0 0;
+  background-color: antiquewhite;
+  padding: 3px;
+  margin: 3px;
+  display: table;
+  .dish-name {
+    font-size: 1.1em;
+    margin-right: 10px;
+  }
+  .menu-date, .menu-time {
+    font-size: 0.9em;
+    color: gray;
+  }
+}

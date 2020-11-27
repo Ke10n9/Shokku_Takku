@@ -1,8 +1,11 @@
 class DishesController < ApplicationController
+  before_action :logged_in_user
 
   def index
-    @search_params =dish_search_params
-    @dishes = Dish.search(@search_params)
+    @search_params = dish_search_params
+    @dishes = current_user.dishes.search(@search_params)
+    # @dishes = dishes.
+
   end
 
   private
