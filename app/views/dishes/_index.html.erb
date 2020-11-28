@@ -7,20 +7,18 @@
       <h5 class="modal-title" id="exampleModalLabel"><%= yield(:modal_header) %></h5>
     </div>
     <div class="modal-body">
-      <%= form_with(scope: :search, url: dishes_path, method: :get, remote: true) do |f| %>
-        <%= f.text_field :name, value: @search_params[:name] %>
-
-        <%= f.submit "献立検索", class: "btn btn-primary" %>
-      <% end %>
+      <% provide(:search_word, @search_params[:name]) %>
+      <%= render 'dishes/dishes_search' %>
 
       <% @dishes.each do |dish| %>
-        <%= link_to(user_path(current_user, start_date: dish.menu.date), local: true) do %>
+        <%#= link_to(user_path(current_user, start_date: dish.menu.date), local: true) do %>
           <div class="applicable-menu">
-            <span class="dish-name"><%= dish.name %></span>
+            <span class="dish-name"><%= link_to dish.name,
+              user_path(current_user, start_date: dish.menu.date), local: true %></span>
             <span class="menu-date"><%= dish.menu.date %></span>
             <span class="menu-time"><%= dish.menu.time %></span>
           </div>
-        <% end %>
+        <%# end %>
       <% end %>
     </div>
   </div>

@@ -6,8 +6,7 @@ class Menu < ApplicationRecord
   validates :user_id, presence: true
   validates :date, presence: true
   validates :time, presence: true, uniqueness: { scope: [:user_id, :date], case_sensitive: true }
-  # case_sensitive: true ... 大文字小文字を区別するユニーク制約。これがないとrspecでエラーになる。
-  #                         明示せよと言われる？
+  # case_sensitive: true ... 大文字小文字を区別するユニーク制約。これがないとrspecでエラーになる。明示せよと言われる。
   validate :picture_size
 
   private

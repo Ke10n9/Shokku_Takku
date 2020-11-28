@@ -4,7 +4,6 @@ class DishesController < ApplicationController
   def index
     @search_params = dish_search_params
     @dishes = current_user.dishes.search(@search_params)
-    # @dishes = dishes.
 
   end
 
