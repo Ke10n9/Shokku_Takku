@@ -1,7 +1,8 @@
 <div class="row">
-  <% provide(:search_word, "") %>
-  <%= render 'dishes/dishes_search' %>
-
+  <div class="menu-search">
+    <% provide(:search_word, "") %>
+    <%= render 'dishes/dishes_search' %>
+  </div>
   <div class="col-md-12 calendar-container">
     <%= render 'menus/menu_calendar' %>
   </div>
