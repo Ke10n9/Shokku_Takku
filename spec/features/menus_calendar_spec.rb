@@ -114,6 +114,37 @@ RSpec.feature "MenusCalendars", type: :feature do
       expect(page).to have_content(@dish_7days_ago.menu.time)
     end
 
+    context "with 11 or more searched menus" do
+      background {
+        i = 10
+        (10..24).each do |n|
+          create(:"menu-#{n}", user: @user)
+        end
+        ["主菜", "副菜", "汁物"].each do |cat|
+          5.times do |n|
+            create(:"dinner-#{n}-#{cat}", menu: Menu.find_by(date: Date.today - (n+i)))
+          end
+          i = i + 5
+        end
+
+        fill_in "search_name", with: "dinner"
+        click_on "献立検索"
+      }
+
+      scenario "show 10 new menus on the first page by pagination" do
+        expect(page).not_to have_content("汁物")
+      end
+
+      scenario "show link to navigate pages" do
+        expect(page).to have_css(".pagination")
+      end
+
+      scenario "show the second page when the user click pagination link" do
+        click_on ">"
+        expect(page).to have_content("汁物")
+      end
+    end
+
     context "with clicking searched dish" do
       background {
         click_on @dish_7days_ago.name

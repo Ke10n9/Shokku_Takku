@@ -7,17 +7,19 @@
       <h5 class="modal-title" id="exampleModalLabel"><%= yield(:modal_header) %></h5>
     </div>
     <div class="modal-body">
+      <div class="menu-error-message alert-danger" id="error_explanation"></div>
       <% provide(:search_word, @search_params[:name]) %>
       <%= render 'dishes/dishes_search' %>
 
       <% @dishes.each do |dish| %>
-        <div class="applicable-menu">
+        <ul class="applicable-menu">
           <span class="dish-name"><%= link_to dish.name,
             user_path(current_user, start_date: dish.menu.date), local: true %></span>
           <span class="menu-date"><%= dish.menu.date %></span>
           <span class="menu-time"><%= dish.menu.time %></span>
-        </div>
+        </ul>
       <% end %>
+      <%= paginate @dishes, remote: true %>
     </div>
   </div>
 </div>

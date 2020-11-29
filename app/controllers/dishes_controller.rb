@@ -4,12 +4,8 @@ class DishesController < ApplicationController
 
   def index
     @search_params = dish_search_params
-    @dishes = current_user.dishes.search(@search_params).paginate(page: params[:page], per_page: 5)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @dishes = current_user.dishes.search(@search_params)
+    @dishes = Kaminari.paginate_array(@dishes).page(params[:page]).per(10)
   end
 
   private
