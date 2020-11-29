@@ -1,0 +1,4 @@
+<% provide(:modal_header, "指定の条件で献立を検索しました。") %>
+
+$("#user-modal").html("<%= escape_javascript(render 'index') %>");
+$("#user-modal").modal("show");
