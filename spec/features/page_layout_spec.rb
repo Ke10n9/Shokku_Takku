@@ -127,12 +127,12 @@ RSpec.feature "PageLayouts", type: :feature do
 
   feature "everyone's menu" do
     background {
-      @menu_31th_newest = create(:"menu-0", user: @other_user)
-      @menu_30th_newest = create(:"menu-1", user: @other_user)
-      (2..29).each do |n|
+      @menu_31th_newest = create(:"menu-30", user: @other_user)
+      @menu_30th_newest = create(:"menu-29", user: @other_user)
+      (1..28).each do |n|
         create(:"menu-#{n}", user: @other_user)
       end
-      @newest_menu = create(:"menu-30", picture: "test_picture", user: @user)
+      @newest_menu = create(:"menu-0", picture: "test_picture", user: @user)
       @dish = create(:dish, menu: @newest_menu)
     }
 
