@@ -1,7 +1,8 @@
-<% provide(:title, 'ユーザー一覧') %>
-<h1>ユーザー一覧</h1>
+<% provide(:title, 'ユーザー検索') %>
 
-<%= will_paginate %>
+<section class="users user_info">
+  <%= render partial: 'user', locals: { user: current_user } %>
+</section>
 
 <ul class="users">
   <%= render @users %>

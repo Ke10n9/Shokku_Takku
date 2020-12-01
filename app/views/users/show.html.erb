@@ -1,23 +1,33 @@
-<div class="row">
-  <div class="menu-search">
-    <% provide(:search_word, "") %>
-    <%= render 'dishes/dishes_search' %>
-  </div>
-  <div class="col-md-12 calendar-container">
+<!-- <div class="row"> -->
+  <% if current_user?(@user) %>
+    <div class="menu-search">
+      <% provide(:search_word, "") %>
+      <%= render 'dishes/dishes_search' %>
+    </div>
+    <!-- <div class="col-md-12 calendar-container"> -->
     <%= render 'menus/menu_calendar' %>
-  </div>
-  <div class="button-area">
-    <div class="round-button" id="calendar-button" data-toggle="modal" data-target="#calendarModal">
-      <%= image_tag("calendar.png") %>
+    <!-- </div> -->
+    <div class="button-area">
+      <div class="round-button" id="calendar-button" data-toggle="modal" data-target="#calendarModal">
+        <%= image_tag("calendar.png") %>
+      </div>
+      <div class="round-button">
+        <%= link_to image_tag("register_menu.png"), new_menu_path, remote: true %>
+      </div>
     </div>
-    <div class="round-button">
-      <%= link_to image_tag("register_menu.png"), new_menu_path, remote: true %>
-    </div>
-  </div>
+  <% else %>
+    <section class="users user_info">
+      <%= render @user %>
+      <%= render 'follow_form' if logged_in? %>
+    </section>
+    <ol class="vertical-list">
+      <%= render @menus %>
+    </ol>
+  <% end %>
   <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
     <!-- ボタン・リンククリック後に表示される画面の内容 -->
   <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <%= render 'shared/modal_calendar' %>
   </div>
-</div>
+<!-- </div> -->

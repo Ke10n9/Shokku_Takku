@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :menus, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :dishes, only: [:index]
+  resources :relationships, only: [:create, :destroy]
 end
