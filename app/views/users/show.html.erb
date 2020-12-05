@@ -1,9 +1,11 @@
+<% provide(:url, dishes_path) %>
+<% provide(:placeholder, "検索する品名を入力") %>
+<% provide(:submit, "献立検索") %>
+
 <!-- <div class="row"> -->
   <% if current_user?(@user) %>
-    <div class="menu-search">
-      <% provide(:search_word, "") %>
-      <%= render 'dishes/dishes_search' %>
-    </div>
+    <% provide(:search_word, "") %>
+    <%= render 'dishes/dishes_search' %>
     <!-- <div class="col-md-12 calendar-container"> -->
     <%= render 'menus/menu_calendar' %>
     <!-- </div> -->
@@ -17,7 +19,7 @@
     </div>
   <% else %>
     <section class="users user_info">
-      <%= render @user %>
+      <%= render partial: 'user_info', locals: { user: @user } %>
       <%= render 'follow_form' if logged_in? %>
     </section>
     <ol class="vertical-list">

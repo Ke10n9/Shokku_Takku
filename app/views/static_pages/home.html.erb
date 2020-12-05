@@ -4,26 +4,15 @@
       <h1>日々の献立を管理しよう！</h1>
       <h2>-献立記録サービス-</h2>
       <% if logged_in? %>
-        <!-- <div class="col-md-12"> -->
         <div class="home-grid">
-          <%= link_to user_path(@user) do %>
-            <div class="home-link">
-              <%= image_tag("my_menu.png") %>
-              <div>私の献立</div>
-            </div>
-          <% end %>
-          <%= link_to menus_path do %>
-            <div class="home-link">
-              <%= image_tag("everyone's_menu.png") %>
-              <div>みんなの献立</div>
-            </div>
-          <% end %>
-          <%= link_to recommend_path do %>
-            <div class="home-link">
-              <%= image_tag("recommended_menu.png") %>
-              <div>ご無沙汰献立</div>
-            </div>
-          <% end %>
+          <%= render partial: 'home_link', locals: { link: user_path(@user),
+                                      image: "my_menu.png", title: "私の献立"} %>
+
+          <%= render partial: 'home_link', locals: { link: menus_path,
+                          image: "everyone's_menu.png", title: "みんなの献立"} %>
+
+          <%= render partial: 'home_link', locals: { link: recommend_path,
+                          image: "recommended_menu.png", title: "ご無沙汰献立"} %>
         </div>
         <div class="home-grid">
           <%= link_to new_menu_path, remote: true do %>
@@ -32,17 +21,13 @@
               <div>献立の登録</div>
             </div>
           <% end %>
-          <!-- <div class="home-link"> -->
-            <%#= image_tag("friend_search.png") %>
-            <!-- <div>友達検索</div> -->
-          <!-- </div> -->
+
+          <%= render partial: 'home_link', locals: { link: users_path,
+                                image: "friend_search.png", title: "友達検索"} %>
+                                
           <% unless @user == User.find_by(email: "test@railstutorial.org") %>
-            <%= link_to edit_user_path(@user) do %>
-              <div class="home-link">
-                <%= image_tag("my_page.png") %>
-                <div>ユーザー編集</div>
-              </div>
-            <% end %>
+            <%= render partial: 'home_link', locals: { link: edit_user_path(@user),
+                                  image: "my_page.png", title: "ユーザー編集"} %>
           <% end %>
         </div>
         <!-- </div> -->

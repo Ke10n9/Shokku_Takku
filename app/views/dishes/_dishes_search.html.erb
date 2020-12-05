@@ -1,6 +1,8 @@
-<%= form_with(scope: :search, url: dishes_path, method: :get, remote: true) do |f| %>
-  <%= f.text_field :name, value: yield(:search_word),
-      placeholder: "検索する品名を入力", id: "search_name", class: "form-control" %>
+<div class="search-form">
+  <%= form_with(scope: :search, url: yield(:url), method: :get, remote: true) do |f| %>
+    <%= f.text_field :name, value: yield(:search_word),
+        placeholder: yield(:placeholder), id: "search_name", class: "form-control" %>
 
-  <%= f.submit "献立検索", class: "btn btn-search" %>
-<% end %>
+    <%= f.submit yield(:submit), class: "btn btn-search" %>
+  <% end %>
+</div>

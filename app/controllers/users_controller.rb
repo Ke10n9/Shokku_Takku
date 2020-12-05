@@ -8,8 +8,15 @@ class UsersController < ApplicationController
   before_action :logged_in_testuser, only: [:edit, :update]
 
   def index
+    @search_params = user_search_params
     @users = User.where(activated: true)
-                .where.not(id: current_user.id).paginate(page: params[:page])
+                .where.not(id: current_user.id).search(@search_params)
+    if @users
+      @users = Kaminari.paginate_array(@users).page(params[:page]).per(10)
+    else
+      flash[:danger] = "一致するユーザーがいませんでした。
+                        入力したユーザー名と完全に一致するユーザーのみを表示します。"
+    end
   end
 
   def show
@@ -73,6 +80,10 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                     :password_confirmation)
+    end
+
+    def user_search_params
+      params.fetch(:search, {}).permit(:name)
     end
 
     # beforeアクション

@@ -23,6 +23,14 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  scope :search, -> (search_params) do
+    # return if search_params.blank?
+    name_is(search_params[:name])
+  end
+
+  # nameが存在する場合、nameをlike検索する
+  scope :name_is, -> (name) { where(name: name) }
+
   class << self
     # 渡された文字列のハッシュ値を返す
     def digest(string)

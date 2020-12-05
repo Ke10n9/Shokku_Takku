@@ -1,11 +1,17 @@
-<% provide(:title, 'ユーザー検索') %>
+<% provide(:title, "ユーザー検索") %>
+<% provide(:url, users_path) %>
+<% provide(:placeholder, "ユーザー名を入力") %>
+<% provide(:submit, "検索") %>
+<% provide(:search_word, "") %>
 
 <section class="users user_info">
-  <%= render partial: 'user', locals: { user: current_user } %>
+  <%= render partial: 'user_info', locals: { user: current_user } %>
 </section>
 
-<ul class="users">
-  <%= render @users %>
-</ul>
+<%= render 'dishes/dishes_search' %>
 
-<%= will_paginate %>
+<section class="users" id="search-results">
+  <%= render @users %>
+</section>
+
+<%= paginate @users %>

@@ -84,6 +84,11 @@ textarea {
   padding: 5px 16px;
 }
 
+.btn-success {
+  width: 139px;
+  margin: 10px;
+}
+
 .btn-users-form {
   width: 100%;
   margin-left: 0;
@@ -243,29 +248,6 @@ section {
 
 .gravatar_edit {
   margin-top: 15px;
-}
-
-.stats {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid $gray-lighter;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: blue;
-    }
-  }
-  strong {
-    display: block;
-  }
 }
 
 .user_avatars {
@@ -922,13 +904,67 @@ input {
   }
 }
 
+/* user search */
+
+#search-results {
+  li {
+    padding-left: 20px;
+  }
+}
+
+/* search form */
+
 #search_name {
   width: 65%;
   margin-bottom: 0;
   display: inline-block;
 }
 
-.menu-search {
+.search-form {
+  width: 100%;
   text-align: center;
+  vertical-align: bottom;
   margin-top: 3px;
+}
+
+/* error */
+
+#error-user-search {
+  background-color: ivory;
+  border: solid 2px beige;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  p {
+    margin: 0;
+  }
+}
+
+/* user info */
+
+.stats {
+  overflow: auto;
+  display: inline-block;
+  margin-left: 20px;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
 }
