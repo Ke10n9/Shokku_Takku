@@ -24,12 +24,15 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   scope :search, -> (search_params) do
-    # return if search_params.blank?
     name_is(search_params[:name])
   end
 
-  # nameが存在する場合、nameをlike検索する
+  scope :admin_search, -> (search_params) do
+    name_like(search_params[:name])
+  end
+
   scope :name_is, -> (name) { where(name: name) }
+  scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
 
   class << self
     # 渡された文字列のハッシュ値を返す

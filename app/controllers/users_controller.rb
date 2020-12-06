@@ -9,10 +9,16 @@ class UsersController < ApplicationController
 
   def index
     @search_params = user_search_params
-    @users = User.where(activated: true)
-                .where.not(id: current_user.id).search(@search_params)
+    if current_user.admin?
+      @users = User.where(activated: true)
+                  .where.not(id: current_user.id).admin_search(@search_params)
+    else
+      @users = User.where(activated: true)
+                  .where.not(id: current_user.id).search(@search_params)
+    end
+
     if @users
-      @users = Kaminari.paginate_array(@users).page(params[:page]).per(10)
+      @users = Kaminari.paginate_array(@users).page(params[:page]).per(30)
     else
       flash[:danger] = "一致するユーザーがいませんでした。
                         入力したユーザー名と完全に一致するユーザーのみを表示します。"
@@ -25,7 +31,8 @@ class UsersController < ApplicationController
 
     # menus/menu_calendar
     params[:start_date] ? @date = params[:start_date].to_date : @date = Date.today
-    @menus = @user.menus.paginate(page: params[:page])
+    @menus = @user.menus.all
+    @menus = Kaminari.paginate_array(@menus).page(params[:page]).per(30)
   end
 
   def new

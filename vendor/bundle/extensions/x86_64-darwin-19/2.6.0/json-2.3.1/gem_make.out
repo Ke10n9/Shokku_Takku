@@ -1,0 +1,13 @@
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/gems/json-2.3.1/ext/json
+/Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201205-1723-ohvn84.rb extconf.rb
+creating Makefile
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/gems/json-2.3.1/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/gems/json-2.3.1/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/gems/json-2.3.1/ext/json
+make "DESTDIR=" install

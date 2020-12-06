@@ -5,7 +5,7 @@
 <!-- <div class="row"> -->
   <% if current_user?(@user) %>
     <% provide(:search_word, "") %>
-    <%= render 'dishes/dishes_search' %>
+    <%= render 'shared/search_form' %>
     <!-- <div class="col-md-12 calendar-container"> -->
     <%= render 'menus/menu_calendar' %>
     <!-- </div> -->
@@ -24,6 +24,7 @@
     </section>
     <ol class="vertical-list">
       <%= render @menus %>
+      <%= paginate @menus %>
     </ol>
   <% end %>
   <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

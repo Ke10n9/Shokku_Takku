@@ -13,7 +13,7 @@
     <div class="modal-body">
       <div class="menu-error-message alert-danger" id="error_explanation"></div>
       <% provide(:search_word, @search_params[:name]) %>
-      <%= render 'dishes/dishes_search' %>
+      <%= render 'shared/search_form' %>
 
       <% @dishes.each do |dish| %>
         <ul class="applicable-menu">
