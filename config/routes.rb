@@ -8,9 +8,14 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/recommend', to: 'recommended_menus#show'
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :menus, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :dishes, only: [:index]
+  resources :relationships, only: [:create, :destroy]
 end

@@ -1,0 +1,13 @@
+<% provide(:title, @title) %>
+
+<section class="users user_info">
+  <%= render partial: 'user_info', locals: { user: current_user } %>
+</section>
+
+<h1><%= @title %></h1>
+<% if @users.any? %>
+  <ul class="users follow">
+    <%= render @users %>
+  </ul>
+  <%= will_paginate %>
+<% end %>

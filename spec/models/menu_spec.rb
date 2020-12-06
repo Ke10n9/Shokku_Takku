@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Menu, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
   before {
     @user = create(:michael)
     @menu = build(:menu, user: @user)
-    @most_recent = create(:most_recent, user: @user)
+    ["breakfast", "lunch", "dinner"].each do |time|
+      (1..4).each do |n|
+        create(:"#{time}-#{n}", user: @user)
+      end
+    end
+    create(:"dinner-0", user: @user)
+    create(:"lunch-0", user: @user)
+    @last = create(:"breakfast-0", user: @user)
   }
 
   it "is valid" do
@@ -47,8 +53,8 @@ RSpec.describe Menu, type: :model do
     end
   end
 
-  it "arranges records in descending order of updated_at" do
-    expect(Menu.first).to eq(@most_recent)
+  it "arranges records in descending order of date and time" do
+    expect(Menu.last).to eq(@last)
   end
 
   context "when menu is destroyed" do

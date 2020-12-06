@@ -1,10 +1,17 @@
-<% provide(:title, 'ユーザー一覧') %>
-<h1>ユーザー一覧</h1>
+<% provide(:title, "ユーザー検索") %>
+<% provide(:url, users_path) %>
+<% provide(:placeholder, "ユーザー名を入力") %>
+<% provide(:submit, "検索") %>
+<% provide(:search_word, "") %>
 
-<%= will_paginate %>
+<section class="users user_info">
+  <%= render partial: 'user_info', locals: { user: current_user } %>
+</section>
 
-<ul class="users">
+<%= render 'shared/search_form' %>
+
+<section class="users" id="search-results">
   <%= render @users %>
-</ul>
+</section>
 
-<%= will_paginate %>
+<%= paginate @users %>
