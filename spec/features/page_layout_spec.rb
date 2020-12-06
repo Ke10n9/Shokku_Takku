@@ -273,4 +273,25 @@ RSpec.feature "PageLayouts", type: :feature do
       end
     end
   end
+
+  feature "in user_path of other user" do
+    background {
+      31.times do |n|
+        create(:"menu-#{n}", user: @other_user)
+      end
+
+      log_in_as @user
+      visit user_path(@other_user)
+    }
+
+    scenario "show each menu" do
+      @other_user.menus.paginate(page: 1).each do |menu|
+        expect(page).to have_content("#{menu.date} #{menu.time}")
+      end
+    end
+
+    scenario "show paginate" do
+      expect(page).to have_css(".pagination")
+    end
+  end
 end

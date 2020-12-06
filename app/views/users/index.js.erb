@@ -1,0 +1,5 @@
+<% unless @users.empty? %>
+  $("#search-results").html("<%= escape_javascript(render @users) %>");
+<% else %>
+  $("#search-results").html("<%= escape_javascript(render 'search_error') %>");
+<% end %>

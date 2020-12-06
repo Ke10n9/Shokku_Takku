@@ -1,5 +1,9 @@
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.5.1/ext/bootsnap
+<<<<<<< HEAD
 /Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201206-1527-t0zbec.rb extconf.rb
+=======
+/Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201205-14037-37md69.rb extconf.rb
+>>>>>>> 4513cd085dc044a57b7fb0af5f5a318216f7078c
 creating Makefile
 
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.5.1/ext/bootsnap
@@ -12,4 +16,8 @@ linking shared-object bootsnap/bootsnap.bundle
 
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.5.1/ext/bootsnap
 make "DESTDIR=" install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20201206-1527-c987ob/bootsnap
+=======
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20201205-14037-h24kcb/bootsnap
+>>>>>>> 4513cd085dc044a57b7fb0af5f5a318216f7078c

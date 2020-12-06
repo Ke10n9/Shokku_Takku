@@ -106,7 +106,7 @@ class MenusController < ApplicationController
   end
 
   def index
-    @menus = Menu.paginate(page: params[:page])
+    @menus = Menu.page(params[:page]).per(30)
   end
 
   private

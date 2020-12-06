@@ -103,23 +103,6 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "GET /index" do
-    before {
-      @non_admin = @other_user
-    }
-
-    context "with non-admin user" do
-      before {
-        log_in_path @non_admin
-        get users_path
-      }
-
-      it "redirect to root_url" do
-        expect(response).to redirect_to root_url
-      end
-    end
-  end
-
   describe "DELETE /destroy" do
 
     context "without login user" do

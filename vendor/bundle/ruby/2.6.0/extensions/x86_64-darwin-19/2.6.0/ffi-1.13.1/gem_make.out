@@ -1,5 +1,9 @@
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/ffi-1.13.1/ext/ffi_c
+<<<<<<< HEAD
 /Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201206-1527-m8yr6t.rb extconf.rb
+=======
+/Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201205-14037-1ieorcv.rb extconf.rb
+>>>>>>> 4513cd085dc044a57b7fb0af5f5a318216f7078c
 checking for ffi_prep_closure_loc() in -lffi... yes
 checking for ffi_prep_cif_var()... yes
 checking for ffi_raw_call()... yes
@@ -39,4 +43,8 @@ linking shared-object ffi_c.bundle
 
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/ffi-1.13.1/ext/ffi_c
 make "DESTDIR=" install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20201206-1527-1fmtixo
+=======
+/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20201205-14037-1r5l3z4
+>>>>>>> 4513cd085dc044a57b7fb0af5f5a318216f7078c

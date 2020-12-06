@@ -1,6 +1,6 @@
-<section class="user_info">
-  <h1>
-    <%= gravatar_for @user %>
-    <%= @user.name %>
-  </h1>
-</section>
+<span>
+  <%= gravatar_for user, size: 50 %>
+  <%= link_to user.name, user %>
+</span>
+
+<%= render 'stats' if current_user?(user) %>

@@ -1,5 +1,9 @@
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/bcrypt-3.1.16/ext/mri
+<<<<<<< HEAD
 /Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201206-1527-zdooem.rb extconf.rb
+=======
+/Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201205-14037-1tflft9.rb extconf.rb
+>>>>>>> 4513cd085dc044a57b7fb0af5f5a318216f7078c
 creating Makefile
 
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/bcrypt-3.1.16/ext/mri
@@ -36,4 +40,8 @@ linking shared-object bcrypt_ext.bundle
 
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/bcrypt-3.1.16/ext/mri
 make "DESTDIR=" install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20201206-1527-qljwg4
+=======
+/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20201205-14037-1enurp7
+>>>>>>> 4513cd085dc044a57b7fb0af5f5a318216f7078c

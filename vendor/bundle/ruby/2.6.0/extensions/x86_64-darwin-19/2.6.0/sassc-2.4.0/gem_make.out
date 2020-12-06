@@ -1,5 +1,9 @@
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
+<<<<<<< HEAD
 /Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201206-1527-1i2jnl4.rb extconf.rb
+=======
+/Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20201205-14037-10rq28r.rb extconf.rb
+>>>>>>> 4513cd085dc044a57b7fb0af5f5a318216f7078c
 creating Makefile
 
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
@@ -77,4 +81,8 @@ linking shared-object sassc/libsass.bundle
 
 current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
 make "DESTDIR=" install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 libsass.bundle ./.gem.20201206-1527-ien99c/sassc
+=======
+/usr/bin/install -c -m 0755 libsass.bundle ./.gem.20201205-14037-19xnrlx/sassc
+>>>>>>> 4513cd085dc044a57b7fb0af5f5a318216f7078c
