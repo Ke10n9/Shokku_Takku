@@ -1,5 +1,5 @@
 <li>
-  <%= gravatar_for user, size: 50 %>
+  <%= profile_image user %>
   <%= link_to user.name, user %>
   <%= render 'stats' if current_user?(user) %>
   <% if current_user.admin? && !current_user?(user) %>

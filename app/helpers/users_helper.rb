@@ -8,6 +8,14 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
+  def profile_image(user)
+    if user.picture.url
+      image_tag(user.picture.url, class: "profile-image")
+    else
+      gravatar_for(user)
+    end
+  end
+
   def events_ajax_previous_link
     ->(param, date_range) { link_to raw("&laquo;"), {param => date_range.first - 1.day}, remote: :true}
   end
