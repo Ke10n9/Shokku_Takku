@@ -23,6 +23,7 @@ body {
   height: 100%;
   .container {
     width: 100%;
+    min-height: 1000px;
     background-color: white;
   }
 }
@@ -669,13 +670,8 @@ input {
   color: white;
   text-decoration: none;
   text-align: center;
+  margin-top: 5px;
   margin-bottom: 15px;
-}
-
-.img-in-form {
-  width: 100%;
-  height: auto;
-  margin-bottom: 2px;
 }
 
 .form-heading {
@@ -942,8 +938,7 @@ input {
   overflow: auto;
   display: inline-block;
   margin-left: 20px;
-  margin-bottom: 0;
-  margin-top: 0;
+  margin-top: 3px;
   padding: 0;
   a {
     float: left;
@@ -966,16 +961,28 @@ input {
 
 /* image */
 
-.profile-image {
-  float: left;
-  margin-right: 10px;
+.avatar {
   width: 50px;
   height: 50px;
   object-fit: cover;
-  // overflow: hidden;
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
+.img-in-form {
+  width: 100%;
+  height: auto;
+  margin-bottom: 2px;
+}
+
+/* user edit */
+
+#user_picture {
+  display: none;
+}
+
+.avatar-edit {
+  margin-left: 10px;
+  width: 60px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }

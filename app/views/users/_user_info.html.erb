@@ -1,6 +1,6 @@
-<span>
+<div>
   <%= profile_image user %>
   <%= link_to user.name, user %>
-</span>
+</div>
 
 <%= render 'stats' if current_user?(user) %>

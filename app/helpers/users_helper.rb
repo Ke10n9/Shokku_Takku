@@ -10,7 +10,7 @@ module UsersHelper
 
   def profile_image(user)
     if user.picture.url
-      image_tag(user.picture.url, class: "profile-image")
+      image_tag(user.picture.url, class: "avatar")
     else
       gravatar_for(user)
     end
