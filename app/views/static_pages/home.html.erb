@@ -2,8 +2,10 @@
   <aside class="top">
     <div class="home-title center jumbotron">
       <h1>日々の献立を管理しよう！</h1>
-      <%= profile_image(@user) %>
-      <h5>こんにちは、<%= @user.name %>さん</h5>
+      <% if @user %>
+        <%= profile_image(@user) %>
+        <h5>こんにちは、<%= @user.name %>さん</h5>
+      <% end %>
 
       <% if logged_in? %>
         <div class="home-grid">

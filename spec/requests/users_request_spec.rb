@@ -40,11 +40,13 @@ RSpec.describe "Users", type: :request do
     before {
       @default_name = @user.name
       @default_email = @user.email
+      @default_picture = @user.picture
     }
 
     let(:update_params) {
       { name: "update_name",
-        email: "update_email" }
+        email: "update_email",
+        picture: "./spec/fixtures/files/test.png" }
     }
 
     context "without login user" do
@@ -58,6 +60,10 @@ RSpec.describe "Users", type: :request do
 
       it "don't change @user.email" do
         expect(@user.email).to eq(@default_email)
+      end
+
+      it "don't change @user.picture" do
+        expect(@user.picture).to eq(@default_picture)
       end
 
       it "returns flash[:danger]" do
@@ -81,6 +87,10 @@ RSpec.describe "Users", type: :request do
 
       it "don't change @user.email" do
         expect(@user.email).to eq(@default_email)
+      end
+
+      it "don't change @user.picture" do
+        expect(@user.picture).to eq(@default_picture)
       end
 
       it "don't return flash[:danger]" do
