@@ -1,13 +1,6 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
-  <div class="avatar-edit">
-    <%= profile_image(@user) %>
-
-    <%= f.label :picture, "画像", class: "btn image_input_btn" %>
-    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-  </div>
-
   <div class="col-xs-12">
     <%= f.label :name, "ユーザー名" %>
     <%= f.text_field :name, class: 'form-control' %>
