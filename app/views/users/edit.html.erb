@@ -3,10 +3,15 @@
 <h1>ユーザー編集</h1>
 <div class="row">
   <div class="col-xs-12">
+    <div class="avatar-edit">
+      <%= profile_image(@user) %>
+
+      <%= form_with(model: @user, remote: true, id: "avatar_edit", method: :patch) do |f| %>
+        <%= f.label :picture, "画像", class: "btn image_input_btn" %>
+        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', id: "user_picture" %>
+      <% end %>
+    </div>
+
     <%= render 'form' %>
-    <!-- <div class="gravatar_edit"> -->
-      <%#= gravatar_for @user %>
-      <!-- <a href="https://gravatar.com/emails" target="_blank" rel="noopener">変更</a> -->
-    <!-- </div> -->
   </div>
 </div>

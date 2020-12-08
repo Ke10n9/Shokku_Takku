@@ -2,7 +2,11 @@
   <aside class="top">
     <div class="home-title center jumbotron">
       <h1>日々の献立を管理しよう！</h1>
-      <h2>-献立記録サービス-</h2>
+      <% if @user %>
+        <%= profile_image(@user) %>
+        <h5>こんにちは、<%= @user.name %>さん</h5>
+      <% end %>
+
       <% if logged_in? %>
         <div class="home-grid">
           <%= render partial: 'home_link', locals: { link: user_path(@user),
@@ -24,7 +28,7 @@
 
           <%= render partial: 'home_link', locals: { link: users_path,
                                 image: "friend_search.png", title: "友達検索"} %>
-                                
+
           <% unless @user == User.find_by(email: "test@railstutorial.org") %>
             <%= render partial: 'home_link', locals: { link: edit_user_path(@user),
                                   image: "my_page.png", title: "ユーザー編集"} %>

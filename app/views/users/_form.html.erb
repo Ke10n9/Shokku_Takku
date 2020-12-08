@@ -1,17 +1,19 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
-  <%= f.label :name, "ユーザー名" %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <div class="col-xs-12">
+    <%= f.label :name, "ユーザー名" %>
+    <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :email, "メールアドレス" %>
-  <%= f.email_field :email, class: 'form-control' %>
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :password, "パスワード" %>
-  <%= f.password_field :password, class: 'form-control' %>
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, class: 'form-control' %>
 
-  <%= f.label :password_confirmation, "パスワード（再確認）" %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%= f.label :password_confirmation, "パスワード（再確認）" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-  <%= f.submit yield(:button_text), class: "btn btn-primary btn-users-form" %>
+    <%= f.submit yield(:button_text), class: "btn btn-primary btn-users-form" %>
+  </div>
 <% end %>

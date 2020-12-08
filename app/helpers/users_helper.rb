@@ -5,7 +5,15 @@ module UsersHelper
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     size = options[:size]
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.name, class: "gravatar")
+    image_tag(gravatar_url, alt: user.name, class: "gravatar avatar")
+  end
+
+  def profile_image(user)
+    if user.picture.url
+      image_tag(user.picture.url, class: "avatar")
+    else
+      gravatar_for(user)
+    end
   end
 
   def events_ajax_previous_link

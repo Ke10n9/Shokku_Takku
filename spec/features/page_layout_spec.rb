@@ -32,8 +32,12 @@ RSpec.feature "PageLayouts", type: :feature do
         end
       end
 
-      scenario "don't have home-grid)" do
+      scenario "don't have home-grid" do
         expect(page).not_to have_css("div.home-grid")
+      end
+
+      scenario "don't have avatar" do
+        expect(page).not_to have_css(".avatar")
       end
     end
 
@@ -68,6 +72,10 @@ RSpec.feature "PageLayouts", type: :feature do
 
       scenario "have_link edit_user_path(@user)" do
         expect(page).to have_link( href: edit_user_path(@user) )
+      end
+
+      scenario "have_css '.avatar'" do
+        expect(page).to have_css(".avatar")
       end
     end
   end

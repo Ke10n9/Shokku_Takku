@@ -160,6 +160,16 @@ RSpec.feature "UserEdits", type: :feature do
       end
     end
 
+    # context "uploaded valid image file" do
+    #   background {
+    #     attach_file "画像", "./spec/fixtures/files/test.png"
+    #   }
+    #
+    #   scenario "redirect_to root_path" do
+    #     expect(page).to have_current_path(root_path)
+    #   end
+    # end
+
     # context "filled in valid password" do
     #   background {
     #     fill_in "パスワード", with: @update_password
