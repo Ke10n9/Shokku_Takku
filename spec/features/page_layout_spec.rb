@@ -168,7 +168,7 @@ RSpec.feature "PageLayouts", type: :feature do
       end
 
       scenario "have menu's user" do
-        expect(page).to have_content("#{@newest_menu.user.name}")
+        expect(page).to have_link("#{@newest_menu.user.name}", href: user_path(@newest_menu.user))
       end
 
       scenario "have menu's picture" do
