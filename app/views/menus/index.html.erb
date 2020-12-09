@@ -8,13 +8,17 @@
       <li id="tab2">フォロー中</li>
     </ul>
     <div class="tab_cnt">
-      <div id="tab1_cnt" class="active">タブ１のコンテンツです。</div>
-      <div id="tab2_cnt">タブ２のコンテンツです。</div>
+      <div id="tab1_cnt" class="active">
+        <ol class="vertical-list" id="all-menu">
+          <%= render @menus %>
+          <%= paginate @menus %>
+        </ol>
+      </div>
+      <div id="tab2_cnt">
+        <ol class="vertical-list" id="followings_menus">
+          <%= render 'followings_menus' %>
+        </ol>
+      </div>
     </div>
-    <ol class="vertical-list">
-      <%= render @menus %>
-
-      <%= paginate @menus %>
-    </ol>
   </div>
 </div>

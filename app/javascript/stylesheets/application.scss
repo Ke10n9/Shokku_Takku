@@ -1019,7 +1019,7 @@ ul.tab{
   margin-top:-1px;
   overflow:hidden;
 }
-.tab_cnt div{
+.tab_cnt div[id^="tab"]{
   display:none;
 }
 .tab_cnt div.active{

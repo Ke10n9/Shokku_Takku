@@ -1,9 +1,9 @@
-jQuery(function(){
-  jQuery('.tab li').on('click',function(){
-    jQuery('.tab li').removeClass("active");
-    jQuery(this).addClass("active");
-    var id=jQuery(this).attr('id');
-    jQuery('.tab_cnt div').removeClass("active");
-    jQuery('#'+id+'_cnt').addClass("active");
+$(document).on('turbolinks:load',function(){
+  $('.tab li').on('click',function(){
+    $('.tab li').removeClass("active");
+    $(this).addClass("active");
+    var id=$(this).attr('id');
+    $('.tab_cnt div').removeClass("active");
+    $('#'+id+'_cnt').addClass("active");
   });
 });
