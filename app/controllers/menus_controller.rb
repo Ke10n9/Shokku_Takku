@@ -107,6 +107,9 @@ class MenusController < ApplicationController
 
   def index
     @menus = Menu.page(params[:page]).per(30)
+
+    @followings_menus = Menu.where(user: current_user.following)
+    @followings_menus = Kaminari.paginate_array(@followings_menus).page(params[:page]).per(30)
   end
 
   private

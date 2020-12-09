@@ -1,0 +1,4 @@
+<% @followings_menus.each do |menu| %>
+  <%= render 'menu', menu: menu %>
+<% end %>
+<%= paginate @followings_menus, remote: true %>

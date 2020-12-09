@@ -14,6 +14,7 @@ import '../javascripts/application.js';
 import '../users/show.js';
 import '../users/avatar_form.js';
 import '../shared/menu_form.js';
+import '../shared/tab.js';
 import '../stylesheets/application.scss';
 
 // Uncomment to copy all static images under ../images to the output folder and reference

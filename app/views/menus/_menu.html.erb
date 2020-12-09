@@ -15,7 +15,7 @@
 
   <div class="info inline-top">
     <!-- .vertical-listで表示１ -->
-    <span class="user"><%= menu.user.name %></span>
+    <span class="user"><%= link_to menu.user.name, user_path(menu.user) %></span>
     <!-- ここまで -->
     <ul class="dishes">
       <% menu.dishes.all.each do |dish| %>
