@@ -3,6 +3,14 @@
 <div class="row">
   <div class="col-md-12">
     <h1>みんなの献立</h1>
+    <ul class="tab">
+      <li id="tab1" class="active">全てのユーザー</li>
+      <li id="tab2">フォロー中</li>
+    </ul>
+    <div class="tab_cnt">
+      <div id="tab1_cnt" class="active">タブ１のコンテンツです。</div>
+      <div id="tab2_cnt">タブ２のコンテンツです。</div>
+    </div>
     <ol class="vertical-list">
       <%= render @menus %>
 

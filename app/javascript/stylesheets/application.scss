@@ -986,3 +986,42 @@ input {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* tab */
+
+ul.tab{
+  margin:0;
+  padding: 0;
+  text-align: center;
+
+}
+.tab li{
+  width: 49%;
+  border:1px solid #888;
+  border-bottom-color:transparent;
+  list-style:none;
+  display:inline-block;
+  background:#888;
+  color:#fff;
+  margin: 0;
+  text-align: center;
+}
+.tab li.active{
+  background:#fff;
+  // color:#000;
+  color: #337ab7;
+  border:1px solid #337ab7;
+  border-bottom-color:transparent;
+}
+.tab_cnt{
+  border-top:1px solid #888;
+  padding:15px;
+  margin-top:-1px;
+  overflow:hidden;
+}
+.tab_cnt div{
+  display:none;
+}
+.tab_cnt div.active{
+  display:block;
+}
