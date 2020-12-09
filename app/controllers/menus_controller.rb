@@ -40,7 +40,7 @@ class MenusController < ApplicationController
         end
         flash[:success] = "献立が編集されました。"
       end
-      render :success
+      redirect_to user_path(current_user, start_date: @menu.date)
     else
       @menu = current_user.menus.build(date: menu_params[:date],
                                         time: menu_params[:time],
@@ -65,7 +65,7 @@ class MenusController < ApplicationController
           end
           flash[:success] = "献立が作成されました。"
         end
-        render :success
+        redirect_to user_path(current_user, start_date: @menu.date)
       else
         render :error
       end
