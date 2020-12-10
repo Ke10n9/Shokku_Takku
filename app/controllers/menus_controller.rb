@@ -99,7 +99,7 @@ class MenusController < ApplicationController
         end
       end
       flash[:success] = "献立が編集されました。"
-      render :success
+      redirect_to user_path(current_user, start_date: @menu.date)
     else
       render :error
     end
