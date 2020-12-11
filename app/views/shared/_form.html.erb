@@ -18,7 +18,7 @@
           </span>
           <span class="col-xs-4">
             <% unless @menu.picture.url.nil? %>
-              <%= image_tag @menu.picture.url, value: @menu.picture, class: "img-in-form" %>
+              <%= image_tag @menu.picture.url, value: @menu.picture, class: "img-in-form", id: "img_prev" %>
             <% else %>
               <%= image_tag "no_image.png", class: "img-in-form" %>
             <% end %>
@@ -48,7 +48,7 @@
           <%= link_to "全て削除", @menu, method: :delete,
                       data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
                                     class: "btn btn-square-so-pop btn-delete" %>
-          <%= link_to "品目の追加", new_menu_path, remote: true, class: "btn btn-square-so-pop btn-new-dish" %>
+          <%= link_to "品目の追加", new_menu_path(menu: @menu), remote: true, class: "btn btn-square-so-pop btn-new-dish" %>
         <% end %>
       </section>
     </div>
@@ -61,5 +61,22 @@
     if (size_in_megabytes > 5) {
       alert('最大ファイルサイズは5MBです。');
     }
+  });
+</script>
+
+<script type="text/javascript">
+  $('turbolinks:load', function() {
+    $('turbolinks:load', function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = $('turbolinks:load', function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        });
+        reader.readAsDataURL(input.files[0]);
+      }
+    });
+    $("#menu_picture").change('turbolinks:load', function() {
+      readURL(this);
+    });
   });
 </script>

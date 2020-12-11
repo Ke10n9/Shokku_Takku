@@ -6,13 +6,15 @@ class MenusController < ApplicationController
   before_action :prepare_menu_form, only: [:new, :create]
 
   def new
-    @menu = current_user.menus.build(date: Date.today) if logged_in?
+    if params[:menu]
+      @menu = Menu.find(params[:menu])
+    else
+      @menu = current_user.menus.build(date: Date.today)
+    end
     @dishes = []
-    if logged_in?
-      @dish_categories.each do |dish_category|
-        dish = @menu.dishes.build(name: "", category: dish_category[0])
-        @dishes << dish
-      end
+    @dish_categories.each do |dish_category|
+      dish = @menu.dishes.build(name: "", category: dish_category[0])
+      @dishes << dish
     end
   end
 
