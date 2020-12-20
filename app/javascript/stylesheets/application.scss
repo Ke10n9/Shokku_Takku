@@ -999,12 +999,13 @@ input {
   height: 100%;
   top: 0;
   left: 0;
-  opacity: 60%;
+  opacity: 50%;
   background-color: white;
-  color: red;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
 
 .hidden {

@@ -3,20 +3,43 @@
 $("#user-modal").html("<%= escape_javascript(render 'shared/form') %>");
 $("#user-modal").modal("show");
 
+// $('#menu_picture').bind('change', function() {
+//   var size_in_megabytes = this.files[0].size/1024/1024;
+//   if (size_in_megabytes > 5) {
+//     alert('最大ファイルサイズは5MBです。');
+//   }
+//
+//   var file = $(this).prop('files')[0];
+//   var reader = new FileReader();
+//   reader.onload = function(e) {
+//     if (file == "") {
+//       $('.form-menu-img').attr('src', e.target.result);
+//     } else {
+//       $('.form-menu-img').attr('src', <% image_tag("no_image.png", class: "form-menu-img") %>);
+//     }
+//   }
+//   reader.readAsDataURL(file);
+// });
+
+$('#menu_picture').bind('click', function() {
+  $('#preview').addClass("non-active");
+  $('#form-menu-img').removeClass("non-active");
+  $('#message-with-picture').addClass("hidden");
+});
+
 $('#menu_picture').bind('change', function() {
   var size_in_megabytes = this.files[0].size/1024/1024;
   if (size_in_megabytes > 5) {
     alert('最大ファイルサイズは5MBです。');
   }
 
+  $('#form-menu-img').addClass("non-active");
+  $('#preview').removeClass("non-active");
+  $('#message-with-picture').removeClass("hidden");
   var file = $(this).prop('files')[0];
   var reader = new FileReader();
   reader.onload = function(e) {
-    if (file == "") {
-      $('.form-menu-img').attr('src', e.target.result);
-    } else {
-      $('.form-menu-img').attr('src', <% image_tag("no_image.png", class: "form-menu-img") %>);
-    }
+    $('#preview').attr('src', e.target.result);
   }
   reader.readAsDataURL(file);
 });
