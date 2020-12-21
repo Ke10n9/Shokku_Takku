@@ -6,7 +6,7 @@ $("#user-modal").modal("show");
 $('#menu_picture').bind('click', function() {
   $('#preview').addClass("non-active");
   $('#form-menu-img').removeClass("non-active");
-  $('#message-with-picture').addClass("hidden");
+  $('#message-with-picture').addClass("non-active");
 });
 
 $('#menu_picture').bind('change', function() {
@@ -15,9 +15,9 @@ $('#menu_picture').bind('change', function() {
     alert('最大ファイルサイズは5MBです。');
   }
 
-  $('#message-with-picture').removeClass("hidden");
   $('#form-menu-img').addClass("non-active");
   $('#preview').removeClass("non-active");
+  $('#message-with-picture').removeClass("non-active");
   var file = $(this).prop('files')[0];
   var reader = new FileReader();
   reader.onload = function(e) {

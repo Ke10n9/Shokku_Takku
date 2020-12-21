@@ -68,10 +68,6 @@ textarea {
   background-color: white;
 }
 
-.non-active {
-  display: none;
-}
-
 /* btn */
 
 .btn-primary {
@@ -995,7 +991,8 @@ input {
   margin-bottom: 5px;
 }
 
-#message-with-picture {
+// #message-with-picture {
+.menu-picture div {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1011,9 +1008,13 @@ input {
   z-index: 1;
 }
 
-.hidden {
-  visibility: hidden;
+.menu-picture div.non-active, img.non-active {
+  display: none;
 }
+
+// .hidden {
+//   visibility: hidden;
+// }
 
 /* user edit */
 
@@ -1065,4 +1066,7 @@ ul.tab{
 }
 .tab_cnt div.active{
   display: block;
+}
+.tab_cnt div.non-active {
+  display: none;
 }
