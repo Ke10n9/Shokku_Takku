@@ -978,8 +978,6 @@ input {
 #form-menu-img, #preview {
   width: 100%;
   height: auto;
-  position: relative;
-  z-index: 0;
 }
 
 .menu-picture {
@@ -1005,7 +1003,6 @@ input {
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  z-index: 1;
 }
 
 .menu-picture div.non-active, img.non-active {
