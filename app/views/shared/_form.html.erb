@@ -21,7 +21,13 @@
 
           </div>
           <div class="menu-picture">
-            <%= menu_image(@menu) %>
+            <%#= menu_image(@menu) %>
+
+            <% if @menu.picture.url %>
+              <%= image_tag(@menu.picture.url, id: "form-menu-img") %>
+            <% else %>
+              <%= image_tag("no_image.png", id: "form-menu-img") %>
+            <% end %>
             <img id="preview" class="non-active">
             <div id="message-with-picture" class="non-active">
               <span>送信ボタンで確定</span>
