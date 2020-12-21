@@ -21,7 +21,8 @@ class MenusController < ApplicationController
   def create
     dishes = []
     if @menu = Menu.find_by(date: menu_params[:date],
-                            time: menu_params[:time])
+                            time: menu_params[:time],
+                            user: current_user)
       @menu.assign_attributes(picture: menu_params[:picture]) if menu_params[:picture]
       menu_params[:dishes_attributes].each do |dish_params|
         unless dish_params[:name] == ""
