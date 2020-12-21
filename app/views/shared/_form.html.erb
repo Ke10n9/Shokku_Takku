@@ -7,26 +7,28 @@
       <h5 class="modal-title" id="exampleModalLabel"><%= yield(:modal_header) %></h5>
     </div>
     <div class="modal-body">
-      <section class="menu_form">
+      <section class="menu-form">
         <%= form_with model: @menu, remote: true do |f| %>
           <div class="menu-error-message alert-danger" id="error_explanation"></div>
           <div class="dish-error-message alert-danger" id="error_explanation"></div>
-          <span class="col-xs-8">
+          <div class="menu-information">
             <div class="form-heading">日付・時間帯</div>
             <%= f.date_field :date, value: @menu.date %>
             <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu.time %>
-          </span>
-          <span class="col-xs-4">
-            <% unless @menu.picture.url.nil? %>
-              <%= image_tag @menu.picture.url, value: @menu.picture, class: "img-in-form" %>
-            <% else %>
-              <%= image_tag "no_image.png", class: "img-in-form" %>
-            <% end %>
-            <%= f.label :picture, "画像", class: "btn image_input_btn" %>
-            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-          </span>
 
-          <div class="dishes-form col-xs-12">
+            <div class="form-heading">画像</div>
+            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+
+          </div>
+          <div class="menu-picture">
+            <%= menu_image(@menu) %>
+            <img id="preview">
+            <div id="message-with-picture" class="hidden">
+              <span>送信ボタンで確定</span>
+            </div>
+          </div>
+
+          <div class="dishes-form">
             <div class="form-heading">品目</div>
             <% @dishes.each do |dish| %>
               <%= f.fields_for "dishes_attributes[]", dish do |i| %>
@@ -40,26 +42,19 @@
               <% end %>
             <% end %>
           </div>
-          <span class="col-xs-12">
-            <%= f.submit "送信", class: "btn btn-square-so-pop btn-send" %>
-          </span>
+
+          <%= f.submit "送信", class: "btn btn-square-so-pop btn-send" %>
         <% end %>
-        <% if @menu.id %>
-          <%= link_to "全て削除", @menu, method: :delete,
-                      data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
-                                    class: "btn btn-square-so-pop btn-delete" %>
-          <%= link_to "品目の追加", new_menu_path, remote: true, class: "btn btn-square-so-pop btn-new-dish" %>
-        <% end %>
+        <div class="footer-btn-area">
+          <% if yield(:modal_header) == "献立の編集" %>
+            <%= link_to "全て削除", @menu, method: :delete,
+                        data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
+                                      class: "btn btn-square-so-pop btn-delete" %>
+            <%= link_to "品目の追加", new_menu_path(menu: @menu),
+                      remote: true, class: "btn btn-square-so-pop btn-new-dish" %>
+          <% end %>
+        </div>
       </section>
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $('#menu_picture').bind('change', function() {
-    var size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert('最大ファイルサイズは5MBです。');
-    }
-  });
-</script>

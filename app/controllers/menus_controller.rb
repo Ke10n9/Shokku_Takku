@@ -6,13 +6,15 @@ class MenusController < ApplicationController
   before_action :prepare_menu_form, only: [:new, :create]
 
   def new
-    @menu = current_user.menus.build(date: Date.today) if logged_in?
+    if params[:menu]
+      @menu = Menu.find(params[:menu])
+    else
+      @menu = current_user.menus.build(date: Date.today)
+    end
     @dishes = []
-    if logged_in?
-      @dish_categories.each do |dish_category|
-        dish = @menu.dishes.build(name: "", category: dish_category[0])
-        @dishes << dish
-      end
+    @dish_categories.each do |dish_category|
+      dish = @menu.dishes.build(name: "", category: dish_category[0])
+      @dishes << dish
     end
   end
 
@@ -20,7 +22,7 @@ class MenusController < ApplicationController
     dishes = []
     if @menu = Menu.find_by(date: menu_params[:date],
                             time: menu_params[:time])
-      @menu.assign_attributes(picture: menu_params[:picture])
+      @menu.assign_attributes(picture: menu_params[:picture]) if menu_params[:picture]
       menu_params[:dishes_attributes].each do |dish_params|
         unless dish_params[:name] == ""
           @dish = @menu.dishes.build(dish_params)
@@ -40,7 +42,7 @@ class MenusController < ApplicationController
         end
         flash[:success] = "献立が編集されました。"
       end
-      render :success
+      redirect_to user_path(current_user, start_date: @menu.date)
     else
       @menu = current_user.menus.build(date: menu_params[:date],
                                         time: menu_params[:time],
@@ -65,7 +67,7 @@ class MenusController < ApplicationController
           end
           flash[:success] = "献立が作成されました。"
         end
-        render :success
+        redirect_to user_path(current_user, start_date: @menu.date)
       else
         render :error
       end
@@ -86,8 +88,8 @@ class MenusController < ApplicationController
   def update
     @menu = Menu.find(params[:id])
     if @menu.update_attributes(date: menu_params[:date],
-                                time: menu_params[:time],
-                                picture: menu_params[:picture])
+                                time: menu_params[:time])
+      @menu.update_attributes(picture: menu_params[:picture]) if menu_params[:picture]
       unless menu_params[:dishes_attributes] = ""
         menu_params[:dishes_attributes].keys.each do |dish_id|
           @dish = Dish.find(dish_id)
@@ -99,7 +101,7 @@ class MenusController < ApplicationController
         end
       end
       flash[:success] = "献立が編集されました。"
-      render :success
+      redirect_to user_path(current_user, start_date: @menu.date)
     else
       render :error
     end
