@@ -982,6 +982,8 @@ input {
 #form-menu-img, #preview {
   width: 100%;
   height: auto;
+  position: relative;
+  z-index: 0;
 }
 
 .menu-picture {
