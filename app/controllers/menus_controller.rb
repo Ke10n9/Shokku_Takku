@@ -22,7 +22,7 @@ class MenusController < ApplicationController
     dishes = []
     if @menu = Menu.find_by(date: menu_params[:date],
                             time: menu_params[:time])
-      @menu.assign_attributes(picture: menu_params[:picture])
+      @menu.assign_attributes(picture: menu_params[:picture]) if menu_params[:picture]
       menu_params[:dishes_attributes].each do |dish_params|
         unless dish_params[:name] == ""
           @dish = @menu.dishes.build(dish_params)
@@ -88,8 +88,8 @@ class MenusController < ApplicationController
   def update
     @menu = Menu.find(params[:id])
     if @menu.update_attributes(date: menu_params[:date],
-                                time: menu_params[:time],
-                                picture: menu_params[:picture])
+                                time: menu_params[:time])
+      @menu.update_attributes(picture: menu_params[:picture]) if menu_params[:picture]
       unless menu_params[:dishes_attributes] = ""
         menu_params[:dishes_attributes].keys.each do |dish_id|
           @dish = Dish.find(dish_id)
