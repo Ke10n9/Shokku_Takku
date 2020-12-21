@@ -17,11 +17,12 @@ $('#menu_picture').on('change', function() {
 
   $('#form-menu-img').addClass("non-active");
   $('#preview').removeClass("non-active");
-  $('#message-with-picture').removeClass("non-active");
   var file = $(this).prop('files')[0];
   var reader = new FileReader();
   reader.onload = function(e) {
     $('#preview').attr('src', e.target.result);
   }
   reader.readAsDataURL(file);
+  $('#message-with-picture').removeClass("non-active");
+  $('#message-with-picture').addClass("active");
 });

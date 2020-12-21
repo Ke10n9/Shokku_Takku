@@ -1009,6 +1009,10 @@ input {
   display: none;
 }
 
+.menu-picture div.active {
+  display: flex;
+}
+
 // .hidden {
 //   visibility: hidden;
 // }
