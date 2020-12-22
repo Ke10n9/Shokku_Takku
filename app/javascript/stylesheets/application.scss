@@ -996,7 +996,7 @@ input {
   height: 100%;
   top: 0;
   left: 0;
-  opacity: 50%;
+  opacity: 0.5;
   background-color: white;
   color: black;
   display: flex;
@@ -1007,10 +1007,6 @@ input {
 
 .menu-picture div.non-active, img.non-active {
   display: none;
-}
-
-.menu-picture div.active {
-  display: flex;
 }
 
 // .hidden {
