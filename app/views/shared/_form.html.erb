@@ -22,6 +22,12 @@
           </div>
           <div class="menu-picture">
             <%= menu_image(@menu) %>
+            <% if @menu.picture.url %>
+              <%= fields_for @menu do |d| %>
+                <%= d.submit "✖️", name: "delete_image", class: "icon-delete", id: "delete-image",
+                  data: { confirm: "献立の画像を削除してよろしいですか？" } %>
+              <% end %>
+            <% end %>
             <img id="preview" class="non-active">
             <div id="message-with-picture" class="non-active">
               <span>送信ボタンで確定</span>

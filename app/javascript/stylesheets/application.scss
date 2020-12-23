@@ -649,7 +649,7 @@ input {
     .menu-form {
       width: 100%;
       // position: relative;
-      input, select {
+      input[id^="menu"], select[id^="menu"] {
         border: 0;
         border-bottom: 1px solid #ccc;
       }
@@ -989,7 +989,6 @@ input {
   margin-bottom: 5px;
 }
 
-// #message-with-picture {
 .menu-picture div {
   position: absolute;
   width: 100%;
@@ -1005,13 +1004,19 @@ input {
   font-weight: bold;
 }
 
-.menu-picture div.non-active, img.non-active {
+.menu-picture div.non-active, img.non-active, input.non-active {
   display: none;
 }
 
-// .hidden {
-//   visibility: hidden;
-// }
+.icon-delete {
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  opacity: 0.9;
+}
 
 /* user edit */
 

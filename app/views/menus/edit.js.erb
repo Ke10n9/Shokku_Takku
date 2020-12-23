@@ -3,19 +3,21 @@
 $("#user-modal").html("<%= escape_javascript(render 'shared/form') %>");
 $("#user-modal").modal("show");
 
-$('#menu_picture').on('click', function() {
+$('#menu_picture').on('click', 'turbolinks:load', function() {
   $('#preview').addClass("non-active");
   $('#form-menu-img').removeClass("non-active");
+  $('#delete-image').removeClass("non-active");
   $('#message-with-picture').addClass("non-active");
 });
 
-$('#menu_picture').on('change', function() {
+$('#menu_picture').on('change', 'turbolinks:load', function() {
   var size_in_megabytes = this.files[0].size/1024/1024;
   if (size_in_megabytes > 5) {
     alert('最大ファイルサイズは5MBです。');
   }
 
   $('#form-menu-img').addClass("non-active");
+  $('#delete-image').addClass("non-active");
   $('#preview').removeClass("non-active");
   var file = $(this).prop('files')[0];
   var reader = new FileReader();
