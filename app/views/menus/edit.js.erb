@@ -6,6 +6,7 @@ $("#user-modal").modal("show");
 $('#menu_picture').on('click', function() {
   $('#preview').addClass("non-active");
   $('#form-menu-img').removeClass("non-active");
+  $('#delete-image').removeClass("non-active");
   $('#message-with-picture').addClass("non-active");
 });
 
@@ -16,6 +17,7 @@ $('#menu_picture').on('change', function() {
   }
 
   $('#form-menu-img').addClass("non-active");
+  $('#delete-image').addClass("non-active");
   $('#preview').removeClass("non-active");
   var file = $(this).prop('files')[0];
   var reader = new FileReader();

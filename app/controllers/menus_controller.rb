@@ -88,7 +88,12 @@ class MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
-    if @menu.update_attributes(date: menu_params[:date],
+    if params[:delete_image] == "✖️" #画像削除ボタンが押されたら
+      @menu.picture = nil
+      @menu.save!
+      flash[:success] = "献立の画像を削除しました。"
+      redirect_to user_path(current_user, start_date: @menu.date)
+    elsif @menu.update_attributes(date: menu_params[:date],
                                 time: menu_params[:time])
       @menu.update_attributes(picture: menu_params[:picture]) if menu_params[:picture]
       unless menu_params[:dishes_attributes] = ""
