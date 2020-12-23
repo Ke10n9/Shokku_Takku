@@ -39,7 +39,7 @@ gem 'dotenv-rails'
 gem 'rails-i18n'
 gem 'mail-iso-2022-jp'
 gem 'kaminari'
-# gem 'aws-sdk-s3', '1.87.0', require: false
+gem 'aws-sdk-s3', '1.87.0', require: false
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
