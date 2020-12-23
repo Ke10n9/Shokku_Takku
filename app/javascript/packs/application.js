@@ -11,6 +11,7 @@ require("jquery")
 // require("javascripts")
 import 'bootstrap';
 import '../javascripts/application.js';
+import '../menus/edit.js';
 import '../users/show.js';
 import '../users/avatar_form.js';
 import '../shared/tab.js';
