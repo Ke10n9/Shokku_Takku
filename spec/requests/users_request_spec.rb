@@ -4,6 +4,7 @@ RSpec.describe "Users", type: :request do
   before {
     @user = create(:michael)
     @other_user = create(:archer)
+    @non_admin = create(:lana)
   }
 
   describe "GET /edit" do
@@ -119,26 +120,52 @@ RSpec.describe "Users", type: :request do
 
       it "don't delete an user" do
         expect do
-          delete user_path(@user)
+          delete user_path(@other_user)
         end.to change(User, :count).by(0)
       end
 
-      it "redirect to login_url" do
-        delete user_path(@user)
+      it "redirect to login_url when the user try to delete an user" do
+        delete user_path(@other_user)
         expect(response).to redirect_to login_url
       end
     end
 
     context "with non-admin user" do
-      before { log_in_path @other_user }
+      before { log_in_path @non_admin }
 
       it "don't delete other user" do
+        expect do
+          delete user_path(@other_user)
+        end.to change(User, :count).by(0)
+      end
+
+      it "redirect to root_url when the user try to delete other user" do
+        delete user_path(@other_user)
+        expect(response).to redirect_to root_url
+      end
+
+      it "don't delete admin user" do
         expect do
           delete user_path(@user)
         end.to change(User, :count).by(0)
       end
 
-      it "redirect to root_url" do
+      it "redirect to root_url when the user try to delete admin user" do
+        delete user_path(@user)
+        expect(response).to redirect_to root_url
+      end
+    end
+
+    context "with admin user" do
+      before { log_in_path @user }
+
+      it "don't delete himself" do
+        expect do
+          delete user_path(@user)
+        end.to change(User, :count).by(0)
+      end
+
+      it "redirect to root_url when the admin user try to delete himself" do
         delete user_path(@user)
         expect(response).to redirect_to root_url
       end

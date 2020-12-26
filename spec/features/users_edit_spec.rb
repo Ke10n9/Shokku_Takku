@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "UserEdits", type: :feature do
   background {
-    @user = create(:michael)
-    @other_user = create(:archer)
+    @user = create(:archer)
+    @other_user = create(:michael)
     @default_name = @user.name
     @default_email = @user.email
     @default_password = @user.password
@@ -157,6 +157,20 @@ RSpec.feature "UserEdits", type: :feature do
 
       scenario "show selector '.alert-success'" do
         expect(page).to have_selector(".alert-success")
+      end
+    end
+
+    context "clicked delete user link", js: true do
+      background {
+        page.accept_confirm do
+          click_link "こちら"
+        end
+        sleep 0.5
+      }
+
+      scenario "delete current_user and redirect_to root_path" do
+        expect(User.find_by(name: @default_name)).to be_falsey
+        expect(page).to have_current_path(root_path)
       end
     end
 
