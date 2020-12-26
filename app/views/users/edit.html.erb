@@ -1,5 +1,7 @@
 <% provide(:title, "ユーザー編集") %>
 <% provide(:button_text, "保存") %>
+<% provide(:delete_text, "こちら") %>
+
 <h1>ユーザー編集</h1>
 <div class="row">
   <div class="col-xs-12">
@@ -13,5 +15,9 @@
     </div>
 
     <%= render 'form' %>
+    <div class="delete-link">
+      お使いのユーザーの削除は
+      <%= render partial: 'delete_user', locals: { user: @user } %>
+    </div>
   </div>
 </div>

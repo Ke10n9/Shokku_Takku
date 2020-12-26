@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :show,
                                         :following, :followers]
   before_action :correct_user, only: [:edit, :update, :following, :followers]
-  before_action :admin_user, only: :destroy
+  before_action :correct_or_admin_user, only: :destroy
   before_action :set_menu_times, only: :show
   before_action :set_dish_categories, only: :show
   before_action :logged_in_testuser, only: [:edit, :update]
@@ -65,9 +65,20 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
-    redirect_to users_url
+    @user = User.find(params[:id])
+    if @user.admin?
+      flash[:danger] = "管理者は削除できません。"
+      redirect_to root_path
+    else
+      @user.destroy
+      if current_user.admin?
+        flash[:success] = "ユーザーを削除しました。"
+        redirect_to users_path
+      else
+        flash[:success] = "ご利用ありがとうございました。"
+        redirect_to root_path
+      end
+    end
   end
 
   def following
@@ -95,14 +106,17 @@ class UsersController < ApplicationController
 
     # beforeアクション
 
-    # 正しいユーザーかどうか確認
+    # ユーザーが本人かどうか確認
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
 
-    # 管理者かどうか確認
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
+    # ユーザーが本人または管理者かどうか確認
+    def correct_or_admin_user
+      @user = User.find(params[:id])
+      unless current_user?(@user) || current_user.admin?
+        redirect_to(root_url)
+      end
     end
 end

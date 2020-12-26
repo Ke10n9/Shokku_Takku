@@ -3,6 +3,7 @@
 <% provide(:placeholder, "ユーザー名を入力") %>
 <% provide(:submit, "検索") %>
 <% provide(:search_word, "") %>
+<%= provide(:delete_text, "delete") %>
 
 <section class="users user_info">
   <%= render partial: 'user_info', locals: { user: current_user } %>
