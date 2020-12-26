@@ -348,83 +348,6 @@ input {
   }
 }
 
-/* recent menu */
-
-.round-area {
-  h2 {
-    color: black;
-    line-height: 1.5;
-    text-shadow: 1px 1px white;
-    font-size: 2.0em;
-    margin: 0 auto;
-    background-color: $little-light-orange;
-  }
-  .horizontal-list {
-    overflow-x: scroll;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    height: 100%;
-    padding: 0;
-    margin: 2px;
-    font-size: 1.1em;
-    .item {
-      /* 横スクロール用 */
-      display: inline-block;
-      width: 45%;
-      min-width: 180px;
-      max-width: 250px;
-
-      /* 見た目調整 */
-      margin: 0 2px;
-      height: 270px;
-      position: relative;
-      box-shadow: 0px 0px 2px gray;
-      .picture {
-        width: 100%;
-        height: 50%;
-        overflow: hidden;
-        display: block;
-        position: relative;
-        background-size: cover;
-        background-position: center;
-        .datetime, .user {
-          position: absolute;
-          background-color: white;
-          margin: 2px;
-          padding: 0 3px;
-          // border-radius: 10px;
-        }
-        .datetime {
-          right: 0;
-          bottom: 0;
-        }
-        .datetime div, .user div {
-          display: inline-block;
-        }
-        // .user div {
-        //   background-color: white;
-        //   display: inline-block;
-        // }
-      }
-      .info {
-        margin: 3px;
-        overflow-y: scroll;
-        word-wrap: break-word;
-        white-space: normal;
-        height: 50%;
-        padding: 0 0 5px 0;
-        width: 100%;
-        .dishes {
-          padding-left: 20px;
-        }
-        span {
-          display: none;
-        }
-      }
-    }
-  }
-}
-
 /* menu calendar */
 
 .calendar {
@@ -595,26 +518,26 @@ input {
 }
 
 #input_plural {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 #input_plural input.form-control {
-    display: inline-block;
-    width: 75%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    color: #555;
+  display: inline-block;
+  width: 75%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
 }
 
 #input_plural input.pluralBtn {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #ccc;
-    background: #fff;
-    border-radius: 5px;
-    padding: 0;
-    margin: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
 }
 
 .modal-dialog{
@@ -833,6 +756,156 @@ input {
 }
 
 /* everyone's menu */
+
+
+/* recent menu */
+
+// .round-area {
+//   h2 {
+//     color: black;
+//     line-height: 1.5;
+//     text-shadow: 1px 1px white;
+//     font-size: 2.0em;
+//     margin: 0 auto;
+//     background-color: $little-light-orange;
+//   }
+//   .horizontal-list {
+//     overflow-x: scroll;
+//     white-space: nowrap;
+//     -webkit-overflow-scrolling: touch;
+//     height: 100%;
+//     padding: 0;
+//     margin: 2px;
+//     font-size: 1.1em;
+//     .item {
+//       /* 横スクロール用 */
+//       display: inline-block;
+//       width: 45%;
+//       min-width: 180px;
+//       max-width: 250px;
+//
+//       /* 見た目調整 */
+//       margin: 0 2px;
+//       height: 270px;
+//       position: relative;
+//       box-shadow: 0px 0px 2px gray;
+//       .picture {
+//         width: 100%;
+//         height: 50%;
+//         overflow: hidden;
+//         display: block;
+//         position: relative;
+//         background-size: cover;
+//         background-position: center;
+//         .datetime, .user {
+//           position: absolute;
+//           background-color: white;
+//           margin: 2px;
+//           padding: 0 3px;
+//           // border-radius: 10px;
+//         }
+//         .datetime {
+//           right: 0;
+//           bottom: 0;
+//         }
+//         .datetime div, .user div {
+//           display: inline-block;
+//         }
+//         // .user div {
+//         //   background-color: white;
+//         //   display: inline-block;
+//         // }
+//       }
+//       .info {
+//         margin: 3px;
+//         overflow-y: scroll;
+//         word-wrap: break-word;
+//         white-space: normal;
+//         height: 50%;
+//         padding: 0 0 5px 0;
+//         width: 100%;
+//         .dishes {
+//           padding-left: 20px;
+//         }
+//         span {
+//           display: none;
+//         }
+//       }
+//     }
+//   }
+// }
+
+.round-area h2 {
+  color: black;
+  line-height: 1.5;
+  text-shadow: 1px 1px white;
+  font-size: 2.0em;
+  margin: 0 auto;
+  background-color: $little-light-orange;
+}
+.horizontal-list {
+  overflow-x: scroll;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  padding: 0;
+  margin: 2px;
+  font-size: 1.1em;
+}
+.everyone-menu-item {
+  /* 横スクロール用 */
+  display: inline-block;
+  width: 45%;
+  min-width: 180px;
+  max-width: 250px;
+
+  /* 見た目調整 */
+  margin: 0 1px;
+  height: 270px;
+  box-shadow: 0px 0px 2px gray;
+}
+.everyone-menu-picture {
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  display: block;
+  object-fit: cover;
+  position: relative;
+}
+.everyone-menu-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.everyone-menu-picture .datetime, .everyone-menu-picture .user {
+  position: absolute;
+  background-color: white;
+  margin: 2px;
+  padding: 0 3px
+}
+.everyone-menu-picture .user {
+  left: 0;
+  top: 0;
+}
+.everyone-menu-picture .datetime {
+  right: 0;
+  bottom: 0;
+}
+.everyone-menu-info {
+  margin: 0;
+  overflow-y: scroll;
+  word-wrap: break-word;
+  white-space: normal;
+  height: 50%;
+  padding: 0 0 5px 0;
+  width: 100%;
+}
+.everyone-menu-info .dishes {
+  padding-left: 20px;
+}
+.everyone-menu-info span {
+  display: none;
+}
 
 .vertical-list {
   overflow-x: scroll;

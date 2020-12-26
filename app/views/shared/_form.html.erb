@@ -21,7 +21,7 @@
 
           </div>
           <div class="menu-picture">
-            <%= menu_image(@menu) %>
+            <%= menu_image(@menu, "form-menu-img") %>
             <% if @menu.picture.url %>
               <%= fields_for @menu do |d| %>
                 <%= d.submit "✖️", name: "delete_image", class: "icon-delete", id: "delete-image",
