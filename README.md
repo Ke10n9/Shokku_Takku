@@ -5,6 +5,7 @@
 
 ## URL
 
+https://gentle-spire-51443.herokuapp.com/
 ホーム画面の「テストログイン」からテストユーザーとしてログインし、機能を閲覧することができます。
 
 
@@ -20,10 +21,11 @@
 * Ruby 2.6.5
 * Ruby on Rails 6.0.3.4
 * RSpec
-* PostgreSQL
+* MySQL
 * Git
 * Github
 * Heroku
+* AWS(S3)
 
 ## 機能一蘭
 
