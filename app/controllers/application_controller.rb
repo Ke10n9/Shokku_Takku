@@ -35,8 +35,6 @@ class ApplicationController < ActionController::Base
     # views/share/_menu_form.html.erbに使用する変数を準備
     def prepare_menu_form
       if logged_in?
-        @menu = current_user.menus.build
-        @dish = @menu.dishes.build
         if session[:menu_date].nil? || session[:menu_date].empty?
           @menu_date = Time.now.strftime("%Y-%m-%d")
         else
