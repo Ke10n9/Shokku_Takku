@@ -17,6 +17,7 @@
   <div class="everyone-menu-picture">
     <%= menu_image(menu, "") %>
 
+    <!-- .holizontal-listでのみ表示 -->
     <div class="datetime">
       <span><%= menu.date %></span>
       <span><%= menu.time %></span>
@@ -25,10 +26,11 @@
     <div class="user">
       <%= menu.user.name %>
     </div>
+    <!-- ここまで -->
   </div>
 
   <div class="everyone-menu-info">
-    <!-- .vertical-listで表示１ -->
+    <!-- .vertical-listでのみ表示１ -->
     <span class="user"><%= link_to menu.user.name, user_path(menu.user) %></span>
     <!-- ここまで -->
     <ul class="dishes">
@@ -36,7 +38,7 @@
         <li class="dish"><%= dish.name %></li>
       <% end %>
     </ul>
-    <!-- .vertical-listで表示２ -->
+    <!-- .vertical-listでのみ表示２ -->
     <span class="datetime"><%= menu.date %> <%= menu.time %></span>
     <!-- ここまで -->
   </div>
