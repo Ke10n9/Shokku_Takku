@@ -15,7 +15,8 @@
 
 ## URL
 
-https://gentle-spire-51443.herokuapp.com/<br>
+https://gentle-spire-51443.herokuapp.com/
+
 ホーム画面の「テストログイン」からテストユーザーとしてログインし、機能を閲覧することができます。
 
 ## 機能一覧
