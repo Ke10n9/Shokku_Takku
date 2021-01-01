@@ -62,6 +62,9 @@ https://datesan.herokuapp.com/
 
 #### 本番環境
 * Heroku
+* Heroku Add-ons
+  * ClearDB MySQL
+  * Mailgun（アカウント有効化・パスワードリセットのメール送信）
 * AWS
   * S3（ユーザー・献立画像用ストレージ）
 * MySQL
