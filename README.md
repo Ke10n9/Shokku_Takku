@@ -64,10 +64,9 @@ https://datesan.herokuapp.com/
 * Heroku
 * Heroku Add-ons
   * ClearDB MySQL
-  * Mailgun（アカウント有効化・パスワードリセットのメール送信）
+  * Mailgun
 * AWS
   * S3（ユーザー・献立画像用ストレージ）
-* MySQL
 
 #### テスト
 * RSpec　計200以上
@@ -77,3 +76,4 @@ https://datesan.herokuapp.com/
 * kaminari
   * ページネーション（ユーザー・献立検索結果、みんなの献立一覧）
 * simple_calendar（献立カレンダーの日付選択用）
+* Action Mailer（アカウント有効化・パスワードリセットのメール送信）
