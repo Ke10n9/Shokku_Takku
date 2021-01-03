@@ -5,7 +5,6 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= render 'layouts/rails_default' %>
     <%= render 'layouts/shim' %>
-    <%= render 'layouts/bootstrap' %>
   </head>
   <body>
     <%= render 'layouts/header' %>
@@ -16,5 +15,6 @@
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
     </div>
+    <%= render 'layouts/bootstrap' %>
   </body>
 </html>

@@ -35,12 +35,16 @@ class ApplicationController < ActionController::Base
     # views/share/_menu_form.html.erbに使用する変数を準備
     def prepare_menu_form
       if logged_in?
-        if session[:menu_date].nil? || session[:menu_date].empty?
-          @menu_date = Time.now.strftime("%Y-%m-%d")
+        if params[:id]
+          menu = Menu.find(params[:id])
+          @menu_date = menu.date
+          @menu_time = menu.time
+        elsif params[:menu_date] || params[:menu_time]
+          @menu_date = params[:menu_date] if params[:menu_date]
+          @menu_time = params[:menu_time] if params[:menu_time]
         else
-          @menu_date = session[:menu_date]
+          @menu_date = Time.now.strftime("%Y-%m-%d")
         end
-        @menu_time = session[:menu_time] unless session[:menu_time].nil?
       end
     end
 end

@@ -13,8 +13,8 @@
           <div class="dish-error-message alert-danger" id="error_explanation"></div>
           <div class="menu-information">
             <div class="form-heading">日付・時間帯</div>
-            <%= f.date_field :date, value: @menu.date %>
-            <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu.time %>
+            <%= f.date_field :date, value: @menu_date %>
+            <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
 
             <div class="form-heading">画像</div>
             <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
@@ -56,7 +56,7 @@
             <%= link_to "全て削除", @menu, method: :delete,
                         data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
                                       class: "btn btn-square-so-pop btn-delete" %>
-            <%= link_to "品目の追加", new_menu_path(menu: @menu),
+            <%= link_to "品目の追加", new_menu_path(menu_date: @menu.date, menu_time: @menu.time),
                       remote: true, class: "btn btn-square-so-pop btn-new-dish" %>
           <% end %>
         </div>
