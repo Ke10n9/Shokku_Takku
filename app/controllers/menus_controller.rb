@@ -42,7 +42,7 @@ class MenusController < ApplicationController
       redirect_to user_path(current_user, start_date: @menu.date)
     # 既存献立への追加で、品目も画像ものみ入力が無かった場合
     elsif dishes.empty? && menu_params[:picture].nil?
-      flash[:success] = "品目や画像の入力がありませんでした。"
+      flash[:danger] = "品目や画像の入力がありませんでした。"
       @menu.destroy unless menu_find
       redirect_to user_path(current_user, start_date: @menu.date)
     # その他、登録成功
@@ -51,7 +51,11 @@ class MenusController < ApplicationController
       dishes.each do |dish|
         dish.save
       end
-      flash[:success] = "献立が編集されました。"
+      if menu_find
+        flash[:success] = "献立が編集されました。"
+      else
+        flash[:success] = "献立を作成しました。"
+      end
       redirect_to user_path(current_user, start_date: @menu.date)
     end
   end
