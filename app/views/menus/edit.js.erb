@@ -1,6 +1,6 @@
 <% provide(:modal_header, "献立の編集") %>
 
-$("#user-modal").html("<%= escape_javascript(render 'shared/form') %>");
+$("#user-modal").html("<%= escape_javascript(render 'shared/menu_form') %>");
 $("#user-modal").modal("show");
 
 $('#menu_picture').on('click', function() {

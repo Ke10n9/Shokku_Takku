@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'menu_calendar', 'data-turbolinks-track': 'reload' %>
+
 <div class="calendar">
   <% for num in -7..7 do %>
     <div class="calendar-header" id="num-<%= num %>" data-toggle="modal" data-target="#calendarModal">
