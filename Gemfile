@@ -29,8 +29,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass'
 gem 'rails-i18n'
 gem 'jquery-rails'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'simple_calendar', "~> 2.0"

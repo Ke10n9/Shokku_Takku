@@ -10,13 +10,13 @@
       <% if logged_in? %>
         <div class="home-grid">
           <%= render partial: 'home_link', locals: { link: user_path(@user),
-                                      image: "my_menu.png", title: "私の献立"} %>
+              turbolinks: false, image: "my_menu.png", title: "私の献立"} %>
 
           <%= render partial: 'home_link', locals: { link: menus_path,
-                          image: "everyone's_menu.png", title: "みんなの献立"} %>
+              turbolinks: false, image: "everyone's_menu.png", title: "みんなの献立"} %>
 
           <%= render partial: 'home_link', locals: { link: recommend_path,
-                          image: "recommended_menu.png", title: "ご無沙汰献立"} %>
+              turbolinks: false, image: "recommended_menu.png", title: "ご無沙汰献立"} %>
         </div>
         <div class="home-grid">
           <%= link_to new_menu_path, remote: true do %>
@@ -27,11 +27,11 @@
           <% end %>
 
           <%= render partial: 'home_link', locals: { link: users_path,
-                                image: "friend_search.png", title: "友達検索"} %>
+              turbolinks: true, image: "friend_search.png", title: "友達検索"} %>
 
           <% unless @user == User.find_by(email: "test@railstutorial.org") %>
             <%= render partial: 'home_link', locals: { link: edit_user_path(@user),
-                                  image: "my_page.png", title: "ユーザー編集"} %>
+                turbolinks: false, image: "my_page.png", title: "ユーザー編集"} %>
           <% end %>
         </div>
         <!-- </div> -->

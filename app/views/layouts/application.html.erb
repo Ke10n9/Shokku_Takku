@@ -3,7 +3,10 @@
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title><%= full_title(yield(:title)) %></title>
-    <%= render 'layouts/rails_default' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render 'layouts/shim' %>
   </head>
   <body>

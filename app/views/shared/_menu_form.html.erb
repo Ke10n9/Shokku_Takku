@@ -1,0 +1,68 @@
+<%= javascript_pack_tag 'menu_picture', 'data-turbolinks-track': 'reload' %>
+
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h5 class="modal-title" id="exampleModalLabel"><%= yield(:modal_header) %></h5>
+    </div>
+    <div class="modal-body">
+      <section class="menu-form">
+        <%= form_with model: @menu, remote: true do |f| %>
+          <div class="menu-error-message alert-danger" id="error_explanation"></div>
+          <div class="dish-error-message alert-danger" id="error_explanation"></div>
+          <div class="menu-information">
+            <div class="form-heading">日付・時間帯</div>
+            <%= f.date_field :date, value: @menu_date %>
+            <%= f.select :time, @menu_times, prompt: "（朝昼夕）", selected: @menu_time %>
+
+            <div class="form-heading">画像</div>
+            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+
+          </div>
+          <div class="menu-picture">
+            <%= menu_image(@menu, "form-menu-img") %>
+            <% if @menu.picture.url %>
+              <%= fields_for @menu do |d| %>
+                <%= d.submit "✖️", name: "delete_image", class: "icon-delete", id: "delete-image",
+                  data: { confirm: "献立の画像を削除してよろしいですか？" } %>
+              <% end %>
+            <% end %>
+            <img id="preview" class="non-active">
+            <div id="message-with-picture" class="non-active">
+              <span>送信ボタンで確定</span>
+            </div>
+          </div>
+
+          <div class="dishes-form">
+            <div class="form-heading">品目</div>
+            <% @dishes.each do |dish| %>
+              <%= f.fields_for "dishes_attributes[]", dish do |i| %>
+                <span class="form">
+                  <%= i.select :category, @dish_categories,
+                                  { prompt: "（分類）", selected: dish.category },
+                                                    class: "category dish-form" %>
+                  <%= i.text_field :name, placeholder: "品名", value: dish.name,
+                                                        class: "name dish-form" %>
+                </span>
+              <% end %>
+            <% end %>
+          </div>
+
+          <%= f.submit "送信", class: "btn btn-square-so-pop btn-send" %>
+        <% end %>
+        <div class="footer-btn-area">
+          <% if yield(:modal_header) == "献立の編集" %>
+            <%= link_to "全て削除", @menu, method: :delete,
+                        data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
+                                      class: "btn btn-square-so-pop btn-delete" %>
+            <%= link_to "品目の追加", new_menu_path(menu_date: @menu.date, menu_time: @menu.time),
+                      remote: true, class: "btn btn-square-so-pop btn-new-dish" %>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
