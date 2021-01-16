@@ -62,7 +62,7 @@ textarea {
 
 .round-area {
   width: 95%;
-  margin: 10px auto 0 auto;
+  margin: 10px auto 50px auto;
   padding: 0;
   border-radius: 5px;
   background-color: white;
@@ -316,6 +316,45 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+/* home */
+
+.intro-item {
+  background-color: white;
+  // min-width: 200px;
+  margin: 10px auto;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+}
+
+.intro-sentence {
+  width: 95%;
+  margin: 0 auto;
+  .intro-title {
+    font-size: 2.0em;
+    margin: 5px;
+    text-align: left;
+    text-decoration: underline double $little-light-orange;
+  }
+
+  .intro-text {
+    width: 95%;
+    height: auto;
+    font-size: 1.5em;
+    margin: 0;
+    text-align: left;
+    // display: inline-block;
+    // vertical-align: middle;
+  }
+}
+
+.intro-img {
+  width: 95%;
+  min-width: 100px;
+  height: auto;
+  margin: 0;
 }
 
 /* menus */
@@ -756,84 +795,6 @@ input {
 }
 
 /* everyone's menu */
-
-
-/* recent menu */
-
-// .round-area {
-//   h2 {
-//     color: black;
-//     line-height: 1.5;
-//     text-shadow: 1px 1px white;
-//     font-size: 2.0em;
-//     margin: 0 auto;
-//     background-color: $little-light-orange;
-//   }
-//   .horizontal-list {
-//     overflow-x: scroll;
-//     white-space: nowrap;
-//     -webkit-overflow-scrolling: touch;
-//     height: 100%;
-//     padding: 0;
-//     margin: 2px;
-//     font-size: 1.1em;
-//     .item {
-//       /* 横スクロール用 */
-//       display: inline-block;
-//       width: 45%;
-//       min-width: 180px;
-//       max-width: 250px;
-//
-//       /* 見た目調整 */
-//       margin: 0 2px;
-//       height: 270px;
-//       position: relative;
-//       box-shadow: 0px 0px 2px gray;
-//       .picture {
-//         width: 100%;
-//         height: 50%;
-//         overflow: hidden;
-//         display: block;
-//         position: relative;
-//         background-size: cover;
-//         background-position: center;
-//         .datetime, .user {
-//           position: absolute;
-//           background-color: white;
-//           margin: 2px;
-//           padding: 0 3px;
-//           // border-radius: 10px;
-//         }
-//         .datetime {
-//           right: 0;
-//           bottom: 0;
-//         }
-//         .datetime div, .user div {
-//           display: inline-block;
-//         }
-//         // .user div {
-//         //   background-color: white;
-//         //   display: inline-block;
-//         // }
-//       }
-//       .info {
-//         margin: 3px;
-//         overflow-y: scroll;
-//         word-wrap: break-word;
-//         white-space: normal;
-//         height: 50%;
-//         padding: 0 0 5px 0;
-//         width: 100%;
-//         .dishes {
-//           padding-left: 20px;
-//         }
-//         span {
-//           display: none;
-//         }
-//       }
-//     }
-//   }
-// }
 
 .round-area h2 {
   color: black;
