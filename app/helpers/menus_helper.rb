@@ -4,7 +4,7 @@ module MenusHelper
     if menu.picture.url
       image_tag(menu.picture.url, id: id)
     else
-      image_tag("no_image.png", id: id)
+      image_pack_tag("no_image.png", id: id)
     end
   end
 end

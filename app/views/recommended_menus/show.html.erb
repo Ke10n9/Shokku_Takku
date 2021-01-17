@@ -15,7 +15,7 @@
               <div class="dish_category"><span class="sharp">#</span><%= @dish_categories[j][0] %></div>
               <% per_category.each_with_index do |less_dish, rank| %>
                 <div class="rank-area" id="rank<%= rank+1 %>">
-                  <div class="rank"><%= image_tag("rank#{rank+1}.png") %></div>
+                  <div class="rank"><%= image_pack_tag("rank#{rank+1}.png") %></div>
                   <div class="rank rank-dish"><%= less_dish %></div>
                 </div>
               <% end %>

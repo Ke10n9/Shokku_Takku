@@ -21,7 +21,7 @@
         <div class="home-grid">
           <%= link_to new_menu_path, remote: true do %>
             <div class="home-link">
-              <%= image_tag("register_menu.png") %>
+              <%= image_pack_tag("register_menu.png") %>
               <div>献立の登録</div>
             </div>
           <% end %>
@@ -64,7 +64,7 @@
           登録した献立をカレンダー形式で閲覧できる！
         </div>
       </div>
-      <%= image_tag("menu_calendar", class: "intro-img") %>
+      <%= image_pack_tag("menu_calendar.png", class: "intro-img") %>
     </div>
     <div class="intro-item">
       <div class="intro-sentence">
@@ -75,7 +75,7 @@
           他のユーザーが登録した献立が見れる！
         </div>
       </div>
-      <%= image_tag("everyone's_menus", class: "intro-img") %>
+      <%= image_pack_tag("everyone's_menus.png", class: "intro-img") %>
     </div>
     <div class="intro-item">
       <div class="intro-sentence">
@@ -86,7 +86,7 @@
           登録した献立から最近食べていないものがわかる！
         </div>
       </div>
-      <%= image_tag("recommend_menus", class: "intro-img") %>
+      <%= image_pack_tag("recommend_menus.png", class: "intro-img") %>
     </div>
   </div>
 

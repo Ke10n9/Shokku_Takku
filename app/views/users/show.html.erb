@@ -8,10 +8,10 @@
   <%= render 'menus/menu_calendar' %>
   <div class="button-area">
     <div class="round-button" id="calendar-button" data-toggle="modal" data-target="#calendarModal">
-      <%= image_tag("calendar.png") %>
+      <%= image_pack_tag("calendar.png") %>
     </div>
     <div class="round-button">
-      <%= link_to image_tag("register_menu.png"), new_menu_path, remote: true %>
+      <%= link_to image_pack_tag("register_menu.png"), new_menu_path, remote: true %>
     </div>
   </div>
 <% else %>
