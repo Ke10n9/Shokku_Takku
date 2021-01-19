@@ -5,6 +5,11 @@ ja:
           name: 名前
           email: メールアドレス
           password: パスワード
+        menu:
+          date: 日付
+          time: 時間帯
+        dish:
+          name: 品目
   views:
     pagination:
       first: '<<'
