@@ -58,7 +58,13 @@ https://datesan.herokuapp.com/
 
 ## 主な画面プレビュー
 
+#### 献立カレンダー
 <img width="559" alt="menu_calendar" src="https://user-images.githubusercontent.com/62887267/105683795-62c74a80-5f37-11eb-8852-48c2848c13ad.png">
+
+#### みんなの献立
+<img width="558" alt="everyone's_menus" src="https://user-images.githubusercontent.com/62887267/105684540-71fac800-5f38-11eb-8fac-a24b0e355584.png">
+
+#### ご無沙汰献立
 
 
 ## 使用技術
