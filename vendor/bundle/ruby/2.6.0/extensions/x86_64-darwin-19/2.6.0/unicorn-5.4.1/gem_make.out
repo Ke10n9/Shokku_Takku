@@ -1,0 +1,29 @@
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/unicorn-5.4.1/ext/unicorn_http
+/Users/nagai/.rbenv/versions/2.6.5/bin/ruby -I /Users/nagai/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210201-1162-hxjjoj.rb extconf.rb
+checking for SIZEOF_OFF_T in ruby.h... yes
+checking for SIZEOF_SIZE_T in ruby.h... yes
+checking for SIZEOF_LONG in ruby.h... yes
+checking for rb_str_set_len() in ruby.h... yes
+checking for rb_hash_clear() in ruby.h... yes
+checking for gmtime_r() in time.h... yes
+creating Makefile
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/unicorn-5.4.1/ext/unicorn_http
+make "DESTDIR=" clean
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/unicorn-5.4.1/ext/unicorn_http
+make "DESTDIR="
+compiling httpdate.c
+compiling unicorn_http.c
+unicorn_http.c:301:18: warning: unused variable 'http_parser_en_ChunkedBody_chunk_chunk_end' [-Wunused-const-variable]
+static const int http_parser_en_ChunkedBody_chunk_chunk_end = 105;
+                 ^
+unicorn_http.c:303:18: warning: unused variable 'http_parser_en_main' [-Wunused-const-variable]
+static const int http_parser_en_main = 1;
+                 ^
+2 warnings generated.
+linking shared-object unicorn_http.bundle
+
+current directory: /Users/nagai/environment/Shokku_Takku/vendor/bundle/ruby/2.6.0/gems/unicorn-5.4.1/ext/unicorn_http
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unicorn_http.bundle ./.gem.20210201-1162-15jieb7
