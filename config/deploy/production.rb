@@ -48,7 +48,7 @@ server "18.180.38.54", user: "kensuke", roles: %w{app db web}
 #  }
 #
 
-set :ssh_options, keys: '~/.ssh/first_aws_rsa'
+set :ssh_options, keys: '~/.ssh/Datesan_key_rsa'
 
 # The server-based syntax can be used to override options:
 # ------------------------------------
