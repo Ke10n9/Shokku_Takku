@@ -20,3 +20,15 @@ import '../js/avatar_form.js'
 //
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
+
+// when cliclk hamburger menu
+// $(document).on('turbolinks:load', function(){
+//   $('.navbar-toggle').on('click', function() {
+//     // if menu is opening, close menu
+//     if($(ul).hasClass('show')) {
+//       $('#navbar').removeClass('show');
+//     } else {
+//       $('#navbar').addClass('show');
+//     }
+//   });
+// });

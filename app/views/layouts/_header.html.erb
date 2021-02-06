@@ -20,7 +20,6 @@
     <nav>
       <ul id="navbar" class="nav navbar-nav navbar-right navbar-collapse collapse">
         <% if logged_in? %>
-          <li><%= link_to "ホーム", root_path %></li>
           <% if current_user.admin == true %>
             <li><%= link_to "ユーザー一覧", users_path %></li>
           <% end %>
