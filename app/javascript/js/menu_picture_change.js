@@ -1,8 +1,8 @@
 $(document).on('turbolinks:load',function(){
   $('#menu_picture').on('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert('最大ファイルサイズは5MBです。');
+    if (size_in_megabytes > 7) {
+      alert('最大ファイルサイズは7MBです。');
     }
 
     $('#form-menu-img').addClass("non-active");

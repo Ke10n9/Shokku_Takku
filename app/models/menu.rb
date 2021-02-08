@@ -13,8 +13,8 @@ class Menu < ApplicationRecord
 
     # アップロードされた画像のサイズをバリデーションする
     def picture_size
-      if picture.size > 5.megabytes
-        errors.add(:picture, "5MB以上の画像はアップロードできません。")
+      if picture.size > 7.megabytes
+        errors.add(:picture, "7MB以上の画像はアップロードできません。")
       end
     end
 end
