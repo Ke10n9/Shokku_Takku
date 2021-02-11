@@ -18,7 +18,7 @@
 
 ## URL
 
-https://datesan.herokuapp.com/
+https://www.datesan.xyz/
 
 ホーム画面の「テストログイン」からテストユーザーとしてログインし、機能を閲覧することができます。
 
@@ -87,6 +87,8 @@ https://datesan.herokuapp.com/
 
 #### 本番環境
 * AWS（VPC,EC2,RDS,S3,ALB,Route53）
+* nginx
+* unicorn
 
 #### インフラ構成図
 ![Datesan](https://user-images.githubusercontent.com/62887267/107597493-221d4000-6c5e-11eb-838b-a6c36ddaf496.png)
