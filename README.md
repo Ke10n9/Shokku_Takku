@@ -86,12 +86,10 @@ https://datesan.herokuapp.com/
 * MySQL
 
 #### 本番環境
-* Heroku
-* Heroku Add-ons
-  * ClearDB MySQL
-  * Mailgun
-* AWS
-  * S3（ユーザー・献立画像用ストレージ）
+* AWS（VPC,EC2,RDS,S3,ALB,Route53）
+
+#### インフラ構成図
+
 
 #### テスト
 * RSpec　計200以上
