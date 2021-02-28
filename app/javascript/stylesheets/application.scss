@@ -57,18 +57,18 @@ textarea {
 }
 
 .home-section {
-  border: 2px solid $little-light-orange;
-}
-
-.round-area {
   width: 95%;
   margin: 10px auto 50px auto;
   padding: 0;
-  border-radius: 5px;
   background-color: white;
 }
 
 /* btn */
+
+.btn {
+  border: none;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .5);
+}
 
 .btn-primary {
   background-color: $dark-green;
@@ -76,13 +76,20 @@ textarea {
   margin: 10px;
 }
 
+.btn-primary:hover {
+  background-color: teal;
+}
+
 .btn-secondary {
   font-size: 1.0em;
   background-color: white;
   width: 139px;
   margin: 10px;
-  border: 2px solid black;
   padding: 5px 16px;
+}
+
+.btn-secondary:hover {
+  background-color: whitesmoke;
 }
 
 .btn-success {
@@ -99,8 +106,12 @@ textarea {
 .btn-send {
   color: #FFF;
   background-color: #fd9535;/*色*/
-  border: solid 2px #d27d00;/*線色*/
   width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-send:hover {
+  background-color: $little-light-orange;
 }
 
 .btn-delete {
@@ -110,9 +121,19 @@ textarea {
   float: right;
 }
 
+.btn-delete:hover {
+  color: white;
+  background-color: red;
+}
+
 .btn-new-dish {
   color: white;
   background-color: $dark-green;
+}
+
+.btn-new-dish:hover {
+  color: white;
+  background-color: teal;
 }
 
 .btn-search {
@@ -121,20 +142,8 @@ textarea {
   background-color: #fd9535;
 }
 
-.btn-square-so-pop {
-  position: relative;
-  display: inline-block;
-  padding: 0.25em 0.5em;
-  text-decoration: none;
-  border-radius: 4px;/*角の丸み*/
-  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.btn-square-so-pop:active {
-  /*押したとき*/
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+.btn-search:hover {
+  background-color: $little-light-orange;
 }
 
 .footer-btn-area {
@@ -162,11 +171,10 @@ h1 {
 
 h2 {
   font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: $gray-light;
+  padding: 0.5em;/*文字周りの余白*/
+  color: #494949;/*文字色*/
+  border-left: solid 5px #ffaf58;/*左線（実線 太さ 色）*/
+  border-bottom: solid 1px #ffaf58;
 }
 
 p {
@@ -322,7 +330,6 @@ input {
 
 .intro-item {
   background-color: white;
-  // min-width: 200px;
   margin: 10px auto;
   padding: 10px;
   text-align: center;
@@ -333,20 +340,19 @@ input {
   width: 95%;
   margin: 0 auto;
   .intro-title {
-    font-size: 2.0em;
+    font-size: 1.4em;
     margin: 5px;
     text-align: left;
-    text-decoration: underline double $little-light-orange;
+    // text-decoration: underline double $little-light-orange;
+    border-bottom: 1px solid $little-light-orange;
   }
 
   .intro-text {
     width: 95%;
     height: auto;
-    font-size: 1.5em;
+    font-size: 1.1em;
     margin: 0;
     text-align: left;
-    // display: inline-block;
-    // vertical-align: middle;
   }
 }
 
@@ -405,11 +411,17 @@ input {
     border-radius: 5px;
     margin: 2px;
     text-align: center;
-    box-shadow: 0px 0px 2px gray;
+    box-shadow: 0 2px 2px 0 silver;
     cursor: pointer;
+  }
+  .calendar-header:hover {
+    background-color: silver;
   }
   #num-0 {
     background-color: $dark-green;
+  }
+  #num-0:hover {
+    background-color: teal;
   }
   .menu {
     border-radius: 5px;
@@ -419,7 +431,7 @@ input {
     overflow-x: hidden;
     word-break: break-all;
     position: relative;
-    box-shadow: 0px 0px 2px gray;
+    box-shadow: 1px 1px 1px 0 darkgray;
     color: black;
     font-size: 0.8em;
     .dishes {
@@ -447,11 +459,11 @@ input {
     display: inline-block;
     width: 70px;
     height: 70px;
-    box-shadow: 0px 0px 2px gray;
     font-size: 0.8em;
     background-color: $dark-green;
     position: relative;
     color: white;
+    box-shadow: 0 2px 2px 0 gray;
     img {
       position: absolute;
       width: 60%;
@@ -469,6 +481,9 @@ input {
       margin: auto;
     }
   }
+  .home-link:hover {
+    background-color: teal;
+  }
 }
 
 /* button for modal */
@@ -480,10 +495,6 @@ input {
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
-  img {
-    border-radius: 100%;
-    background-color: orange;
-  }
   .round-button {
     height: 46px;
     width: 46px;
@@ -495,10 +506,19 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 2px 0 gray;
     cursor: pointer;
     img {
       height: 40px;
       width: auto;
+      border-radius: 100%;
+      background-color: orange;
+    }
+  }
+  .round-button:hover {
+    background-color: $little-light-orange;
+    img:hover {
+      background-color: $little-light-orange;
     }
   }
 }
@@ -709,8 +729,12 @@ input {
 /* recommend_menus */
 
 .round-area {
-  box-shadow: 0px 0px 2px gray;
+  width: 95%;
+  margin: 10px auto 50px auto;
+  padding: 0;
+  background-color: white;
   font-size: 0.8em;
+  box-shadow: 0 0 1px 1px lightgray;
   h4 {
     text-align: center;
     padding: 3px;
@@ -796,23 +820,13 @@ input {
 
 /* everyone's menu */
 
-.round-area h2 {
-  color: black;
-  line-height: 1.5;
-  text-shadow: 1px 1px white;
-  font-size: 2.0em;
-  margin: 0 auto;
-  background-color: $little-light-orange;
-}
-
 .horizontal-list {
   overflow-x: scroll;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-  height: 100%;
+  height: 98%;
   padding: 0;
   margin: 2px;
-  font-size: 1.1em;
   .everyone-menu-item {
     /* 横スクロール用 */
     display: inline-block;
@@ -821,9 +835,9 @@ input {
     max-width: 250px;
 
     /* 見た目調整 */
-    margin: 0 1px;
+    margin: 1px;
     height: 270px;
-    box-shadow: 0px 0px 2px gray;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
     vertical-align: top;
   }
   .everyone-menu-picture {
@@ -831,7 +845,6 @@ input {
     height: 50%;
     overflow: hidden;
     display: block;
-    // object-fit: cover;
     position: relative;
   }
   .everyone-menu-picture img {
@@ -843,7 +856,8 @@ input {
     position: absolute;
     background-color: white;
     margin: 2px;
-    padding: 0 3px
+    padding: 0 3px;
+    font-size: 0.8em
   }
   .user {
     left: 0;
@@ -879,7 +893,7 @@ input {
   padding: 0;
   margin: 2px;
   .everyone-menu-item {
-    border-top: 1px solid gray;
+    border-top: 1px solid lightgray;
   }
   .everyone-menu-picture {
     width: 30%;
@@ -1098,6 +1112,7 @@ ul.tab{
   color: #fff;
   margin: 0;
   text-align: center;
+  cursor: pointer;
 }
 .tab li.active{
   background: #fff;

@@ -51,15 +51,15 @@
             <% end %>
           </div>
 
-          <%= f.submit "送信", class: "btn btn-square-so-pop btn-send" %>
+          <%= f.submit "送信", class: "btn btn-send" %>
         <% end %>
         <div class="footer-btn-area">
           <% if yield(:modal_header) == "献立の編集" %>
             <%= link_to "全て削除", @menu, method: :delete,
                         data: { confirm: "この時間の献立を全て削除します。よろしいですか？" },
-                                      class: "btn btn-square-so-pop btn-delete" %>
+                                      class: "btn btn-delete" %>
             <%= link_to "品目の追加", new_menu_path(menu_date: @menu.date, menu_time: @menu.time),
-                      remote: true, class: "btn btn-square-so-pop btn-new-dish" %>
+                      remote: true, class: "btn btn-new-dish" %>
           <% end %>
         </div>
       </section>
