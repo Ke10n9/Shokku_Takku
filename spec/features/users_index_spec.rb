@@ -44,29 +44,6 @@ RSpec.feature "UsersIndices", type: :feature do
     end
   end
 
-  # context "without word in search form" do
-  #   background {
-  #     fill_in "search_name", with: ""
-  #     click_button "検索"
-  #   }
-  #
-  #   scenario "show error message" do
-  #     wait_for_ajax do
-  #       expect(page).to have_selector("#error-user-search")
-  #     end
-  #   end
-  # end
-
-  # context "with non perfect matching user name in search form" do
-  #   background {
-  #     fill_in "search_name", with: "user"
-  #   }
-  #
-  #   scenario "don't show search results" do
-  #     expect(page).to have_selector("#search-results")
-  #   end
-  # end
-
   context "with admin user" do
     background {
       log_in_as @admin
@@ -74,13 +51,13 @@ RSpec.feature "UsersIndices", type: :feature do
     }
 
     scenario "have each user.name with a link to user_path" do
-      User.paginate(page: 1).each do |user|
+      User.page(1).each do |user|
         expect(page).to have_link(user.name, href: user_path(user))
       end
     end
 
     scenario "have a delete link for each user" do
-      User.paginate(page: 1).each do |user|
+      User.page(1).each do |user|
         unless user == @admin
           expect(page).to have_link("delete", href: user_path(user))
         end

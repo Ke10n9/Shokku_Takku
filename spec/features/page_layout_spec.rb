@@ -123,10 +123,6 @@ RSpec.feature "PageLayouts", type: :feature do
         expect(page).to have_css(".sub-title", text: "for #{@user.name}")
       end
 
-      scenario "have_link 'ホーム' href: root_path" do
-        expect(page).to have_link("ホーム", href: root_path)
-      end
-
       scenario "have_link 'ログアウト' href: logout_path" do
         expect(page).to have_link("ログアウト", href: logout_path)
       end
@@ -293,7 +289,7 @@ RSpec.feature "PageLayouts", type: :feature do
     }
 
     scenario "show each menu" do
-      @other_user.menus.paginate(page: 1).each do |menu|
+      @other_user.menus.page(1).each do |menu|
         expect(page).to have_content("#{menu.date} #{menu.time}")
       end
     end

@@ -87,7 +87,7 @@ RSpec.feature "MenusCalendars", type: :feature do
 
     scenario "show yesterday and 7days before and after yesterday in menu calendar when click_on yesterday" do
       within ("#calendarModal") do
-        click_on "#{Date.yesterday.day}"
+        click_link href: user_path(@user, start_date: Date.yesterday)
       end
       (-7..7).each do |n|
         expect(page).to have_content(Date.yesterday-n)
