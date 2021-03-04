@@ -1,4 +1,4 @@
-$(window).on('turbolinks:load', function() {
+$('turbolinks:load', function() {
   var ELEMENT = $('.calendar').get(0);
   var scrollWidth = ELEMENT.scrollWidth;
   var elementWidth = ELEMENT.clientWidth;
