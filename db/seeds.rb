@@ -7,13 +7,13 @@
 #               activated: true,
 #               activated_at: Time.zone.now)
 
-# User.create!(name:  "Test User",
-#               email: "test@railstutorial.org",
-#               password:              "foobar",
-#               password_confirmation: "foobar",
-#               admin: false,
-#               activated: true,
-#               activated_at: Time.zone.now)
+User.create!(name:  "Test User",
+              email: "test@railstutorial.org",
+              password:              "foobar",
+              password_confirmation: "foobar",
+              admin: false,
+              activated: true,
+              activated_at: Time.zone.now)
 
 dishes = { breakfast: [[ {name: "食パン", category: "主菜"},
                         {name: "ベーコンチーズエッグ", category: "副菜"},
