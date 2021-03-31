@@ -30,6 +30,7 @@ gem 'bootstrap-sass'
 gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'carrierwave'
+gem 'mimemagic', '~> 0.3.0'
 gem 'mini_magick'
 gem 'simple_calendar', "~> 2.0"
 gem 'mysql2'
@@ -45,10 +46,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
 end
 
 group :development do
@@ -79,4 +76,4 @@ group :production, :staging do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data'#, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
